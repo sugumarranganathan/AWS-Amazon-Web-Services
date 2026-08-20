@@ -1,0 +1,56 @@
+☁️ AWS Road for AI – Complete Workflow
+
+| Step   | Category              | Service / Feature         | Purpose / Workflow                                  |
+| ------ | --------------------- | ------------------------- | --------------------------------------------------- |
+| **1**  | **Login**             | **Root User**             | Main AWS account owner with full access             |
+| **2**  | **Login**             | **IAM User**              | Provides controlled access and permissions          |
+| **3**  | **Storage**           | **S3 Bucket**             | Simple Storage Service used to store files and data |
+| **4**  | **Computing**         | **EC2**                   | Provides virtual computing resources                |
+| **5**  | **Hosting**           | **EC2**                   | Hosts applications using virtual servers            |
+| **6**  | **Hosting**           | **Lightsail**             | Simplified cloud hosting                            |
+| **7**  | **Hosting**           | **Elastic Beanstalk**     | Deploys and manages applications                    |
+| **8**  | **AI/ML**             | **AWS SageMaker AI**      | AWS platform for Machine Learning workflows         |
+| **9**  | **SageMaker**         | **Jupyter Notebook Lab**  | Environment for AI/ML development                   |
+| **10** | **Notebook Workflow** | **Data Preprocessing**    | Prepare and clean the data                          |
+| **11** | **Notebook Workflow** | **Model Training**        | Train the Machine Learning model                    |
+| **12** | **Notebook Workflow** | **Model Building**        | Build and configure the model                       |
+| **13** | **Notebook Workflow** | **Model Evaluation**      | Check the model's performance                       |
+| **14** | **Notebook Workflow** | **Deployment**            | Make the trained model available for use            |
+| **15** | **Deployment**        | **Endpoint**              | Provides access to the deployed model               |
+| **16** | **Endpoint Type**     | **Server-Based Endpoint** | Charged per hour, even when not being used          |
+| **17** | **Endpoint Type**     | **Serverless Endpoint**   | Charge based on prediction/usage                    |
+| **18** | **SageMaker**         | **JumpStart**             | Train your own model with pretrained LLM models     |
+| **19** | **Generative AI**     | **AWS Bedrock**           | Access third-party LLM models from one place        |
+| **20** | **AWS Platform**      | **200+ Services**         | AWS provides many other cloud services              |
+
+
+==========
+
+🔄 Main AI Workflow
+
+| Order  | Workflow                                |
+| ------ | --------------------------------------- |
+| 1️⃣    | Login to AWS                            |
+| 2️⃣    | Root User / IAM User                    |
+| 3️⃣    | Select AWS Service                      |
+| 4️⃣    | AWS SageMaker AI                        |
+| 5️⃣    | Jupyter Notebook Lab                    |
+| 6️⃣    | Data Preprocessing                      |
+| 7️⃣    | Model Training                          |
+| 8️⃣    | Model Building                          |
+| 9️⃣    | Model Evaluation                        |
+| 🔟     | Deployment                              |
+| 1️⃣1️⃣ | Endpoint                                |
+| 1️⃣2️⃣ | Server-Based **or** Serverless Endpoint |
+
+
+====
+
+Easy to Remember
+
+Login → AWS Service → SageMaker → Preprocess Data → Train → Build → Evaluate → Deploy → Endpoint
+
+The table shows the workflow clearly, while 
+separating the core AI path from optional services makes the sequence easier to study at a glance.
+
+=====
