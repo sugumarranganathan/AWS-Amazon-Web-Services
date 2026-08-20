@@ -62,5 +62,51 @@ This week marks your transformation from AI developer to AI deployer.
 
 =========
 
+✅ What You’ll Learn
+Introduction to AWS and its cloud-based ecosystem
 
+Exploring the core AWS services used in AI and Data workflows
+
+Creating your own AWS account and understanding user roles
+
+Setting up S3 Buckets for secure data and model storage
+
+Introduction to AWS SageMaker AI Domain and how to create one
+
+Hands-on practice: Pushing files between SageMaker and S3
+
+Learning about Training Jobs, Script Mode, and Model Deployment methods
+
+Creating both Server-based and Serverless endpoints for predictions
+
+Using VS Code and IAM users for external API calls
+
+Managing and deleting instances safely to optimize cost
+
+Exploring EC2 instances — and the six possible deployment combinations
+
+Deploying models from local setup to EC2 and S3 environments
+
+Understanding AWS Architecture Flow for RAG-based Chatbots
+
+Building Lambda Functions and connecting them to API Gateway URLs
+
+Integrating front-end applications with AWS endpoints for real-world testing
+
+Implementing CI/CD with GitHub Actions and YAML automation for continuous deployment
+
+Reinforcing concepts with assignments, MCQs, and real-time demos
+
+✅ By the End of This Week
+You’ll know how to train, deploy, and manage ML models on AWS SageMaker
+
+You’ll be able to host AI systems on EC2, S3, and Lambda with complete confidence
+
+You’ll understand how to automate deployment using CI/CD pipelines
+
+You’ll gain real cloud experience — the same workflows used by top tech companies
+
+✨ In the upcoming module, you’ll explore LangChain — the most powerful AI Agent Framework, where you’ll learn to connect LLMs, memory, tools, and databases to build truly intelligent multi-agent systems.
+
+====
 
