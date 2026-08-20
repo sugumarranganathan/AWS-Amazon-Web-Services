@@ -1,0 +1,117 @@
+4 main cloud computing concepts:
+
+1. Storage 💾
+
+Storage means saving files and data in the cloud.
+
+Examples:
+Images
+Videos
+Datasets
+Documents
+ML training data
+Backup files
+Example:
+
+AWS: Amazon S3
+GCP: Cloud Storage
+
+Your Dataset
+     ↓
+Cloud Storage
+
+===========
+
+2. Computing 🖥️
+
+Computing means using processing power to run applications, programs, or AI/ML models.
+
+Examples:
+CPU
+GPU
+TPU
+Virtual machines
+Running Python programs
+Training ML models
+Example:
+
+AWS: EC2
+GCP: Compute Engine
+
+Python / ML Model
+        ↓
+   Cloud Computer
+        ↓
+   CPU / GPU / TPU
+
+====
+
+3. Hosting 🌐
+
+Hosting means making your application or website available on the internet.
+
+Example:
+Your Flask / FastAPI App
+          ↓
+       Deploy
+          ↓
+      Cloud Run
+          ↓
+   Public Website URL
+          ↓
+        Users
+
+AWS: Elastic Beanstalk / EC2
+GCP: Cloud Run
+
+For example, when you deploy an AI chatbot and get a URL, that is hosting.
+
+===
+
+4. Networking 🌍
+
+Networking means connecting cloud resources, applications, users, and services so they can communicate securely.
+
+Examples:
+Internet connection
+IP addresses
+APIs
+Load balancing
+Virtual networks
+Firewalls
+User
+ ↓
+Internet
+ ↓
+Network
+ ↓
+Cloud Application
+ ↓
+Database
+
+====
+
+Simple summary
+
+| Concept        | Meaning                    | GCP Example                |
+| -------------- | -------------------------- | -------------------------- |
+| **Storage**    | Store files and data       | Cloud Storage              |
+| **Computing**  | Run programs and AI/ML     | Compute Engine / Vertex AI |
+| **Hosting**    | Make app available online  | Cloud Run                  |
+| **Networking** | Connect services and users | VPC / Load Balancing       |
+
+
+====
+
+Easy to remember:
+
+💾 Storage = Save
+🖥️ Computing = Process
+🌐 Hosting = Publish online
+🌍 Networking = Connect everything
+
+For AWS, these four concepts map directly to 
+Amazon S3 for storage, EC2 for computing, Elastic Beanstalk for hosting, and VPC for networking, giving an AI/ML project a complete cloud foundation.
+
+====
+
