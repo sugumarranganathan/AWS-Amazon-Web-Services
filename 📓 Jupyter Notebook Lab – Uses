@@ -1,0 +1,83 @@
+📓 Jupyter Notebook Lab – Uses
+
+1. Data Preprocessing
+
+Clean the data.
+Handle missing values.
+Remove duplicate data.
+Convert data into a suitable format for Machine Learning.
+Raw Data → Cleaned Data
+
+=============
+
+2. Model Training
+
+Train the Machine Learning model using prepared data.
+
+Examples:
+Linear Regression
+Decision Tree
+Random Forest
+Deep Learning models
+
+Training Data → ML Model Training
+
+
+==========
+
+3. Model Building
+
+Create and configure the ML model.
+Select algorithms.
+Define model parameters.
+Develop the model architecture.
+
+Data + Algorithm → Build Model
+
+========
+
+4. Model Evaluation
+
+Check how well the trained model performs.
+
+Use metrics such as:
+Accuracy
+Precision
+Recall
+RMSE
+
+Trained Model → Performance Check
+
+=========
+
+5. Deployment
+Deploy the trained model for real-world use.
+The screenshot shows deployment to an Endpoint.
+Trained Model
+      ↓
+Deployment
+      ↓
+Endpoint
+      ↓
+Application / User
+
+=========
+
+Complete Flow
+Data Preprocessing
+        ↓
+Model Training
+        ↓
+Model Building
+        ↓
+Model Evaluation
+        ↓
+Deployment → Endpoint
+
+Simple meaning: The SageMaker Jupyter Notebook Lab helps you work through the ML process—from preparing data to deploying the model as an endpoint.
+
+The SageMaker Jupyter Notebook Lab covers the full machine-learning workflow, including 
+the difference between model evaluation and endpoint deployment, so each stage has a distinct purpose.
+
+========
+
