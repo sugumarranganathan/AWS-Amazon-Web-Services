@@ -1,0 +1,29 @@
+complete SageMaker Jupyter Notebook Lab workflow and the deployment endpoint cost concept.
+
+📓 AWS SageMaker Jupyter Notebook Lab
+
+1. Data Preprocessing
+Clean the raw data.
+Handle missing values.
+Prepare the dataset for Machine Learning.
+
+2. Model Training
+Train the model using the prepared data.
+
+3. Model Building
+Select the algorithm.
+Build and configure the ML model.
+
+4. Model Evaluation
+Check the model's performance and accuracy.
+
+5. Deployment
+
+After the model is ready:
+
+Deployment
+    ↓
+Endpoint
+
+============
+
