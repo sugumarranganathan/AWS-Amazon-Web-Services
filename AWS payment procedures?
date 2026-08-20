@@ -1,0 +1,29 @@
+You selected the AWS Free Plan, but AWS is asking for a payment method for account verification.
+
+What AWS is asking
+
+| Item                                | Meaning                                                                                |
+| ----------------------------------- | -------------------------------------------------------------------------------------- |
+| **AWS Free Plan**                   | You can use eligible Free Tier services without normal charges within Free Tier limits |
+| **₹2 refundable transaction**       | A small temporary verification transaction to verify your payment method               |
+| **₹15,000 automatic payment limit** | The UPI AutoPay mandate limit, **not an immediate ₹15,000 charge**                     |
+
+
+===
+
+mportant
+
+The screen specifically says:
+
+“A ₹2 refundable transaction is required to verify your payment method.”
+
+So, based on this screen, AWS is not asking you to pay ₹15,000 now. The ₹2 is for payment verification and is described as refundable.
+
+⚠️ However, having a Free Tier account does not mean every AWS service is always free. You can still be charged if you use services outside the Free Tier limits or leave paid resources running.
+
+If you continue, be careful when creating services like EC2, SageMaker endpoints, databases, or other running resources, and always delete/stop resources you no longer need.
+
+The payment screen shows that the ₹15,000 figure is an 
+UPI AutoPay authorization limit rather than an immediate AWS charge, while the ₹2 transaction is the stated verification amount.
+
+====
