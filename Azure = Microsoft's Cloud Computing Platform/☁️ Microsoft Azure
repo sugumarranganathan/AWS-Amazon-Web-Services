@@ -1,0 +1,91 @@
+Microsoft Azure ☁️
+
+Azure = Microsoft's Cloud Computing Platform
+
+Azure is similar to AWS and GCP. It provides cloud services for storage, computing, AI/ML, hosting, and networking.
+
+===
+
+Azure main services
+1. Storage 💾
+
+Used to store:
+
+Files
+Images
+Videos
+Datasets
+Backups
+
+Azure service: Azure Blob Storage
+
+===
+
+2. Computing 🖥️
+
+Used to run:
+
+Applications
+Python programs
+Virtual machines
+AI/ML workloads
+
+Azure services:
+
+Azure Virtual Machines
+Azure Kubernetes Service (AKS)
+
+===
+
+3. AI & Machine Learning 🤖
+
+Used to:
+
+Train ML models
+Deploy ML models
+Build AI applications
+Use AI APIs
+
+Azure services:
+
+Azure Machine Learning
+Azure AI Services
+Azure OpenAI Service
+
+====
+
+4. Hosting 🌐
+
+Used to deploy websites and applications.
+
+Azure services:
+
+Azure App Service
+Azure Functions
+
+Example:
+
+Your FastAPI / Flask App
+          ↓
+      Azure App Service
+          ↓
+       Deploy
+          ↓
+      Public URL
+          ↓
+         Users
+
+===
+
+. Networking 🌍
+
+Used to connect users, applications, databases, and cloud services.
+
+Azure services:
+
+Azure Virtual Network (VNet)
+Azure Load Balancer
+Azure DNS
+
+===
+
