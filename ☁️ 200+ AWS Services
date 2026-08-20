@@ -1,0 +1,34 @@
+☁️ 200+ AWS Services
+
+WS provides 200+ cloud services.
+
+These services cover different areas such as:
+
+💾 Storage
+🖥️ Computing
+🌐 Hosting
+🤖 AI & Machine Learning
+🗄️ Databases
+🔐 Security
+🌍 Networking
+📊 Analytics
+
+====
+
+Simple meaning
+AWS
+ │
+ ├── S3 → Storage
+ ├── EC2 → Computing
+ ├── Lightsail → Hosting
+ ├── Elastic Beanstalk → Hosting
+ ├── SageMaker → AI/ML
+ ├── Bedrock → Access LLMs
+ │
+ └── 200+ Other AWS Services
+
+===
+
+AWS = One cloud platform with 200+ services for building, deploying, storing, managing, and scaling
+
+====
