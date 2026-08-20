@@ -1,0 +1,35 @@
+Computing – EC2
+
+EC2 = Elastic (C)ompute (C)loud
+(two c is coming so EC2)
+
+EC2 is a virtual server provided by AWS.
+
+It gives you computing power without buying a physical computer or server.
+You can choose CPU, memory, storage, and operating system based on your requirement.
+
+EC2 can be used to:
+Run applications
+Run Python programs
+Train or process workloads
+Host websites
+Run backend servers
+
+===========
+
+Simple Example
+
+Instead of buying a powerful computer:
+
+Your Laptop
+     ↓
+Connect to AWS
+     ↓
+Create EC2 Virtual Machine
+     ↓
+Use Computing Power
+
+EC2 = A virtual computer/server in the AWS cloud.
+
+===========
+
