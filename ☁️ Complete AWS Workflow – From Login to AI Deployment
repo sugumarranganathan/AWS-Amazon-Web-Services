@@ -1,0 +1,124 @@
+☁️ Complete AWS Workflow – From Login to AI Deployment
+
+AWS Road for AI
+│
+├── 1. LOGIN
+│   │
+│   ├── Root User
+│   │     └── Main AWS account owner
+│   │
+│   └── IAM User
+│         └── Identity and Access Manager
+│               └── Controlled access to AWS services
+│
+└── 2. AWS SERVICES
+    │
+    ├── STORAGE
+    │     │
+    │     └── S3 Bucket
+    │           └── Simple Storage Service
+    │
+    ├── COMPUTING
+    │     │
+    │     └── EC2
+    │           └── Virtual computing server
+    │
+    ├── HOSTING
+    │     │
+    │     ├── EC2
+    │     ├── Lightsail
+    │     └── Elastic Beanstalk
+    │
+    ├── AWS SAGEMAKER AI
+    │     │
+    │     ├── Jupyter Notebook Lab
+    │     │     │
+    │     │     ├── Data Preprocessing
+    │     │     ├── Model Training
+    │     │     ├── Model Building
+    │     │     ├── Model Evaluation
+    │     │     └── Deployment
+    │     │            │
+    │     │            └── Endpoint
+    │     │                 │
+    │     │                 ├── Server-Based Endpoint
+    │     │                 │     └── Charged per hour
+    │     │                 │        even when not using it
+    │     │                 │
+    │     │                 └── Serverless Endpoint
+    │     │                       └── Charge per prediction based
+    │     │
+    │     └── JumpStart
+    │           └── Train your own model
+    │               with pretrained LLM models
+    │
+    ├── AWS BEDROCK
+    │     │
+    │     └── Accessing 3rd-party LLM models
+    │         from one place
+    │
+    └── 200+ SERVICES
+
+=====
+
+🚀 Main AI/ML Workflow
+
+The most important workflow is:
+
+
+Login to AWS
+      ↓
+Use IAM User
+      ↓
+Choose AWS Service
+      ↓
+AWS SageMaker AI
+      ↓
+Jupyter Notebook Lab
+      ↓
+Data Preprocessing
+      ↓
+Model Training
+      ↓
+Model Building
+      ↓
+Model Evaluation
+      ↓
+Deployment
+      ↓
+Endpoint
+      ├── Server-Based → Charged per hour
+      │
+      └── Serverless → Charge per prediction
+
+=====
+
+🤖 Alternative AI Paths
+
+AWS SageMaker JumpStart
+        ↓
+Use Pretrained LLM
+        ↓
+Train / Customize Your Model
+
+====
+
+AWS Bedrock
+        ↓
+Access Multiple 3rd-Party LLM Models
+        ↓
+Use Models from One Place
+
+=====
+
+Easy way to remember
+
+Login → AWS Services → SageMaker → Build AI Model → Evaluate → Deploy → Endpoint
+
+This follows the structure and terminology shown in your course mind map.
+
+The workflow becomes easier to apply when 
+each AWS service is mapped to the exact step it supports, from storing data in S3 to serving predictions through a SageMaker endpoint.
+
+=====
+
