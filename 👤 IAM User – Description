@@ -1,0 +1,42 @@
+👤 IAM User – Description
+
+IAM = Identity and Access Management
+
+An IAM User is an identity created within an AWS account for a person or application.
+
+IAM Users are used to access AWS services securely.
+
+The Root User or AWS administrator can create IAM Users.
+
+Each IAM User can be given specific permissions.
+
+Access can be controlled based on the user's role and responsibilities.
+
+IAM Users can access selected AWS services such as:
+Amazon S3
+Amazon EC2
+Amazon RDS
+
+=======
+
+Simple Definition
+
+An IAM User is a user created in an AWS account with specific permissions to access and manage AWS resources.
+
+Easy Difference
+
+| Root User                  | IAM User                             |
+| -------------------------- | ------------------------------------ |
+| Main AWS account owner     | User created inside the AWS account  |
+| Full access                | Access based on assigned permissions |
+| Controls the whole account | Accesses only allowed resources      |
+
+===
+
+An IAM User provides controlled access to AWS resources, and 
+its permissions should be assigned through IAM policies based on the user's job responsibilities to follow the principle of least privilege.
+
+=====
+
+
+
