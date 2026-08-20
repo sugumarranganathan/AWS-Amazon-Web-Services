@@ -1,0 +1,62 @@
+AWS Services topic.
+
+You can see:
+
+1. Login
+
+When you log in to AWS, there are mainly two types of users shown:
+
+👑 Root User
+The main owner account.
+Created when you first register for AWS.
+Has full access to AWS services and billing.
+Should not be used for daily work.
+
+====
+
+👤 IAM User
+
+IAM = Identity and Access Management
+
+An IAM user is created by the Root User or administrator.
+Used for secure access to AWS.
+Permissions can be controlled.
+Example: one user may get access only to S3, while another gets access to EC2.
+
+===
+
+Simple flow
+AWS Account
+     │
+     ├── Root User 👑
+     │      └── Full control
+     │
+     └── IAM User 👤
+            └── Limited permissions based on role
+
+===
+
+AWS Services
+
+25 AWS Services coming next.
+
+These services will likely include areas such as:
+
+Storage
+Computing
+Hosting
+Networking
+Database
+AI/ML
+Security
+
+So the first concept to remember is:
+
+Root User = Full AWS account owner access
+IAM User = Controlled user access
+
+Because the Root User has unrestricted access, 
+the safest AWS login setup is to secure the Root User and use an IAM administrator for daily work instead.
+
+=====
+
