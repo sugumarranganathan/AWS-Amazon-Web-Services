@@ -1,0 +1,20 @@
+👑 Root User – Description
+
+Root User is the original owner of an AWS account.
+
+It is created when you first sign up for AWS using your email address.
+The Root User has complete and unrestricted access to all AWS services and resources.
+
+It can manage:
+Billing and payments
+AWS services
+Security settings
+IAM users and permissions
+The Root User should not be used for daily work.
+For security, create an IAM User for regular AWS activities.
+Simple Definition
+
+Root User is the main AWS account owner with full access and control over all AWS services and resources.
+
+The Root User has complete control over the AWS account, so 
+its key security precautions are enabling MFA, protecting the credentials, and avoiding daily use are essential.
