@@ -1,0 +1,21 @@
+AWS Bedrock → Accessing 3rd-party LLM models from one place
+
+Simple explanation
+
+AWS Bedrock allows you to access different Large Language Models (LLMs) from a single AWS platform.
+
+AWS Bedrock
+     │
+     ├── LLM Model 1
+     ├── LLM Model 2
+     ├── LLM Model 3
+     └── LLM Model 4
+
+====
+
+AWS Bedrock = One place to access multiple third-party AI/LLM models.
+
+AWS Bedrock provides access to multiple third-party LLMs in one place, while JumpStart starts with a pretrained model for customization, so 
+the key difference is model access versus model adaptation.
+
+=====
