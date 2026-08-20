@@ -1,0 +1,54 @@
+Hosting
+
+Hosting means making your application or website available on the internet.
+
+======
+
+| Service               | Explanation                                                                                 |
+| --------------------- | ------------------------------------------------------------------------------------------- |
+| **EC2**               | You manually manage and run your application on a virtual server                            |
+| **Lightsail**         | A simpler AWS hosting option for beginners and small applications                           |
+| **Elastic Beanstalk** | Helps deploy and manage an application without manually handling much of the infrastructure |
+
+
+=======
+
+🖥️ EC2
+
+You manage:
+Server + OS + Application
+
+More control, but you have more responsibility.
+
+====
+
+💡 Lightsail
+
+Simple setup
+     ↓
+Choose application/server
+     ↓
+Deploy
+
+Suitable for simple websites and small applications.
+
+=====
+
+☁️ Elastic Beanstalk
+
+Upload Application
+        ↓
+Elastic Beanstalk
+        ↓
+AWS handles deployment infrastructure
+        ↓
+Application runs
+
+=====
+
+EC2 = Virtual Server
+Lightsail = Simple Hosting
+Elastic Beanstalk = Easy Application Deployment and Hosting
+
+EC2 provides the underlying virtual computer, while Lightsail simplifies server setup and Elastic Beanstalk simplifies application deployment, so 
+the three options differ mainly in how much infrastructure you manage for the same hosting goal.
