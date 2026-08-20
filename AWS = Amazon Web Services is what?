@@ -1,0 +1,55 @@
+AWS = Amazon Web Services
+
+AWS is a cloud computing platform provided by Amazon.
+
+====
+
+Main AWS Services
+Amazon EC2 – Virtual servers
+Amazon S3 – Cloud storage
+Amazon RDS – Managed databases
+AWS Lambda – Serverless computing
+Amazon SageMaker – Machine Learning and AI
+Amazon Bedrock – Generative AI applications
+Amazon Rekognition – Image and video analysis
+Amazon Comprehend – Natural Language Processing (NLP)
+
+====
+
+Simple Example
+Your AI/ML Project
+        ↓
+       AWS
+        ↓
+ ┌─────────────────┐
+ │ SageMaker       │ → Train ML models
+ │ EC2             │ → Computing power
+ │ S3              │ → Store datasets
+ │ Lambda          │ → Run backend code
+ │ Bedrock         │ → Generative AI
+ └─────────────────┘
+
+=====
+
+In simple words
+
+AWS is similar to GCP.
+
+| AWS              | Google Cloud              |
+| ---------------- | ------------------------- |
+| Amazon EC2       | Compute Engine            |
+| Amazon S3        | Cloud Storage             |
+| Amazon SageMaker | Vertex AI                 |
+| AWS Lambda       | Cloud Functions           |
+| Amazon Bedrock   | Vertex AI / Generative AI |
+
+
+=====
+
+AWS = Amazon's Cloud Platform
+GCP = Google's Cloud Platform
+
+AWS provides the core services for an AI/ML project, with 
+Amazon SageMaker handling model training and deployment while S3 stores datasets and EC2 supplies computing power.
+===
+
