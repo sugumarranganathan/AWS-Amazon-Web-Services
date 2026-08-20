@@ -1,0 +1,24 @@
+| Purpose     | AWS               | GCP             | Azure                  |
+| ----------- | ----------------- | --------------- | ---------------------- |
+| Storage     | S3                | Cloud Storage   | Blob Storage           |
+| Computing   | EC2               | Compute Engine  | Virtual Machines       |
+| ML/AI       | SageMaker         | Vertex AI       | Azure Machine Learning |
+| Serverless  | Lambda            | Cloud Functions | Azure Functions        |
+| App Hosting | Elastic Beanstalk | Cloud Run       | Azure App Service      |
+| Networking  | VPC               | VPC             | VNet                   |
+
+
+====
+
+Easy to remember
+
+AWS = Amazon Cloud
+GCP = Google Cloud
+Azure = Microsoft Cloud
+
+All three provide the same major cloud concepts: Storage → Computing → Hosting → Networking → AI/ML.
+
+Azure covers the same core cloud layers as AWS, with 
+Azure Machine Learning connecting Blob Storage, Virtual Machines, App Service, and VNet in one AI/ML workflow for training and deployment.
+
+===
