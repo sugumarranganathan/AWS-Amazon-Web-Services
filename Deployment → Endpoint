@@ -1,0 +1,55 @@
+Deployment → Endpoint
+
+After model evaluation, the trained model can be deployed as an Endpoint.
+
+=======
+
+1. Server-Based Endpoint
+
+The model runs on a server/instance.
+The server is kept running for the endpoint.
+Charged based on running time.
+You may be charged even when nobody is using the model.
+
+Flow
+
+Trained Model
+      ↓
+Server-Based Endpoint
+      ↓
+Server Running
+      ↓
+Hourly Charges
+
+===
+
+2. Serverless Endpoint
+No server needs to be continuously managed by you.
+Resources are used when a prediction request comes.
+The screenshot describes the charge as prediction-based.
+Flow
+Trained Model
+      ↓
+Serverless Endpoint
+      ↓
+Prediction Request
+      ↓
+Pay based on usage/predictions
+
+====
+
+| Endpoint                  | Server                        | Charging concept                   |
+| ------------------------- | ----------------------------- | ---------------------------------- |
+| **Server-Based Endpoint** | Continuously running          | Charged for running time           |
+| **Serverless Endpoint**   | Runs/scales based on requests | Charged based on usage/predictions |
+
+=====
+
+Server-Based = Server running → Time-based cost
+Serverless = Prediction request → Usage-based cost
+
+The cost difference follows from how resources are allocated, so 
+choosing between server-based and serverless endpoints for different traffic patterns depends mainly on request volume and consistency.
+
+=====
+
