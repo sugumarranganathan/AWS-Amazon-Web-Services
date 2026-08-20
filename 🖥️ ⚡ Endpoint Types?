@@ -1,0 +1,44 @@
+Endpoint Types
+-------------
+
+🖥️ Server-Based Endpoint
+
+Model
+  ↓
+Server-Based Endpoint
+  ↓
+Server keeps running
+  ↓
+Charged per hour
+
+The server/instance remains available.
+
+charged per hour even when we are not using it.
+
+
+========
+
+⚡ Serverless Endpoint
+
+Model
+  ↓
+Serverless Endpoint
+  ↓
+Prediction Request
+  ↓
+Charge per prediction
+
+Resources are used based on prediction requests.
+
+========
+
+Server-Based Endpoint → Running continuously → Hourly charge
+
+Serverless Endpoint → Prediction/usage → Charge based on predictions
+
+========
+
+training your own model with pretrained LLM models, which is part of the SageMaker AI section.
+
+====
+As shown in your course: charge per prediction based.
