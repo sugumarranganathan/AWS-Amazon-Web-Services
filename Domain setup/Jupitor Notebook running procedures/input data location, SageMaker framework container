@@ -1,0 +1,194 @@
+s3-path:
+s3://insurance-prediction-bucket/insurance-data/insurance_pre.csv
+framework_version 1.2-1
+Image URI
+683313688378.dkr.ecr.us-east-1.amazonaws.com/sagemaker-scikit-learn:1.2-1-cpu-py3
+model_s3_uri
+s3://sagemaker-us-east-1-253490754689/sagemaker-scikit-learn-2025-05-02-13-41-50-366/output/model.tar.gz
+framework_version 1.2-1
+Image URI
+683313688378.dkr.ecr.us-east-1.amazonaws.com/sagemaker-scikit-learn:1.2-1-cpu-py3
+model_s3_uri
+s3://insurance-prediction-bucket/insurance-data/output/sagemaker-scikit-learn-2025-05-02-15-20-40-817/output/model.tar.gz
+
+===========
+
+1. Input S3 Path — Your Dataset
+s3://insurance-prediction-bucket/insurance-data/insurance_pre.csv
+
+This is your input artifact.
+
+Amazon S3
+     │
+     ▼
+insurance_pre.csv
+     │
+     ▼
+SageMaker Training Job
+     │
+     ▼
+/opt/ml/input/data/train/insurance_pre.csv
+
+Your train.py reads it using:
+
+input_path = os.path.join(
+    "/opt/ml/input/data/train",
+    "insurance_pre.csv"
+)
+
+====
+
+
+2. Framework Version
+framework_version = 1.2-1
+
+This tells SageMaker which version of the Scikit-learn environment to use.
+
+Your training environment includes:
+
+Python
++
+Scikit-learn 1.2-1
++
+SageMaker training components
+
+====
+
+
+3. Image URI
+683313688378.dkr.ecr.us-east-1.amazonaws.com/
+sagemaker-scikit-learn:1.2-1-cpu-py3
+
+This is the Docker container image used to run your training job.
+
+Simple flow:
+
+SageMaker Training Job
+        │
+        ▼
+Download Scikit-learn Docker Image
+        │
+        ▼
+sagemaker-scikit-learn:1.2-1-cpu-py3
+        │
+        ▼
+Python Environment
+Scikit-learn Environment
+SageMaker Training Toolkit
+        │
+        ▼
+Run train.py
+
+The important part:
+
+1.2-1  → Scikit-learn framework version
+cpu    → CPU training
+py3    → Python 3
+
+Your training log confirms this because your instance was:
+
+ml.m5.large
+
+and:
+
+SM_NUM_CPUS=2
+SM_NUM_GPUS=0
+
+===
+
+
+4. First model_s3_uri
+s3://sagemaker-us-east-1-253490754689/
+sagemaker-scikit-learn-2025-05-02-13-41-50-366/
+output/model.tar.gz
+
+This appears to be the output model from an earlier training job.
+
+The job timestamp is:
+
+2025-05-02-13-41-50-366
+
+The bucket:
+
+sagemaker-us-east-1-253490754689
+
+is a SageMaker-managed/default-style output location associated with that training configuration.
+
+===
+
+5. Second model_s3_uri
+s3://insurance-prediction-bucket/
+insurance-data/output/
+sagemaker-scikit-learn-2025-05-02-15-20-40-817/
+output/model.tar.gz
+
+This is the model from your successful training job that you shared in the logs.
+
+The job name was:
+
+sagemaker-scikit-learn-2025-05-02-15-20-40-817
+
+And the result was:
+
+R-squared score: 0.8522875682263353
+Training SUCCESS
+
+So this is the important model URI for that successful job:
+
+s3://insurance-prediction-bucket/insurance-data/output/
+sagemaker-scikit-learn-2025-05-02-15-20-40-817/
+output/model.tar.gz
+
+===
+Complete comparison
+
+
+| Item                      | First Training Job                 | Second Training Job           |
+| ------------------------- | ---------------------------------- | ----------------------------- |
+| Job timestamp             | `13-41-50-366`                     | `15-20-40-817`                |
+| Framework                 | Scikit-learn `1.2-1`               | Scikit-learn `1.2-1`          |
+| Image                     | CPU Python 3                       | CPU Python 3                  |
+| Output bucket             | `sagemaker-us-east-1-253490754689` | `insurance-prediction-bucket` |
+| Model file                | `model.tar.gz`                     | `model.tar.gz`                |
+| Your successful R² result | Not shown here                     | **0.8523**                    |
+
+===
+
+Full architecture
+INPUT DATA
+─────────────────────────────────────
+
+s3://insurance-prediction-bucket/
+insurance-data/insurance_pre.csv
+              │
+              ▼
+        SageMaker Training
+              │
+              ▼
+Docker Image
+sagemaker-scikit-learn:1.2-1-cpu-py3
+              │
+              ▼
+           train.py
+              │
+              ▼
+RandomForestRegressor
+              │
+              ▼
+model.joblib
+              │
+              ▼
+SageMaker packages it
+              │
+              ▼
+model.tar.gz
+              │
+              ▼
+OUTPUT S3 LOCATION
+Key point
+
+Your CSV S3 path is the input artifact, while model.tar.gz is the output/model artifact. The framework version and Image URI define the environment in which your train.py script runs.
+
+For your successful 15-20-40-817 training job, use the second model_s3_uri when you want to create a SageMaker model or deploy it to an endpoint.
+
+=====
