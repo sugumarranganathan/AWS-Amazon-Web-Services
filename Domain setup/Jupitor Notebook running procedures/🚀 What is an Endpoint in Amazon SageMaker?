@@ -1,0 +1,67 @@
+What is an Endpoint in Amazon SageMaker? 🚀
+
+An Endpoint is a live URL/API connection where you send new data to your trained machine learning model and receive a prediction.
+
+====
+
+Simple flow
+User / Application
+       │
+       │ Sends new input
+       ▼
+SageMaker Endpoint
+       │
+       ▼
+inference.py
+       │
+       ▼
+Trained Model
+(model.tar.gz)
+       │
+       ▼
+Prediction Result
+       │
+       ▼
+User / Application
+
+=====
+In your project
+
+
+You trained an Insurance Prediction Model.
+
+After deployment:
+
+New Customer Details
+Age, BMI, Children, Smoker, etc.
+            │
+            ▼
+     SageMaker Endpoint
+            │
+            ▼
+     Insurance Prediction Model
+            │
+            ▼
+ Predicted Insurance Cost 💰
+
+===
+
+Simple example
+
+Your application sends:
+
+{
+  "age": 35,
+  "bmi": 28.5,
+  "children": 2,
+  "smoker": 0
+}
+
+The SageMaker Endpoint sends this data to your deployed model.
+
+Then the model returns something like:
+
+Predicted Insurance Cost: ₹45,000
+
+===
+
