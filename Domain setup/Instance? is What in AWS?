@@ -1,0 +1,25 @@
+What is an AWS Instance?
+
+Instance = the cloud computer that runs your JupyterLab, Python code, and ML programs.
+
+An instance is simply a virtual computer rented from AWS.
+
+Think of it like this:
+
+Your Laptop
+├── CPU / Processor
+├── RAM / Memory
+├── Storage
+└── Operating System
+
+        ↓ Same concept in AWS ↓
+
+AWS Instance
+├── vCPU
+├── RAM
+├── Storage
+└── Operating System / Environment
+
+
+
+=========
