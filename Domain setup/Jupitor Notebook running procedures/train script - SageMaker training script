@@ -1,0 +1,376 @@
+import os
+import pandas as pd
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import r2_score
+import joblib
+
+def append_to_file(filename, *args):
+    with open(filename, 'a') as file:
+        for value in args:
+            file.write(str(value) + '\n')
+
+
+def train_model():
+    # Load dataset from SageMaker input path
+    log_file_path = "/opt/ml/output/public/output.txt"
+    input_path = os.path.join("/opt/ml/input/data/train", "insurance_pre.csv")
+    if not os.path.exists(input_path):
+        print(f"Skipping training: file not found at {input_path}")
+        return
+
+    df = pd.read_csv(input_path)
+
+    # Split features and label
+    X = df.drop("charges", axis=1)
+    y = df["charges"]
+
+    # One-hot encode categorical variables and drop the first category
+    X = pd.get_dummies(X, drop_first=True)
+    print(X.columns)
+    append_to_file(log_file_path, "After Get Dummies column names are", X.columns)
+
+    # Handle any missing values
+    X = X.fillna(0)
+    y = y.fillna(0)
+
+    # Split into training and test sets
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+    # Train a random forest regressor
+    model = RandomForestRegressor()
+    model.fit(X_train, y_train)
+
+    # Predict and evaluate using R²
+    y_pred = model.predict(X_test)
+    r2 = r2_score(y_test, y_pred)
+    print("R-squared score:", r2)
+    append_to_file(log_file_path, "R2 value", r2)
+
+    # Save model
+    joblib.dump(model, os.path.join("/opt/ml/model", "model.joblib"))
+
+
+# ✅ Only run this when it's a training job
+if __name__ == "__main__":
+    train_model()
+
+====
+
+
+This is a SageMaker training script for predicting insurance charges using a Random Forest Regression model.
+
+Overall workflow
+
+| Step | What the code does                                                    |
+| ---- | --------------------------------------------------------------------- |
+| 1    | Imports required Python libraries                                     |
+| 2    | Reads `insurance_pre.csv` from the SageMaker training input folder    |
+| 3    | Separates input features and the `charges` target column              |
+| 4    | Converts categorical data into numeric columns using one-hot encoding |
+| 5    | Handles missing values                                                |
+| 6    | Splits the data into training and testing sets                        |
+| 7    | Trains a `RandomForestRegressor`                                      |
+| 8    | Makes predictions on test data                                        |
+| 9    | Calculates the **R² score**                                           |
+| 10   | Writes column names and R² results to `output.txt`                    |
+| 11   | Saves the trained model as `model.joblib`                             |
+
+
+======
+
+Important SageMaker folders used
+
+| Path                               | Purpose                                   |
+| ---------------------------------- | ----------------------------------------- |
+| `/opt/ml/input/data/train`         | SageMaker training dataset location       |
+| `/opt/ml/output/public/output.txt` | Public training output/log file           |
+| `/opt/ml/model`                    | Location where the trained model is saved |
+
+
+=====
+
+Code explanation
+1. Import libraries
+import os
+import pandas as pd
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import r2_score
+import joblib
+os → works with file paths.
+pandas → reads and processes the CSV dataset.
+RandomForestRegressor → machine learning model used for predicting insurance charges.
+train_test_split → divides the dataset into training and testing data.
+r2_score → evaluates model performance.
+joblib → saves the trained ML model.
+
+====
+
+2. append_to_file() function
+def append_to_file(filename, *args):
+    with open(filename, 'a') as file:
+        for value in args:
+            file.write(str(value) + '\n')
+
+This function adds information to:
+
+/opt/ml/output/public/output.txt
+
+For example, it saves:
+
+Column names after one-hot encoding.
+R² model performance score.
+
+'a' means append mode, so new information is added without deleting existing content.
+
+====
+
+3. Start the training function
+def train_model():
+
+All the machine learning training steps are placed inside this function.
+
+====
+
+4. Define dataset and output paths
+log_file_path = "/opt/ml/output/public/output.txt"
+
+input_path = os.path.join(
+    "/opt/ml/input/data/train",
+    "insurance_pre.csv"
+)
+
+The dataset should be available at:
+
+/opt/ml/input/data/train/insurance_pre.csv
+
+This is the standard type of directory structure used inside a SageMaker training container.
+
+=====
+
+5. Check whether the dataset exists
+if not os.path.exists(input_path):
+    print(f"Skipping training: file not found at {input_path}")
+    return
+
+If insurance_pre.csv is missing:
+
+Training will not start.
+An error message is displayed.
+The program safely stops using return.
+
+====
+
+6. Load the dataset
+df = pd.read_csv(input_path)
+
+This reads the CSV file into a Pandas DataFrame.
+
+Example:
+
+| age | sex    | bmi  | children | smoker | region    | charges |
+| --- | ------ | ---- | -------- | ------ | --------- | ------- |
+| 19  | female | 27.9 | 0        | yes    | southwest | 16884   |
+
+=====
+
+7. Separate features and target
+X = df.drop("charges", axis=1)
+y = df["charges"]
+
+X contains the input features:
+
+age
+sex
+bmi
+children
+smoker
+region
+
+y contains the value to predict:
+
+charges
+
+====
+
+8. Convert categorical columns
+X = pd.get_dummies(X, drop_first=True)
+
+Machine learning models require numerical data.
+
+For example:
+
+sex
+female
+male
+
+may become:
+
+sex_male
+0
+1
+
+Similarly:
+
+smoker
+
+can become:
+
+smoker_yes
+
+drop_first=True removes one category to avoid unnecessary duplicate columns.
+
+===
+
+9. Print and save feature columns
+print(X.columns)
+
+append_to_file(
+    log_file_path,
+    "After Get Dummies column names are",
+    X.columns
+)
+
+This helps you check exactly which columns were created after encoding.
+
+For example:
+
+Index([
+ 'age',
+ 'bmi',
+ 'children',
+ 'sex_male',
+ 'smoker_yes',
+ 'region_northwest',
+ 'region_southeast',
+ 'region_southwest'
+])
+
+This is useful when you later deploy the model because the prediction input must have the same feature structure.
+
+====
+
+10. Handle missing values
+X = X.fillna(0)
+y = y.fillna(0)
+
+If any value is missing (NaN), it is replaced with 0.
+
+This prevents the training model from failing because of missing data.
+
+====
+
+11. Split the dataset
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.2,
+    random_state=42
+)
+
+The dataset is divided into:
+
+80% → Training Data
+20% → Testing Data
+
+random_state=42 ensures the split remains consistent each time you run the training.
+
+====
+
+12. Create and train Random Forest
+model = RandomForestRegressor()
+
+model.fit(X_train, y_train)
+
+The Random Forest algorithm creates multiple decision trees and combines their predictions.
+
+Insurance Dataset
+       ↓
+Random Forest
+       ↓
+Multiple Decision Trees
+       ↓
+Combined Prediction
+       ↓
+Predicted Insurance Charges
+
+====
+
+13. Make predictions
+y_pred = model.predict(X_test)
+
+The trained model predicts insurance charges for the unseen test data.
+
+-----
+
+14. Calculate R² score
+r2 = r2_score(y_test, y_pred)
+
+The R² score measures how well the model explains the variation in insurance charges.
+
+Generally:
+
+| R² Score  | Interpretation     |
+| --------- | ------------------ |
+| 1.0       | Perfect prediction |
+| 0.9+      | Excellent          |
+| 0.7–0.9   | Good               |
+| 0.5–0.7   | Moderate           |
+| Below 0.5 | Needs improvement  |
+
+The result is displayed:
+
+print("R-squared score:", r2)
+
+And saved to:
+
+output.txt
+
+=====
+
+
+15. Save the trained model
+joblib.dump(
+    model,
+    os.path.join("/opt/ml/model", "model.joblib")
+)
+
+The trained model is saved as:
+
+/opt/ml/model/model.joblib
+
+After the SageMaker training job completes, SageMaker packages the contents of the model directory for use in deployment.
+
+====
+
+Final flow of your code
+insurance_pre.csv
+        ↓
+Load Dataset
+        ↓
+Separate X and charges
+        ↓
+One-Hot Encoding
+        ↓
+Handle Missing Values
+        ↓
+80% Training + 20% Testing
+        ↓
+Random Forest Training
+        ↓
+Predict Test Data
+        ↓
+Calculate R² Score
+        ↓
+Save Results in output.txt
+        ↓
+Save model.joblib
+        ↓
+Ready for SageMaker Deployment
+Main purpose
+
+This script trains an Insurance Charge Prediction Machine Learning model inside Amazon SageMaker, evaluates its performance using R² score, 
+saves training details to an output file, and stores the trained model for deployment to a SageMaker endpoint.
+
+=====
