@@ -1,0 +1,35 @@
+🔬 MLflow
+
+MLflow helps manage and track Machine Learning experiments.
+
+For example:
+
+Experiment 1 → Accuracy 85%
+Experiment 2 → Accuracy 91%
+Experiment 3 → Accuracy 94%
+
+===
+
+MLflow helps you track:
+
+Model experiments
+Parameters
+Accuracy/results
+Different model versions
+
+===
+
+Simple comparison
+
+| Application     | Main purpose                    |
+| --------------- | ------------------------------- |
+| **RStudio**     | R programming and statistics    |
+| **Code Editor** | Write and edit code             |
+| **MLflow**      | Track and manage ML experiments |
+
+
+====
+
+Python, AI, and Machine Learning, the main useful tools are usually SageMaker Studio, JupyterLab, and optionally Code Editor.
+
+====
