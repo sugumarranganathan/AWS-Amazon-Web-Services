@@ -1,0 +1,129 @@
+from sagemaker.sklearn.model import SKLearnModel
+
+model = SKLearnModel(
+
+    model_data="s3://insurance-prediction-bucket/insurance-data/output/sagemaker-scikit-learn-2025-05-02-15-20-40-817/output/model.tar.gz",  # <- from training
+
+    role=role,
+
+    entry_point="inference.py",                         # ✅ NEW inference script
+
+    framework_version="1.2-1",
+
+    py_version="py3",
+
+    sagemaker_session=session
+
+)
+
+============
+
+your previous code trained and saved the model; this code takes that saved model and connects it with inference.py, preparing it for deployment and real-time predictions.
+
+========
+
+| Code                                               | Meaning                                                                    |
+| -------------------------------------------------- | -------------------------------------------------------------------------- |
+| `from sagemaker.sklearn.model import SKLearnModel` | Imports the SageMaker class used to create a deployable Scikit-learn model |
+| `SKLearnModel()`                                   | Creates a SageMaker model from your trained model files                    |
+| `model_data`                                       | Location of your trained `model.tar.gz` file in S3                         |
+| `role=role`                                        | IAM role that gives SageMaker permission to access S3 and deploy resources |
+| `entry_point="inference.py"`                       | Python file containing the prediction/inference logic                      |
+| `framework_version="1.2-1"`                        | Uses Scikit-learn version 1.2-1                                            |
+| `py_version="py3"`                                 | Uses Python 3                                                              |
+| `sagemaker_session=session`                        | Connects the model operation with your SageMaker session                   |
+
+=====
+
+1. model_data
+model_data="s3://insurance-prediction-bucket/.../model.tar.gz"
+
+This is the trained model produced by your previous training job.
+
+train.py
+   │
+   ▼
+SageMaker Training
+   │
+   ▼
+model.tar.gz
+   │
+   ▼
+Amazon S3
+
+
+2. entry_point="inference.py"
+
+This is a new script used after training.
+
+Your two Python files have different jobs:
+
+===
+
+| File           | Purpose                                       |
+| -------------- | --------------------------------------------- |
+| `train.py`     | Trains the machine learning model             |
+| `inference.py` | Loads the trained model and makes predictions |
+
+
+=====
+
+Simple architecture
+                 TRAINING
+                 
+Insurance Data ──► train.py
+                      │
+                      ▼
+                Train Model
+                      │
+                      ▼
+                  model.tar.gz
+                      │
+                      ▼
+                    S3
+
+
+                 PREDICTION
+
+User Input ──► inference.py
+                    │
+                    ▼
+             Load model.tar.gz
+                    │
+                    ▼
+              ML Prediction
+
+=====
+
+
+Important concept
+
+This code does not deploy the model yet. It only prepares/registers the trained model configuration.
+
+The typical next step is:
+
+predictor = model.deploy(
+    initial_instance_count=1,
+    instance_type="ml.m5.large"
+)
+
+Then the workflow becomes:
+
+model.tar.gz + inference.py
+            │
+            ▼
+       SKLearnModel
+            │
+            ▼
+      SageMaker Endpoint
+            │
+            ▼
+       Send Input Data
+            │
+            ▼
+         Prediction
+
+So, in simple words: your previous code trained and saved the model; this code takes that saved model and connects it with inference.py, preparing it for deployment and real-time predictions.
+
+====
+
