@@ -1,0 +1,228 @@
+Artifacts in SageMaker are the important files connected to a training job—such as the input dataset, training code, trained model, and output files—and they are important for debugging,
+reproducing training, tracking data, and deploying the final ML model.
+
+====
+
+SageMaker Studio
+   ↓
+Jobs
+   ↓
+Training
+   ↓
+Your Training Job
+   ↓
+Artifacts
+1. What are Artifacts?
+
+Think of artifacts as the materials used and produced by your ML training job.
+
+          INPUT ARTIFACTS
+                 │
+                 ▼
+        ┌─────────────────┐
+        │  Training Job   │
+        │                 │
+        │    train.py     │
+        │ Random Forest   │
+        └─────────────────┘
+                 │
+                 ▼
+          OUTPUT ARTIFACTS
+In your project
+Input Artifact
+
+Your dataset:
+
+insurance_pre.csv
+
+Stored in S3 and supplied to the training job.
+
+SageMaker downloads it into:
+
+/opt/ml/input/data/train/
+
+Your code then reads:
+
+input_path = os.path.join(
+    "/opt/ml/input/data/train",
+    "insurance_pre.csv"
+)
+
+====
+
+Input vs Output Artifacts
+
+| Artifact Type      | Example in your project | Purpose                            |
+| ------------------ | ----------------------- | ---------------------------------- |
+| **Input Artifact** | `insurance_pre.csv`     | Used to train the model            |
+| **Source Code**    | `train.py`              | Contains ML training instructions  |
+| **Model Artifact** | `model.joblib`          | Your trained Random Forest model   |
+| **Packaged Model** | `model.tar.gz`          | Model package created by SageMaker |
+| **Output/Logs**    | R² score, output files  | Training results and information   |
+
+
+====
+
+Your exact project flow
+┌─────────────────────────────┐
+│       Amazon S3             │
+│                             │
+│   insurance_pre.csv         │
+└──────────────┬──────────────┘
+               │
+               ▼
+        INPUT ARTIFACT
+               │
+               │ Channel = train
+               ▼
+ /opt/ml/input/data/train
+               │
+               ▼
+          train.py
+               │
+       ┌───────┴────────┐
+       │ Data Processing │
+       │ One-Hot Encoding│
+       └───────┬────────┘
+               │
+               ▼
+      RandomForestRegressor
+               │
+               ▼
+          R² = 0.8523
+               │
+               ▼
+ /opt/ml/model/model.joblib
+               │
+               ▼
+        OUTPUT ARTIFACT
+               │
+               ▼
+          model.tar.gz
+               │
+               ▼
+         Uploaded to S3
+6. Why are artifacts important?
+
+Artifacts are important because they allow you to track, reproduce, deploy, and manage your ML project.
+
+A. Reproducibility
+
+Later, you can check:
+
+Which dataset was used?
+        ↓
+Which training job was used?
+        ↓
+Which model was generated?
+
+For example:
+
+Dataset → insurance_pre.csv
+Script  → train.py
+Model   → model.joblib
+Result  → R² = 0.8523
+
+This helps reproduce the same training process.
+
+B. Debugging failed jobs
+
+You had failed training jobs as well.
+
+Artifacts help you verify:
+
+Is the dataset in the correct S3 location?
+            ↓
+Is the file name correct?
+            ↓
+Is the train channel correct?
+            ↓
+Can train.py find the file?
+
+For example, your code safely checks:
+
+if not os.path.exists(input_path):
+    print(f"Skipping training: file not found at {input_path}")
+    return
+
+This is directly related to handling the input artifact.
+
+C. Model deployment
+
+After successful training:
+
+model.joblib
+      ↓
+model.tar.gz
+      ↓
+S3
+      ↓
+Create SageMaker Model
+      ↓
+Create Endpoint
+      ↓
+Prediction
+
+Without the model artifact, SageMaker does not have the trained model file needed for deployment.
+
+7. How do you handle artifacts?
+
+The main rule is to use the correct SageMaker folders.
+
+Input data
+/opt/ml/input/data/train/
+
+Example:
+
+input_path = "/opt/ml/input/data/train/insurance_pre.csv"
+Save model
+/opt/ml/model/
+
+Your code:
+
+joblib.dump(
+    model,
+    os.path.join("/opt/ml/model", "model.joblib")
+)
+
+This is correct ✅
+
+SageMaker automatically packages the contents of /opt/ml/model after training.
+
+Save output information
+
+You used:
+
+/opt/ml/output/public/output.txt
+
+For example:
+
+append_to_file(
+    log_file_path,
+    "R2 value",
+    r2
+)
+
+This allows you to save training-related output separately from the model.
+
+Simple memory trick
+INPUT
+/opt/ml/input/
+       ↓
+DATA
+/opt/ml/input/data/train/
+       ↓
+TRAINING
+train.py
+       ↓
+MODEL
+/opt/ml/model/
+       ↓
+OUTPUT
+/opt/ml/output/
+       ↓
+S3
+In one sentence:
+
+Artifacts in SageMaker are the important files connected to a training job—such as the input dataset, training code, trained model, and output files—and they are important for debugging,
+reproducing training, tracking data, and deploying the final ML model.
