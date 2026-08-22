@@ -1,0 +1,36 @@
+🎨 Canvas
+
+SageMaker Canvas is a low-code/no-code machine learning tool.
+
+You can build some ML models with less coding:
+
+Upload Data 📊
+      ↓
+SageMaker Canvas
+      ↓
+Build ML Model 🧠
+      ↓
+Prediction 🔮
+
+==
+
+For example:
+
+Sales prediction
+Customer churn prediction
+Demand forecasting
+
+===
+
+Simple difference
+
+| Application          | Main use                                 |
+| -------------------- | ---------------------------------------- |
+| **SageMaker Studio** | Complete AI/ML development environment   |
+| **JupyterLab**       | Write and run Python/code notebooks      |
+| **Canvas**           | Build ML models with little or no coding |
+
+
+===========
+AI/ML learning, SageMaker Studio and JupyterLab are the most relevant options.
+===========
