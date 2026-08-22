@@ -1,0 +1,49 @@
+mazon SageMaker Studio → Jobs → Training Jobs page.
+
+What the UI shows
+
+| Column          | Meaning                     |
+| --------------- | --------------------------- |
+| **Name**        | SageMaker training job name |
+| **Job type**    | `Training`                  |
+| **Created on**  | When the job was created    |
+| **Modified on** | Last update time            |
+| **Created by**  | User who created the job    |
+| **Status**      | Result of the training job  |
+
+
+=====
+
+Your screenshot has 3 training jobs
+🟢 Completed → Training was successful.
+🔴 Failed → Training encountered an error.
+🔴 Failed → Another training job encountered an error.
+
+The green Completed job corresponds to the successful training output you shared earlier:
+
+R-squared score: 0.8522875682263353
+Training SUCCESS
+
+====
+
+So the workflow is:
+
+SageMaker Studio
+      ↓
+Jobs
+      ↓
+Training
+      ↓
+Training Jobs List
+      ↓
+Click a Job
+      ↓
+View Logs / Configuration / Output
+      ↓
+Completed or Failed
+
+Your screenshot is a good visual example for the heading:
+
+Viewing and Managing SageMaker Training Jobs
+
+=====
