@@ -1,0 +1,84 @@
+predictor = model.deploy(
+
+    instance_type="ml.m5.large",
+
+    initial_instance_count=1,
+
+    endpoint_name="insurance-charge-endpoint4"
+
+)
+
+==========
+
+| Code / Component                             | Purpose                                                                            |
+| -------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `model.deploy()`                             | Deploys the trained model to a SageMaker Endpoint                                  |
+| `instance_type="ml.m5.large"`                | Selects the ML compute instance that will run your model                           |
+| `initial_instance_count=1`                   | Starts **1 instance** for the endpoint                                             |
+| `endpoint_name="insurance-charge-endpoint4"` | Gives your endpoint a custom name                                                  |
+| `predictor`                                  | Stores the deployed endpoint object, which you can use to send prediction requests |
+
+
+=====
+
+Your complete flow
+model.tar.gz
+      +
+inference.py
+      │
+      ▼
+SKLearnModel
+      │
+      ▼
+model.deploy()
+      │
+      ▼
+insurance-charge-endpoint4
+      │
+      ▼
+ml.m5.large Instance
+      │
+      ▼
+LIVE ENDPOINT 🚀
+      │
+      ▼
+predictor
+      │
+      ▼
+Send New Customer Data
+      │
+      ▼
+Insurance Charge Prediction
+===
+
+What happens when you run this?
+
+predictor = model.deploy(
+    instance_type="ml.m5.large",
+    initial_instance_count=1,
+    endpoint_name="insurance-charge-endpoint4"
+)
+
+====
+
+AWS will:
+
+Take your trained model.tar.gz from S3.
+Use your inference.py file for prediction logic.
+Create a SageMaker model.
+Create the required endpoint configuration.
+Launch one ml.m5.large instance.
+Deploy the model.
+Create the live endpoint named:
+insurance-charge-endpoint4
+
+After deployment, you can use:
+
+predictor.predict(...)
+
+to send new insurance customer data and receive a predicted insurance charge.
+
+⚠️ Important: A deployed SageMaker real-time endpoint can continue generating AWS charges while it is running. Delete the endpoint when you finish testing.
+
+====
+
