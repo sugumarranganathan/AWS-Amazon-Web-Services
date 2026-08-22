@@ -1,0 +1,84 @@
+S3 Training Job Folder
+        │
+        ├── debug-output
+        │      → Find training/debug problems
+        │
+        ├── output ⭐
+        │      → model.tar.gz
+        │      → DEPLOY THIS MODEL
+        │
+        └── profiler-output
+               → Check CPU/Memory performance
+
+======
+
+Amazon S3 folder created for your SageMaker training job:
+
+sagemaker-scikit-learn-2025-05-08-06-53-33-031/
+
+Inside it, there are 3 folders:
+
+| Folder             | Purpose                                                 |
+| ------------------ | ------------------------------------------------------- |
+| `debug-output/`    | Stores debugging-related output if debugging is enabled |
+| `output/`          | Stores the trained model and training output            |
+| `profiler-output/` | Stores training performance/profiling information       |
+
+=====
+
+Importance of each folder
+
+1. output/ ⭐
+
+This is the most important folder for you.
+
+output/model.tar.gz
+
+You use this trained model artifact when creating:
+
+SageMaker Model
+      ↓
+Endpoint Configuration
+      ↓
+SageMaker Endpoint
+      ↓
+Insurance Charge Prediction
+
+====
+2. debug-output/
+
+Useful mainly when diagnosing training problems.
+
+For a simple project like your Insurance Prediction using Random Forest, you normally do not need to manually handle this folder unless SageMaker debugging is configured.
+
+===
+
+3. profiler-output/
+
+Contains information about training resource usage and performance, such as:
+
+CPU usage
+Memory usage
+Training bottlenecks
+Performance metrics
+
+This becomes more useful for large or slow training jobs.
+
+===
+
+Simple memory diagram
+S3 Training Job Folder
+        │
+        ├── debug-output
+        │      → Find training/debug problems
+        │
+        ├── output ⭐
+        │      → model.tar.gz
+        │      → DEPLOY THIS MODEL
+        │
+        └── profiler-output
+               → Check CPU/Memory performance
+
+For your project, the folder you should focus on is output/, because that contains model.tar.gz, which is the trained model artifact used for SageMaker deployment.
+
+====
