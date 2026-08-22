@@ -1,0 +1,18 @@
+EC2 stands for:
+
+🖥️ Amazon Elastic Compute Cloud
+E = Elastic
+C = Compute
+C = Cloud
+Simple meaning
+
+Amazon EC2 = A virtual computer/server in the AWS cloud.
+
+Your Application
+      ↓
+Amazon EC2 🖥️
+(Virtual Server)
+      ↓
+AWS Cloud ☁️
+
+Elastic means you can increase or decrease computing resources based on your needs.
