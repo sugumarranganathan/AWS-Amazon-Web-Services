@@ -1,0 +1,26 @@
+AWS
+ ↓
+SageMaker AI
+ ↓
+Admin
+ ↓
+Domain
+ ↓
+Create User Profile
+
+===
+
+
+“AWS → AWS SageMaker AI → Admin → Domain → Create User Profile”
+
+Meaning
+
+AWS Account
+     ↓
+Amazon SageMaker AI
+     ↓
+Admin creates a Domain
+     ↓
+Inside the Domain, create User Profiles
+     ↓
+Users access SageMaker Studio / apps
