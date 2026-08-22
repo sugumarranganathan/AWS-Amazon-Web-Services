@@ -54,3 +54,6 @@ Bucket: my-project-files
 So, Bucket = like a cloud folder/container, and Objects = files stored inside it.
 
 For your deployed projects, an S3 bucket could store images, uploaded files, PDFs, backups, datasets, or static website files.
+
+
+====
