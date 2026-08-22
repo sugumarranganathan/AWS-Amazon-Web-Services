@@ -1,0 +1,103 @@
+☁️ AWS & Amazon SageMaker – Important Terms
+
+| Component / Term           | Purpose                                                                                                                  |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| **AWS**                    | **Amazon Web Services** – A cloud computing platform that provides servers, storage, databases, AI/ML services, and more |
+| **Amazon SageMaker**       | AWS service used to build, train, and deploy Machine Learning models                                                     |
+| **S3**                     | **Simple Storage Service** – Stores files, datasets, models, images, and backups                                         |
+| **S3 Bucket**              | A container/folder-like storage location in Amazon S3                                                                    |
+| **IAM**                    | **Identity and Access Management** – Controls AWS users, roles, and permissions                                          |
+| **IAM User**               | A person or application that can access AWS with specific permissions                                                    |
+| **IAM Role**               | A set of permissions temporarily assigned to AWS services, users, or applications                                        |
+| **IAM Policy**             | A JSON document that defines what actions are allowed or denied                                                          |
+| **ARN**                    | **Amazon Resource Name** – Unique identifier/address of an AWS resource                                                  |
+| **EC2**                    | **Elastic Compute Cloud** – Virtual servers running in AWS                                                               |
+| **Instance**               | A virtual computer/server used to run applications or ML workloads                                                       |
+| **Region**                 | A geographical AWS location, such as Mumbai or Singapore                                                                 |
+| **Availability Zone (AZ)** | An isolated data-center location inside an AWS Region                                                                    |
+| **AWS Console**            | Web-based interface used to manage AWS services                                                                          |
+| **AWS CLI**                | Command-line tool used to manage AWS services                                                                            |
+| **SDK**                    | **Software Development Kit** – Libraries used to access AWS through programming languages                                |
+| **Boto3**                  | AWS SDK for Python                                                                                                       |
+| **SageMaker Studio**       | Web-based development environment for building and running ML projects                                                   |
+| **SageMaker Notebook**     | A Jupyter-based environment for writing and running ML code                                                              |
+| **SageMaker Session**      | Connection/session used by the SageMaker Python SDK to interact with AWS                                                 |
+| **Execution Role**         | IAM Role used by SageMaker to access AWS resources such as S3                                                            |
+| **Training Job**           | The process where SageMaker runs ML code and trains a model                                                              |
+| `train.py`                 | Python script containing the ML model training code                                                                      |
+| **Estimator**              | SageMaker object that defines how and where a model should be trained                                                    |
+| `SKLearn`                  | SageMaker estimator specifically used for Scikit-learn training                                                          |
+| **Training Instance**      | EC2 computing resource used to train the ML model                                                                        |
+| `instance_type`            | Specifies the type of machine used, such as `ml.m5.large`                                                                |
+| **Training Data**          | Dataset used to teach the machine learning model                                                                         |
+| **Input Channel**          | Named connection through which SageMaker provides data to the training script                                            |
+| **Framework**              | ML library/environment used for training, such as Scikit-learn, TensorFlow, or PyTorch                                   |
+| `framework_version`        | Specifies which version of the ML framework to use                                                                       |
+| **Docker Image**           | Packaged environment containing Python, ML frameworks, and dependencies                                                  |
+| **Image URI**              | Address/identifier of the Docker container image used by SageMaker                                                       |
+| `model.tar.gz`             | Compressed file containing the trained model artifacts                                                                   |
+| **Model Artifact**         | The files produced after training that contain the learned ML model                                                      |
+| **Model S3 URI**           | The S3 location where the trained model is stored                                                                        |
+| **S3 URI**                 | S3 address, for example `s3://bucket-name/folder/file`                                                                   |
+| **Output Path**            | S3 location where SageMaker saves training results and the model                                                         |
+| `SKLearnModel`             | SageMaker object that prepares a trained Scikit-learn model for deployment                                               |
+| `inference.py`             | Python script that loads the trained model and handles prediction requests                                               |
+| **Inference**              | Using a trained model to make predictions on new data                                                                    |
+| **Deployment**             | Making a trained model available for use                                                                                 |
+| **Endpoint**               | A live deployed model that receives requests and returns predictions                                                     |
+| **Endpoint Configuration** | Defines the instance type and model settings used by an endpoint                                                         |
+| **Predictor**              | Python object used to send data to a deployed SageMaker endpoint                                                         |
+| **Real-Time Inference**    | Sending data and receiving predictions immediately                                                                       |
+| **Batch Inference**        | Making predictions for a large dataset instead of one request at a time                                                  |
+| **API**                    | **Application Programming Interface** – Allows applications to communicate with AWS services                             |
+| **JSON**                   | Data format commonly used to send and receive information through APIs                                                   |
+| **CloudWatch**             | AWS service for monitoring logs, metrics, and resource activity                                                          |
+| **Logs**                   | Records showing what happened while your application or training job was running                                         |
+| **Billing Seconds**        | The amount of compute time AWS uses to calculate charges                                                                 |
+| **Free Tier**              | AWS usage limits that may be available without charges, subject to service and account conditions                        |
+
+
+=====
+
+
+🔄 Your SageMaker Project Flow
+
+Insurance Dataset
+      ↓
+Amazon S3 Bucket
+      ↓
+IAM Execution Role
+      ↓
+SageMaker Session
+      ↓
+SKLearn Estimator
+      ↓
+train.py
+      ↓
+SageMaker Training Job
+      ↓
+model.tar.gz
+      ↓
+Amazon S3
+      ↓
+SKLearnModel
+      ↓
+inference.py
+      ↓
+Deploy
+      ↓
+SageMaker Endpoint
+      ↓
+New Customer Data
+      ↓
+Insurance Prediction
+
+====
+
+Most Important Terms to Remember
+
+AWS → SageMaker → S3 → IAM Role → Estimator → Training Job → model.tar.gz → Model → inference.py → Endpoint → Prediction
+
+This is the complete basic Machine Learning lifecycle in Amazon SageMaker.
+
+====
