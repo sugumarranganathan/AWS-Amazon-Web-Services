@@ -1,0 +1,45 @@
+AWS SageMaker Instance Types and Their Use Cases
+
+| Type         | Main Strength      | Example Use             |
+| ------------ | ------------------ | ----------------------- |
+| **t3**       | Basic, lightweight | Learning Python/Jupyter |
+| **m5**       | Balanced CPU + RAM | General ML              |
+| **c5**       | High CPU           | Heavy calculations      |
+| **r5**       | High RAM           | Large datasets          |
+| **g5**       | GPU                | Deep Learning / AI      |
+| **p-series** | Powerful GPU       | Advanced AI training    |
+
+
+====
+
+AWS SageMaker and running JupyterLab, start with:
+
+ml.t3.medium
+2 vCPU
+4 GiB RAM
+
+It is enough for learning:
+
+✅ Python
+✅ Pandas
+✅ NumPy
+✅ Basic Machine Learning
+✅ Small datasets
+✅ Jupyter Notebooks
+
+
+
+====
+
+
+⚠️ Always stop the SageMaker Space/instance after finishing, because running cloud compute can generate charges.
+
+Simple formula to remember:
+
+Instance = Cloud Computer
+Instance Type = Configuration of that Cloud Computer
+vCPU = Processing Power
+RAM = Working Memory
+GPU = Fast parallel processing for AI/Deep Learning
+
+=====
