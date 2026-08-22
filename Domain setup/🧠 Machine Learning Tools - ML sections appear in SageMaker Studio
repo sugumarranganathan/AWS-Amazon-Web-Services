@@ -1,0 +1,184 @@
+Machine Learning Tools 🧠
+
+Navigation nodes, these control which ML sections appear in SageMaker Studio.
+
+💻 Compute
+
+| Tool                                    | Purpose                                  |
+| --------------------------------------- | ---------------------------------------- |
+| **Compute**                             | Manage computing resources               |
+| **HyperPod clusters**                   | Large-scale AI/ML cluster infrastructure |
+| **Resilient clusters for ML workloads** | Reliable compute for ML tasks            |
+
+
+=====
+
+📊 Data
+
+| Tool              | Purpose                                                |
+| ----------------- | ------------------------------------------------------ |
+| **Data Wrangler** | Clean, prepare, and transform data                     |
+| **Feature Store** | Store and manage ML features                           |
+| **EMR clusters**  | Process large-scale data using big-data infrastructure |
+====
+Example:
+
+Raw Data 📂
+    ↓
+Data Wrangler 🧹
+    ↓
+Clean Data 📊
+    ↓
+Feature Store
+    ↓
+ML Model 🧠
+
+=====
+
+🤖 AutoML
+
+AutoML helps automate parts of machine learning, such as model selection and training.
+
+Instead of manually trying many models:
+
+Your Data
+   ↓
+AutoML 🤖
+   ↓
+Tries models automatically
+   ↓
+Finds a suitable model
+
+=====
+
+🧪 Experiments
+
+Used to track different ML experiments.
+
+Example:
+
+Experiment 1 → Random Forest → 85%
+Experiment 2 → XGBoost → 91%
+Experiment 3 → Neural Network → 94%
+
+This helps compare which experiment performs best.
+
+=====
+
+💼 Jobs
+
+This section manages different ML jobs:
+
+| Tool                       | Purpose                             |
+| -------------------------- | ----------------------------------- |
+| **Training jobs**          | Train ML models                     |
+| **Model evaluations**      | Evaluate model performance          |
+| **Inference optimization** | Improve prediction performance/cost |
+| **Performance evaluation** | Check model efficiency              |
+
+
+=====
+
+🏗️ Pipelines
+
+A Pipeline automates the ML workflow:
+
+Data
+ ↓
+Data Processing
+ ↓
+Training
+ ↓
+Evaluation
+ ↓
+Deployment
+
+====
+
+Instead of running each step manually, the pipeline manages the workflow.
+
+====
+
+🧠 Models
+
+This is where trained ML models are managed.
+
+Example:
+
+Training Job
+     ↓
+Trained Model 🧠
+     ↓
+Save / Register
+     ↓
+Deploy
+
+====
+
+🚀 JumpStart
+
+SageMaker JumpStart provides ready-to-use:
+
+Foundation models
+ML models
+Solution templates
+
+For example, you can start with an existing AI model instead of building everything from scratch.
+
+====
+
+🌐 Deployments
+
+After training a model, you need to make it available for predictions.
+
+Trained Model 🧠
+      ↓
+Deployment 🚀
+      ↓
+API Endpoint
+      ↓
+Website / App
+      ↓
+Prediction
+
+====
+
+options like:
+
+Inference recommender → Helps select suitable deployment resources.
+Inference optimization → Helps improve inference performance.
+
+
+=====
+
+Overall SageMaker Studio structure
+
+AWS Account ☁️
+      ↓
+SageMaker AI 🧠
+      ↓
+Domain 🏢
+      ↓
+User Profile 👤
+      ↓
+Customize Studio UI 🎛️
+      │
+      ├── Applications
+      │     ├── JupyterLab 📓
+      │     ├── Code Editor 💻
+      │     ├── Canvas 🎨
+      │     └── MLflow 🔬
+      │
+      └── ML Tools
+            ├── Compute 💻
+            ├── Data 📊
+            ├── AutoML 🤖
+            ├── Experiments 🧪
+            ├── Jobs ⚙️
+            ├── Pipelines 🔄
+            ├── Models 🧠
+            └── Deployments 🚀
+
+
+=======
+
