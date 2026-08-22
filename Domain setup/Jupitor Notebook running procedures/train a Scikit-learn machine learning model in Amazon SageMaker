@@ -228,3 +228,72 @@ Amazon S3 Output Folder
 This is a typical Amazon SageMaker ML training workflow.
 
 ========
+
+025-05-02 15:23:39 Uploading - Uploading generated training model
+2025-05-02 15:23:39 Completed - Training job completed
+Training seconds: 115
+Billable seconds: 115
+Model S3 URI: s3://insurance-prediction-bucket/insurance-data/output/sagemaker-scikit-learn-2025-05-02-15-20-40-817/output/model.tar.gz
+
+------
+
+Your SageMaker training job completed successfully ✅
+
+Output explanation
+
+| Output                                           | Meaning                                                            |
+| ------------------------------------------------ | ------------------------------------------------------------------ |
+| `Uploading - Uploading generated training model` | SageMaker is uploading the trained model to Amazon S3              |
+| `Completed - Training job completed`             | Training finished successfully                                     |
+| `Training seconds: 115`                          | Actual model training took **115 seconds**                         |
+| `Billable seconds: 115`                          | AWS billing is based on **115 seconds** of training instance usage |
+| `Model S3 URI`                                   | The exact S3 location where your trained model is stored           |
+
+
+------
+
+Your trained model location
+s3://insurance-prediction-bucket/insurance-data/output/sagemaker-scikit-learn-2025-05-02-15-20-40-817/output/model.tar.gz
+
+======
+
+reaking down the S3 path
+s3://
+│
+├── insurance-prediction-bucket     → Your S3 bucket
+│
+├── insurance-data                  → Project/data folder
+│
+├── output                          → Training output folder
+│
+├── sagemaker-scikit-learn-...      → Unique SageMaker training job folder
+│
+└── model.tar.gz                    → Your trained ML model file
+
+====
+
+Complete workflow
+Insurance Training Data
+        │
+        ▼
+Amazon S3
+        │
+        ▼
+SageMaker Training Job
+        │
+        │ 115 seconds
+        ▼
+train.py trains ML model
+        │
+        ▼
+model.tar.gz
+        │
+        ▼
+Amazon S3 Output Location
+
+====
+
+In simple words: Your train.py successfully trained the insurance prediction model, and SageMaker automatically packaged the trained model into model.tar.gz 
+and stored it in your S3 bucket. 🎉
+
+=====
