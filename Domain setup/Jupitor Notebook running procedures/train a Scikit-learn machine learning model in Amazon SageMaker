@@ -1,0 +1,230 @@
+train a Scikit-learn machine learning model in Amazon SageMaker, using training data stored in Amazon S3.
+
+Overall Workflow
+
+Your Training Data
+       │
+       ▼
+S3 Bucket
+insurance-prediction-bucket
+       │
+       ▼
+Amazon SageMaker Training Job
+       │
+       ▼
+train.py executes
+       │
+       ▼
+ML Model Created
+       │
+       ▼
+Model Saved to S3
+
+====
+
+from sagemaker.sklearn.estimator import SKLearn
+from sagemaker import get_execution_role
+import sagemaker
+from utils import append_to_file
+session = sagemaker.Session()
+role = get_execution_role()
+bucket = 'insurance-prediction-bucket'  # Your custom S3 bucket
+prefix = 'insurance-data'
+sklearn_estimator = SKLearn(
+    entry_point="train.py",
+    role=role,
+    instance_type="ml.m5.large",  # or "ml.t2.medium" for free tier
+    framework_version="1.2-1",
+    py_version="py3",
+    output_path=f"s3://{bucket}/{prefix}/output",
+    sagemaker_session=session
+)
+append_to_file("output.txt","framework_version 1.2-1")
+# Start training
+sklearn_estimator.fit({"train": f"s3://insurance-prediction-bucket/insurance-data/"})
+
+image_uri=sklearn_estimator.training_image_uri()
+
+append_to_file("output.txt","Image URI",image_uri)
+
+model_s3_uri = sklearn_estimator.model_data
+
+append_to_file("output.txt","model_s3_uri",model_s3_uri)
+
+print("Model S3 URI:", model_s3_uri)
+
+
+
+====
+
+Simple Meaning of the Entire Code
+
+Take insurance data from Amazon S3 → use SageMaker to run train.py → train a Scikit-learn model → save the trained model back to Amazon S3 → get the model's S3 location.
+
+=====
+
+
+| Code                                              | Explanation                                                        |
+| ------------------------------------------------- | ------------------------------------------------------------------ |
+| `from sagemaker.sklearn.estimator import SKLearn` | Imports the SageMaker Scikit-learn estimator                       |
+| `from sagemaker import get_execution_role`        | Gets the IAM role used by SageMaker                                |
+| `import sagemaker`                                | Imports the SageMaker Python SDK                                   |
+| `from utils import append_to_file`                | Imports your custom function to save information into `output.txt` |
+| `session = sagemaker.Session()`                   | Creates a SageMaker session to communicate with AWS services       |
+| `role = get_execution_role()`                     | Gets the IAM execution role and its permissions                    |
+| `bucket = 'insurance-prediction-bucket'`          | Your S3 bucket where data and model files are stored               |
+| `prefix = 'insurance-data'`                       | Defines the folder/path inside the S3 bucket                       |
+
+
+====
+
+1. Creating the SageMaker Scikit-learn Estimator
+
+----
+
+sklearn_estimator = SKLearn(
+    entry_point="train.py",
+    role=role,
+    instance_type="ml.m5.large",
+    framework_version="1.2-1",
+    py_version="py3",
+    output_path=f"s3://{bucket}/{prefix}/output",
+    sagemaker_session=session
+)
+
+----
+This tells SageMaker:
+
+| Parameter                     | Meaning                                              |
+| ----------------------------- | ---------------------------------------------------- |
+| `entry_point="train.py"`      | Your ML training code                                |
+| `role=role`                   | IAM permissions SageMaker will use                   |
+| `instance_type="ml.m5.large"` | EC2 compute instance used for training               |
+| `framework_version="1.2-1"`   | Scikit-learn framework version                       |
+| `py_version="py3"`            | Python 3 environment                                 |
+| `output_path`                 | Location where the trained model will be saved in S3 |
+| `sagemaker_session`           | Connects the estimator with your SageMaker session   |
+
+
+====
+
+Output location
+s3://insurance-prediction-bucket/insurance-data/output
+
+After training, your model artifacts will be stored in this S3 location.
+
+====
+
+2. Saving Framework Information
+append_to_file("output.txt", "framework_version 1.2-1")
+
+This writes the framework version information into:
+
+output.txt
+
+This is likely used to keep a record of your training process.
+
+====
+
+3. Starting the Training Job
+sklearn_estimator.fit(
+    {"train": "s3://insurance-prediction-bucket/insurance-data/"}
+)
+
+This is the most important part.
+
+It tells SageMaker:
+
+Take the training data from this S3 location and run train.py using the specified Scikit-learn environment.
+
+=====
+
+Flow
+S3
+insurance-prediction-bucket
+        │
+        └── insurance-data/
+                │
+                ▼
+             train.py
+                │
+                ▼
+        SageMaker Training
+                │
+                ▼
+          Trained Model
+
+=====
+
+4. Getting the Docker Training Image URI
+image_uri = sklearn_estimator.training_image_uri()
+
+SageMaker uses a prebuilt Docker container image containing:
+
+Python
+Scikit-learn
+Required SageMaker training environment
+
+The image_uri gives the location/identifier of that container image.
+
+Then:
+
+append_to_file("output.txt", "Image URI", image_uri)
+
+saves the image information to your output.txt file.
+
+=====
+
+5. Getting the Trained Model Location
+model_s3_uri = sklearn_estimator.model_data
+
+After training is complete, this gets the S3 URI of the trained model.
+
+For example, it may look similar to:
+
+s3://insurance-prediction-bucket/insurance-data/output/...
+
+Then:
+
+print("Model S3 URI:", model_s3_uri)
+
+displays the exact location.
+
+====
+
+mportant IAM Connection 🔐
+
+This line:
+
+role = get_execution_role()
+
+gets the SageMaker Execution Role.
+
+That role needs permissions to access your S3 bucket, which is why you created an IAM policy with permissions such as:
+
+s3:PutObject
+s3:GetObject
+s3:ListBucket
+
+So your complete architecture is:
+
+        IAM Role
+            │
+            │ Gives Permission
+            ▼
+Amazon SageMaker ──────────► Amazon S3
+       │                         │
+       │ Read Training Data      │
+       │ ◄───────────────────────┤
+       │
+       │ Train train.py
+       ▼
+ Trained ML Model
+       │
+       │ Upload Model
+       ▼
+Amazon S3 Output Folder
+
+This is a typical Amazon SageMaker ML training workflow.
+
+========
