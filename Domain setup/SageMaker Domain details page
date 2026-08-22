@@ -1,0 +1,30 @@
+SageMaker Domain details page. Each tab has a different purpose:
+
+| Tab                       | What it means             | Simple explanation                                                                             |
+| ------------------------- | ------------------------- | ---------------------------------------------------------------------------------------------- |
+| ⚙️ **Domain settings**    | Main domain configuration | General settings and configuration for the entire SageMaker Domain                             |
+| 👤 **User profiles**      | SageMaker users           | Create and manage users who can access SageMaker Studio and resources                          |
+| 📦 **Space management**   | Workspaces                | Manage **Spaces**, which are shared or private environments for running SageMaker applications |
+| 📱 **App Configurations** | Application setup         | Configure applications and tools that users can launch inside SageMaker                        |
+| 🌐 **Environment**        | Network & infrastructure  | Configure the environment, such as networking, security, and other infrastructure settings     |
+| 🧩 **Resources**          | Connected resources       | View and manage resources associated with the SageMaker Domain                                 |
+
+
+===
+
+Easy hierarchy
+AWS Account
+    ↓
+SageMaker AI
+    ↓
+Domain 🏢
+    ├── Domain settings ⚙️
+    ├── User profiles 👤
+    ├── Spaces 📦
+    ├── App configurations 📱
+    ├── Environment 🌐
+    └── Resources 🧩
+
+Most important for beginners: Start with User profiles. You create a user profile, then that user can access the SageMaker workspace and applications.
+
+===
