@@ -1,0 +1,30 @@
+Customize Studio UI while creating a SageMaker User Profile.
+
+The purpose is simple:
+
+You can choose which applications and Machine Learning tools the user will see inside SageMaker Studio.
+
+===
+
+1. Application buttons 📱
+
+You can turn ON/OFF applications such as:
+
+| Application        | Use                                            |
+| ------------------ | ---------------------------------------------- |
+| 📓 **JupyterLab**  | Write and run Python, notebooks, data analysis |
+| 💻 **Code Editor** | VS Code–like coding environment                |
+| 🎨 **Canvas**      | Build ML models with low/no code               |
+| 📊 **RStudio**     | R programming and statistical analysis         |
+| 🔬 **MLflow**      | Track ML experiments, parameters, and models   |
+| ☄️ **Comet**       | ML experiment tracking and monitoring          |
+| **Deepchecks**     | Test and validate ML models/data               |
+| **Fiddler**        | Monitor and analyze ML/AI models               |
+| **Lakera Guard**   | AI/LLM security and protection                 |
+
+====
+
+If a toggle is ON, that application appears in the user's SageMaker Studio interface.
+
+=====
+
