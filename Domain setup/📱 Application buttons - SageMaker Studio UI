@@ -24,6 +24,36 @@ You can turn ON/OFF applications such as:
 
 ====
 
+
+Overall SageMaker Studio structure
+==================================
+
+AWS Account ☁️
+      ↓
+SageMaker AI 🧠
+      ↓
+Domain 🏢
+      ↓
+User Profile 👤
+      ↓
+Customize Studio UI 🎛️
+      │
+      ├── Applications
+      │     ├── JupyterLab 📓
+      │     ├── Code Editor 💻
+      │     ├── Canvas 🎨
+      │     └── MLflow 🔬
+      │
+      └── ML Tools
+            ├── Compute 💻
+            ├── Data 📊
+            ├── AutoML 🤖
+            ├── Experiments 🧪
+            ├── Jobs ⚙️
+            ├── Pipelines 🔄
+            ├── Models 🧠
+            └── Deployments 🚀
+
 If a toggle is ON, that application appears in the user's SageMaker Studio interface.
 
 =====
