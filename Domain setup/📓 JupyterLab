@@ -1,0 +1,19 @@
+📓 JupyterLab
+
+JupyterLab is an interactive coding environment.
+
+You can:
+
+Write Python code
+       ↓
+Run the code
+       ↓
+Analyze data
+       ↓
+Build ML models
+
+The option Enable idle shutdown means:
+
+If JupyterLab is not being used for some time, AWS can automatically shut down the idle environment.
+
+This can help avoid unnecessary usage and possible charges. For learning, enabling idle shutdown is generally a good idea.
