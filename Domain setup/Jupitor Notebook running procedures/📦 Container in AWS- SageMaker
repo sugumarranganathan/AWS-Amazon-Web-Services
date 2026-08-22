@@ -1,0 +1,103 @@
+Container in AWS / SageMaker 📦
+
+A container is a packaged environment that contains everything needed to run your application or machine learning code.
+
+====
+
+Simple meaning
+
+Think of a container as a ready-to-use box:
+
+📦 Container
+│
+├── Python
+├── Scikit-learn
+├── Required libraries
+├── Your train.py / inference.py
+└── Runtime environment
+
+This allows your code to run consistently without manually installing everything on the SageMaker training instance.
+
+===
+
+n your SageMaker project
+
+When you used:
+
+sklearn_estimator = SKLearn(
+    entry_point="train.py",
+    framework_version="1.2-1",
+    py_version="py3"
+)
+
+===
+
+SageMaker uses a prebuilt Scikit-learn container.
+
+Your train.py
+      +
+SageMaker Scikit-learn Container
+      │
+      ├── Python 3
+      ├── Scikit-learn 1.2-1
+      └── SageMaker environment
+      │
+      ▼
+SageMaker Training Job
+
+You did not need to create the container yourself.
+
+===
+
+Container types
+
+| Type                                 | Meaning                                                                    |
+| ------------------------------------ | -------------------------------------------------------------------------- |
+| **AWS/SageMaker Prebuilt Container** | AWS provides the environment                                               |
+| **Custom Container**                 | You create your own environment                                            |
+| **BYOC**                             | **Bring Your Own Container** – you build and use your own Docker container |
+
+
+====
+
+Simple comparison
+Script Mode
+───────────
+You write → train.py
+AWS provides → Container
+
+BYOC
+────
+You write → train.py
+You create → Docker Container
+You provide → Everything
+
+====
+
+Example
+
+Without a container, you might manually need to install:
+
+Python
+Scikit-learn
+NumPy
+Pandas
+Joblib
+Other dependencies
+
+====
+
+With a container:
+
+📦 One Container
+      ↓
+Everything is already prepared
+      ↓
+Run your ML code
+Easy definition ⭐
+
+Container = A packaged environment containing the code, libraries, dependencies, and runtime needed to run an application or machine learning model.
+
+In your insurance project, SageMaker automatically used a Scikit-learn container to run train.py and later to serve inference.py for predictions.
+
+=====
