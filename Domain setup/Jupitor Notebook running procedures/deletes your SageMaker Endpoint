@@ -1,0 +1,96 @@
+from sagemaker import Predictor
+
+# Use the same credentials/session setup as before
+predictor = Predictor(endpoint_name="insurance-charge-serverless-endpoint")
+predictor.delete_endpoint()
+print("✅ Endpoint deleted successfully.")
+
+
+```
+[05/02/25 18:07:29] INFO     Deleting endpoint configuration with name:                             session.py:4913
+                             insurance-charge-serverless-endpoint                                                  
+
+```
+
+```
+                    INFO     Deleting endpoint with name: insurance-charge-serverless-endpoint      session.py:4903
+
+```
+
+```
+✅ Endpoint deleted successfully.
+```
+
+
+============
+
+| Code / Term                                            | Purpose                                               |
+| ------------------------------------------------------ | ----------------------------------------------------- |
+| `from sagemaker import Predictor`                      | Imports the SageMaker `Predictor` class               |
+| `Predictor(endpoint_name=...)`                         | Connects the Predictor object to an existing endpoint |
+| `endpoint_name="insurance-charge-serverless-endpoint"` | Specifies which endpoint you want to delete           |
+| `predictor.delete_endpoint()`                          | Deletes the endpoint                                  |
+| `print(...)`                                           | Displays a success message                            |
+
+
+====
+
+What happened in your output?
+Deleting endpoint configuration with name:
+insurance-charge-serverless-endpoint
+
+SageMaker deleted the Endpoint Configuration associated with your endpoint.
+
+Then:
+
+Deleting endpoint with name:
+insurance-charge-serverless-endpoint
+
+SageMaker deleted the actual live endpoint.
+
+Finally:
+
+✅ Endpoint deleted successfully.
+
+Your deletion command completed successfully.
+
+-----
+
+Before and After
+BEFORE
+
+Trained Model
+     │
+     ▼
+Endpoint Configuration
+     │
+     ▼
+Live Serverless Endpoint
+     │
+     ▼
+Accepting Predictions
+     💰 Possible ongoing charges
+
+
+AFTER delete_endpoint()
+
+Live Endpoint ❌ Deleted
+Endpoint Configuration ❌ Deleted
+Prediction Requests ❌ Stop
+Endpoint-related compute charges stop
+
+====
+
+Important distinction
+
+Your trained model file in S3, such as:
+
+model.tar.gz
+
+is not automatically deleted just because you deleted the endpoint. The endpoint is gone, but your model artifact may still remain in S3.
+
+Simple meaning
+
+predictor.delete_endpoint() = Stop and remove the live SageMaker model endpoint when you finish testing, helping avoid continued endpoint usage charges.
+
+=====
