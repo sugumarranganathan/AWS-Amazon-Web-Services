@@ -1,0 +1,22 @@
+AutoMountHomeEFS 📁
+
+EFS = Elastic File System
+
+It is cloud file storage that SageMaker can use for files such as:
+
+Jupyter notebooks 📓
+Python code 💻
+Datasets 📊
+Model files 🧠
+
+Your screen has “Inherit settings from domain” selected.
+
+That means:
+
+SageMaker Domain Settings
+          ↓
+User Profile automatically uses
+the same EFS/storage settings
+
+For a beginner, leaving this as the default is usually simplest.
+
