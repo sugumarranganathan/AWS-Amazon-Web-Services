@@ -1,0 +1,187 @@
+This Summary Table compares different ways to run or manage Amazon SageMaker training.
+
+Symbols
+
+| Symbol             | Meaning                                                  |
+| ------------------ | -------------------------------------------------------- |
+| ✅                  | Yes / Supported                                          |
+| ❌                  | No / Not supported or not the main purpose               |
+| ⚠️                 | Possible, but with limitations or trade-offs             |
+| 🔄 / mixed symbols | Depends on configuration or combines multiple approaches |
+
+=====
+
+| Training Type              | Custom Code?       | Container Required? | Cost Efficient? | Simple Meaning / Use Case                                              |
+| -------------------------- | ------------------ | ------------------- | --------------- | ---------------------------------------------------------------------- |
+| **Built-in Algorithms**    | ❌                  | ❌                   | ✅               | Use SageMaker's ready-made ML algorithms for simple ML tasks           |
+| **Script Mode**            | ✅                  | ❌*                  | ✅               | Write your own `train.py`; SageMaker manages the environment/container |
+| **BYOC**                   | ✅                  | ✅                   | ⚠️              | **Bring Your Own Container** for full customization                    |
+| **Local Mode**             | ✅                  | ❌*                  | ✅               | Develop and test your training code locally before cloud training      |
+| **Managed Spot Training**  | ❌/custom dependent | ❌/managed           | ✅✅              | Uses lower-cost spare AWS capacity for cost-sensitive training         |
+| **SageMaker Pipelines**    | ❌/✅                | ❌/managed           | ✅               | Automates the complete ML lifecycle                                    |
+| **Distributed Training**   | ✅                  | ❌/managed           | ⚠️              | Uses multiple machines for large-scale deep learning                   |
+| **Automatic Model Tuning** | ❌/✅                | ❌/managed           | ✅               | Automatically finds better hyperparameter values                       |
+
+
+======
+
+* Important clarification: In Script Mode and Local Mode, containers may still exist underneath, but you usually don't have to create or manage 
+your own container. SageMaker provides the framework environment.
+
+====
+
+1️⃣ Built-in Algorithms
+
+SageMaker already provides algorithms.
+
+Your Data
+   ↓
+SageMaker Built-in Algorithm
+   ↓
+Trained Model
+
+Best for: Quick and simple ML training.
+
+====
+
+2️⃣ Script Mode ⭐
+
+This is similar to what you are currently doing.
+
+entry_point="train.py"
+
+You write your own training code:
+
+train.py
+   ↓
+SageMaker Managed Environment
+   ↓
+Training Job
+   ↓
+model.tar.gz
+
+Best for: Custom ML logic without creating your own Docker container.
+
+Your insurance prediction project is an example of Script Mode.
+
+====
+
+3️⃣ BYOC
+
+BYOC = Bring Your Own Container
+
+You create and provide your own Docker container.
+
+Your train.py
+      +
+Your Python libraries
+      +
+Your Docker Container
+      ↓
+SageMaker Training
+
+Best for: Full control over the ML environment.
+
+====
+
+4️⃣ Local Mode
+
+You test your SageMaker training setup locally before spending money on cloud resources.
+
+Your Computer / Local Environment
+        ↓
+Test train.py
+        ↓
+Check Errors
+        ↓
+Deploy to SageMaker Cloud
+
+Best for: Development and testing.
+
+=====
+
+5️⃣ Managed Spot Training 💰
+
+Uses spare AWS compute capacity at a lower price.
+
+Normal Training Instance
+       💰💰💰
+
+Spot Training Instance
+       💰
+
+Best for: Training jobs where interruptions can be tolerated.
+
+=====
+
+6️⃣ SageMaker Pipelines
+
+Automates the entire ML workflow.
+
+Data
+ ↓
+Processing
+ ↓
+Training
+ ↓
+Evaluation
+ ↓
+Model Approval
+ ↓
+Deployment
+
+Best for: Automating the ML lifecycle and MLOps.
+
+====
+
+7️⃣ Distributed Training
+
+Uses multiple instances to train a large model faster.
+
+                ┌── Instance 1 ──┐
+Large Dataset ──┼── Instance 2 ──┼──► Trained Model
+                └── Instance 3 ──┘
+
+Best for: Large datasets and deep learning.
+
+====
+
+8️⃣ Automatic Model Tuning
+
+SageMaker automatically tries different hyperparameter combinations.
+
+Model
+  │
+  ├── Learning Rate = 0.01
+  ├── Learning Rate = 0.1
+  ├── Learning Rate = 0.001
+  │
+  ▼
+Find Best Configuration
+
+Best for: Improving model performance automatically.
+
+=====
+
+Easy way to remember
+Built-in Algorithm → Ready-made ML
+
+Script Mode → Write your own train.py
+
+BYOC → Bring your own Docker container
+
+Local Mode → Test locally
+
+Spot Training → Save money
+
+Pipelines → Automate ML workflow
+
+Distributed Training → Use many machines
+
+Automatic Model Tuning → Find best settings
+
+For your current insurance prediction project, the flow you used is mainly:
+
+Script Mode → train.py → SageMaker Training Job → model.tar.gz → inference.py → Endpoint → Prediction.
+
+====
