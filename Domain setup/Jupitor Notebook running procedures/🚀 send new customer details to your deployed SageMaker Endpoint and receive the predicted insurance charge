@@ -1,0 +1,186 @@
+def predict_insurance_charge(predictor, age, bmi, children, sex_male, smoker_yes):
+    """
+    Sends a prediction request to the SageMaker endpoint.
+
+    Parameters:
+    - predictor: The SageMaker Predictor object.
+    - age, bmi, children: Numeric inputs
+    - sex_male, smoker_yes: Binary categorical encodings (0 or 1)
+    - region_*: One-hot region encodings (only one should be 1)
+
+    Returns:
+    - Predicted insurance charge (float)
+    """
+    import json
+    from sagemaker.serializers import JSONSerializer
+    from sagemaker.deserializers import JSONDeserializer
+
+    predictor.serializer = JSONSerializer()
+    predictor.deserializer = JSONDeserializer()
+
+    input_data = {
+        "age": [age],
+        "bmi": [bmi],
+        "children": [children],
+        "sex_male": [sex_male],
+        "smoker_yes": [smoker_yes],
+    }
+
+    #input_date=json.dumps(input_data)
+    #print(input_date)
+    prediction = predictor.predict(input_data)
+    return prediction
+
+
+=====
+
+| Code / Component                    | Purpose                                                       |
+| ----------------------------------- | ------------------------------------------------------------- |
+| `def predict_insurance_charge(...)` | Creates a reusable function for predicting insurance charges  |
+| `predictor`                         | Connects to your deployed SageMaker Endpoint                  |
+| `age`                               | Customer's age                                                |
+| `bmi`                               | Customer's Body Mass Index                                    |
+| `children`                          | Number of children/dependents                                 |
+| `sex_male`                          | Gender encoding: typically `1 = Male`, `0 = Female`           |
+| `smoker_yes`                        | Smoking status: typically `1 = Yes`, `0 = No`                 |
+| `JSONSerializer()`                  | Converts Python input data into JSON format before sending it |
+| `JSONDeserializer()`                | Converts the endpoint's JSON response back into Python data   |
+| `input_data`                        | Dictionary containing the customer's input features           |
+| `predictor.predict(input_data)`     | Sends the data to the live SageMaker Endpoint                 |
+| `return prediction`                 | Returns the predicted insurance charge                        |
+
+
+====
+
+Overall Flow
+
+User Input
+(age, BMI, children, sex, smoker)
+            │
+            ▼
+predict_insurance_charge()
+            │
+            ▼
+Convert data to JSON
+            │
+            ▼
+SageMaker Predictor
+            │
+            ▼
+insurance-charge-endpoint4
+            │
+            ▼
+inference.py
+            │
+            ▼
+Trained Model
+(model.tar.gz)
+            │
+            ▼
+Predicted Insurance Charge 💰
+
+
+====
+
+Input Data
+
+This part prepares the customer information:
+
+input_data = {
+    "age": [age],
+    "bmi": [bmi],
+    "children": [children],
+    "sex_male": [sex_male],
+    "smoker_yes": [smoker_yes],
+}
+
+For example:
+
+age = 35
+bmi = 28.5
+children = 2
+sex_male = 1
+smoker_yes = 0
+
+The data sent to SageMaker becomes:
+
+{
+    "age": [35],
+    "bmi": [28.5],
+    "children": [2],
+    "sex_male": [1],
+    "smoker_yes": [0]
+}
+
+====
+
+What happens in this line?
+prediction = predictor.predict(input_data)
+
+This is the main action.
+
+Python Application
+       │
+       │ predictor.predict(input_data)
+       ▼
+SageMaker Endpoint
+insurance-charge-endpoint4
+       │
+       ▼
+inference.py
+       │
+       ▼
+model.tar.gz
+       │
+       ▼
+Prediction Result
+
+====
+
+About the commented code
+# input_date=json.dumps(input_data)
+# print(input_date)
+
+This was likely used for testing the JSON data before sending it. There is also a small naming typo: input_date would be better named input_data or input_json.
+
+Since you are using:
+
+predictor.serializer = JSONSerializer()
+
+you normally do not need to manually use json.dumps(), because the serializer handles the conversion.
+
+=====
+
+Complete AWS Terms Used Here
+
+| Component                    | Purpose                                                        |
+| ---------------------------- | -------------------------------------------------------------- |
+| `predict_insurance_charge()` | Custom Python function that prepares and sends prediction data |
+| **Predictor**                | Python object used to communicate with a SageMaker Endpoint    |
+| **Serializer**               | Converts Python data into a format the endpoint can understand |
+| `JSONSerializer`             | Converts Python input into JSON                                |
+| **Deserializer**             | Converts the endpoint response into Python data                |
+| `JSONDeserializer`           | Reads the JSON response from SageMaker                         |
+| `input_data`                 | New customer data sent for prediction                          |
+| `predictor.predict()`        | Sends a prediction request to the deployed model               |
+| **Endpoint**                 | Live SageMaker service running your model                      |
+| `inference.py`               | Handles incoming data and runs prediction logic                |
+| `model.tar.gz`               | Contains your trained ML model                                 |
+| **Inference**                | Using a trained model to predict results from new data         |
+| `prediction`                 | The output returned by the ML model                            |
+
+
+====
+
+In simple words
+
+This function takes a customer's details → converts them into JSON → sends them to your live SageMaker Endpoint → the trained insurance model processes the data → returns 
+the predicted insurance charge. 💰
+
+One important point: the input features and their preprocessing must exactly match what your model was trained with.
+
+====
+
+
+
+
