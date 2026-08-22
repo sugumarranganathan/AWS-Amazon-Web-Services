@@ -1,0 +1,82 @@
+creating a SageMaker User Profile 👤.
+
+1. User profile → Name
+
+You enter the name for the SageMaker user.
+
+Example:
+
+sugumar-sagemaker-profile
+
+This profile represents a user who will work inside the SageMaker Domain.
+
+====
+
+2. Execution role 🔐
+
+You must select an IAM Role.
+
+The Execution role gives SageMaker permission to access AWS resources on your behalf.
+
+For example:
+
+SageMaker User
+      ↓
+User Profile 👤
+      ↓
+Execution Role 🔐
+      ↓
+S3 🪣 | SageMaker 🧠 | Other AWS Resources
+
+Example role shown in your screenshot:
+
+AmazonSageMaker-ExecutionRole...
+
+This role allows SageMaker to perform tasks such as:
+
+Access data from S3
+Train ML models
+Save model outputs
+Run SageMaker notebooks/apps
+
+====
+
+3. Create role using the role creation wizard
+
+If you don't already have an IAM role, click:
+
+Create role using the role creation wizard
+
+AWS will help create the required permissions.
+
+====
+
+4. Tags — optional 🏷️
+
+Tags are labels used to organize AWS resources.
+
+Example:
+
+Project = AI Learning
+User = Sugumar
+
+Tags are optional, so you can skip them while learning.
+
+===
+
+
+Simple flow
+SageMaker Domain 🏢
+        ↓
+Create User Profile 👤
+        ↓
+Give a Name
+        ↓
+Attach Execution Role 🔐
+        ↓
+User can access SageMaker resources 🧠
+
+Most important field here is the Execution role, because without proper permissions, the SageMaker user cannot access resources like S3 or run certain SageMaker tasks.
+
+====
+
