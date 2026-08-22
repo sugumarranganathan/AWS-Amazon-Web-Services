@@ -1,0 +1,93 @@
+result = predict_insurance_charge(
+
+    predictor,
+
+    age=35,
+
+    bmi=28.4,
+
+    children=2,
+
+    sex_male=1,
+
+    smoker_yes=0
+
+)
+
+print("Predicted charge:", result)
+
+
+Predicted charge: [6780.8349163]
+
+=====
+
+What does this result mean?
+
+Your trained machine learning model predicts an insurance charge of approximately 6780.83 for the given input.
+
+| Input Feature        |       Value |
+| -------------------- | ----------: |
+| Age                  |          35 |
+| BMI                  |        28.4 |
+| Children             |           2 |
+| Male                 |   Yes (`1`) |
+| Smoker               |    No (`0`) |
+| **Predicted Charge** | **6780.83** |
+
+
+=====
+
+Complete Prediction Flow
+
+Customer Details
+       │
+       ▼
+predict_insurance_charge()
+       │
+       ▼
+JSONSerializer
+       │
+       ▼
+predictor.predict()
+       │
+       ▼
+SageMaker Endpoint
+insurance-charge-endpoint4
+       │
+       ▼
+inference.py
+       │
+       ▼
+model.tar.gz
+       │
+       ▼
+Prediction
+       │
+       ▼
+💰 6780.8349163
+
+=====
+
+Why is the result inside [ ]?
+[6780.8349163]
+
+The square brackets mean the model returned the prediction as a list/array. Since you sent one customer's data, you received one prediction.
+
+So you can display only the value like this:
+
+print("Predicted charge:", result[0])
+
+===
+
+Output:
+
+Predicted charge: 6780.8349163
+In simple words
+
+You successfully sent customer data to your live Amazon SageMaker Endpoint, the deployed ML model processed it, and returned the predicted insurance charge. 🚀
+
+Your complete project flow is now:
+
+S3 → SageMaker Training → model.tar.gz → SKLearnModel → inference.py → Endpoint → Predictor → Insurance Charge Prediction.
+
+=====
