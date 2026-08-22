@@ -1,0 +1,34 @@
+AWS Account ☁️
+      ↓
+SageMaker AI 🧠
+      ↓
+Domain 🏢
+      ↓
+User Profile 👤
+      ↓
+Customize Studio UI 🎛️
+      │
+      ├── Applications
+      │     ├── JupyterLab 📓
+      │     ├── Code Editor 💻
+      │     ├── Canvas 🎨
+      │     └── MLflow 🔬
+      │
+      └── ML Tools
+            ├── Compute 💻
+            ├── Data 📊
+            ├── AutoML 🤖
+            ├── Experiments 🧪
+            ├── Jobs ⚙️
+            ├── Pipelines 🔄
+            ├── Models 🧠
+            └── Deployments 🚀
+
+
+
+=====
+
+
+pyterLab → Data → Training Jobs → Models → Deployments. This is the basic end-to-end ML workflow.
+
+====
