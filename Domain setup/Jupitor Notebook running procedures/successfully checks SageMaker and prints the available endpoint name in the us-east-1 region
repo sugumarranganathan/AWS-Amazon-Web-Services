@@ -1,0 +1,104 @@
+import boto3
+
+client = boto3.client('sagemaker', region_name='us-east-1')
+
+response = client.list_endpoints()
+
+for ep in response['Endpoints']:
+
+    print(ep['EndpointName'])
+
+====
+
+insurance-charge-serverless-endpoint
+
+====
+
+This code uses Boto3 to connect to Amazon SageMaker and display the names of your SageMaker endpoints.
+
+====
+
+| Code                        | Purpose                                               |
+| --------------------------- | ----------------------------------------------------- |
+| `import boto3`              | Imports the AWS SDK for Python                        |
+| `boto3.client('sagemaker')` | Creates a connection to the SageMaker service         |
+| `region_name='us-east-1'`   | Specifies the AWS region: **US East (N. Virginia)**   |
+| `client.list_endpoints()`   | Requests a list of SageMaker endpoints in that region |
+| `response['Endpoints']`     | Gets the endpoint information from the AWS response   |
+| `for ep in ...`             | Loops through each endpoint                           |
+| `ep['EndpointName']`        | Extracts and prints the endpoint name                 |
+
+
+=====
+
+Your code flow
+Python Code
+    │
+    ▼
+Boto3
+    │
+    ▼
+AWS SageMaker Client
+    │
+    ▼
+US East (us-east-1)
+    │
+    ▼
+list_endpoints()
+    │
+    ▼
+SageMaker Endpoints
+    │
+    ▼
+insurance-charge-serverless-endpoint
+Your output
+insurance-charge-serverless-endpoint
+
+This means SageMaker found an endpoint with the name:
+
+insurance-charge-serverless-endpoint
+
+What is Boto3?
+
+Boto3 = AWS SDK for Python
+
+It allows you to control AWS services using Python code.
+
+For example:
+
+Boto3
+ ├── Create S3 buckets
+ ├── Upload files to S3
+ ├── Access SageMaker
+ ├── List endpoints
+ ├── Start/stop AWS resources
+ └── Get AWS resource information
+Important point
+
+Your code uses:
+
+boto3.client('sagemaker')
+
+This is the SageMaker management client. It is used for operations such as creating, listing, describing, or deleting endpoints.
+
+For sending prediction data to a live endpoint, you typically use:
+
+boto3.client('sagemaker-runtime')
+
+So remember:
+
+====
+
+| Client              | Purpose                                         |
+| ------------------- | ----------------------------------------------- |
+| `sagemaker`         | Manage SageMaker resources                      |
+| `sagemaker-runtime` | Send prediction requests to a deployed endpoint |
+
+
+=====
+
+Simple meaning: Your code successfully checks SageMaker and prints the available endpoint name in the us-east-1 region.
+
+-----
+
+
