@@ -82,3 +82,76 @@ to send new insurance customer data and receive a predicted insurance charge.
 
 ====
 
+```
+[05/02/25 16:08:27] INFO     Creating model with name:                                              session.py:4094
+                             sagemaker-scikit-learn-2025-05-02-16-08-27-065                                        
+
+```
+
+```
+                    INFO     Creating endpoint-config with name insurance-charge-endpoint4          session.py:5937
+
+```
+
+```
+[05/02/25 16:08:28] INFO     Creating endpoint with name insurance-charge-endpoint4                 session.py:4759
+
+```
+
+```
+---------!
+```
+
+======
+
+These logs show that your SageMaker model deployment was successful. The final ---------! indicates the deployment process completed and the endpoint became ready. 🎉
+
+Log Explanation
+
+| Log Message                                                                | Meaning                                                                                         |
+| -------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `Creating model with name: sagemaker-scikit-learn-2025-05-02-16-08-27-065` | SageMaker created a **Model** resource using your `model.tar.gz` and `inference.py`             |
+| `Creating endpoint-config with name insurance-charge-endpoint4`            | SageMaker created an **Endpoint Configuration**, including the instance type and model settings |
+| `Creating endpoint with name insurance-charge-endpoint4`                   | SageMaker started creating your live **Endpoint**                                               |
+| `---------!`                                                               | Deployment progress finished successfully                                                       |
+
+
+=======
+
+What AWS created
+
+model.tar.gz
+      +
+inference.py
+      │
+      ▼
+┌─────────────────────────────┐
+│ SageMaker Model             │
+│ sagemaker-scikit-learn-...  │
+└─────────────────────────────┘
+              │
+              ▼
+┌─────────────────────────────┐
+│ Endpoint Configuration      │
+│ insurance-charge-endpoint4  │
+│ ml.m5.large × 1 instance    │
+└─────────────────────────────┘
+              │
+              ▼
+┌─────────────────────────────┐
+│ LIVE SAGEMAKER ENDPOINT 🚀  │
+│ insurance-charge-endpoint4  │
+└─────────────────────────────┘
+              │
+              ▼
+        predictor.predict()
+              │
+              ▼
+   Insurance Charge Prediction
+
+====
+
+
+
+
+
