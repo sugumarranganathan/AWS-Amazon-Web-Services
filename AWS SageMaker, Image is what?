@@ -1,0 +1,54 @@
+Here Image does not mean a photo or picture. 🙂
+
+In AWS SageMaker, Image = the preconfigured software environment used to run your JupyterLab space.
+
+| Setting                                 | Meaning                                                   |
+| --------------------------------------- | --------------------------------------------------------- |
+| **Instance: `ml.t3.medium`**            | The cloud computer hardware — CPU and RAM                 |
+| **Image: SageMaker Distribution 3.0.0** | The software environment installed on that cloud computer |
+
+
+===
+
+Think of it like your laptop:
+
+Instance  = Computer hardware 💻
+             ↓
+          CPU + RAM
+
+Image     = Software environment 🖥️
+             ↓
+          OS + Python + Jupyter + Libraries
+
+====
+
+Simple example
+
+When you click Run space:
+
+AWS Instance
+ml.t3.medium
+2 vCPU + 4 GB RAM
+        +
+SageMaker Image
+Distribution 3.0.0
+        ↓
+JupyterLab starts
+        ↓
+You can run Python / ML code
+
+=====
+
+So, Instance decides the power of the computer
+
+while Image decides the software environment running inside it.
+
+=====
+
+For your current SageMaker learning, you can keep the default:
+
+Instance: ml.t3.medium
+Image: SageMaker Distribution 3.0.0
+
+
+=====
