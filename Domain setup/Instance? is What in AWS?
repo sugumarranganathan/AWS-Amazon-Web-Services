@@ -23,3 +23,203 @@ AWS Instance
 
 
 =========
+
+Instance type
+
+
+
+| Instance           |    CPU |    RAM | Best for                                  |
+| ------------------ | -----: | -----: | ----------------------------------------- |
+| **ml.t3.medium** ✅ | 2 vCPU |  4 GiB | Basic learning, Python, small ML projects |
+| **ml.t3.large**    | 2 vCPU |  8 GiB | Larger notebooks and datasets             |
+| **ml.m5.large**    | 2 vCPU |  8 GiB | More consistent CPU performance           |
+| **ml.m5.2xlarge**  | 8 vCPU | 32 GiB | Heavy ML/data processing                  |
+
+====
+
+For your current learning: choose ml.t3.medium ✅
+
+It is already selected as the Default in your screenshot.
+
+Then:
+
+Keep ml.t3.medium
+Storage: 5 GB is enough for learning.
+Click Run space.
+Wait for JupyterLab to start.
+
+⚠️ Important: This is an AWS compute instance, so it may incur charges depending on your AWS account/free-tier eligibility and current SageMaker pricing. 
+After practice, stop the Space so the compute is not left running.
+
+Simple meaning:
+Instance = the virtual computer that runs your JupyterLab, Python code, and ML work.
+
+====
+
+Understanding the name: ml.t3.medium
+
+AWS instance names have a meaning:
+
+ml . t3 . medium
+│    │      │
+│    │      └── Instance size
+│    └──────── Instance family/type
+└───────────── Machine Learning / SageMaker
+1. ml
+
+Means it is being used as a machine learning instance in SageMaker.
+
+2. t3
+
+The instance family.
+
+t family is generally designed for lighter or variable CPU workloads.
+
+3. medium
+
+The size/capacity of the virtual computer.
+
+For example:
+
+t3.medium  → Smaller
+t3.large   → More RAM
+m5.large   → More powerful general-purpose
+m5.2xlarge → Much more CPU + RAM
+
+====
+
+Main Instance Types
+🟢 1. General Purpose — t3, t2, m5, m6
+
+Used for normal workloads.
+
+Python
+Jupyter Notebook
+Small datasets
+Basic ML
+Web applications
+
+Examples:
+
+ml.t3.medium
+ml.t3.large
+ml.m5.large
+
+👉 Best for your current SageMaker learning: ml.t3.medium
+
+====
+
+🔵 2. Compute Optimized — c5, c6
+
+More CPU power.
+
+Used when your program needs heavy processing.
+
+Large calculations
+Data processing
+ML training
+CPU-intensive applications
+
+Example:
+
+ml.c5.large
+
+Think:
+
+More CPU power = faster calculations
+
+=====
+
+🟡 3. Memory Optimized — r5, r6
+
+More RAM.
+
+Used for:
+
+Large datasets
+Big Data
+In-memory processing
+Large ML workloads
+
+Example:
+
+ml.r5.large
+
+Think:
+
+More RAM = handle more data at one time
+
+====
+
+🔴 4. GPU Instances — g4, g5, p3, p4
+
+These have GPU processors.
+
+Used for:
+
+Deep Learning
+Neural Networks
+Image Recognition
+Computer Vision
+Large AI Models
+LLM training
+
+Example:
+
+ml.g5.xlarge
+
+Think:
+
+CPU → General processing
+GPU → Thousands of calculations simultaneously
+
+=====
+
+Easy comparison
+
+| Type         | Main Strength      | Example Use             |
+| ------------ | ------------------ | ----------------------- |
+| **t3**       | Basic, lightweight | Learning Python/Jupyter |
+| **m5**       | Balanced CPU + RAM | General ML              |
+| **c5**       | High CPU           | Heavy calculations      |
+| **r5**       | High RAM           | Large datasets          |
+| **g5**       | GPU                | Deep Learning / AI      |
+| **p-series** | Powerful GPU       | Advanced AI training    |
+
+
+===
+
+For you right now
+
+Since you are learning AWS SageMaker and running JupyterLab, start with:
+
+ml.t3.medium
+2 vCPU
+4 GiB RAM
+
+It is enough for learning:
+
+✅ Python
+✅ Pandas
+✅ NumPy
+✅ Basic Machine Learning
+✅ Small datasets
+✅ Jupyter Notebooks
+
+⚠️ Always stop the SageMaker Space/instance after finishing, because running cloud compute can generate charges.
+
+Simple formula to remember:
+
+Instance = Cloud Computer
+Instance Type = Configuration of that Cloud Computer
+vCPU = Processing Power
+RAM = Working Memory
+GPU = Fast parallel processing for AI/Deep Learning
+
+===
+
+
+
+
+
+
