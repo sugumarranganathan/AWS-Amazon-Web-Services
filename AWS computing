@@ -1,0 +1,26 @@
+Computing means using computer resources to perform work or process data. 🖥️
+
+In AWS, computing includes:
+CPU → Processes tasks
+RAM → Temporary working memory
+Storage → Stores data
+Network → Connects to the internet
+Simple example
+
+When you run a Python application:
+
+Python App
+    ↓
+CPU processes the code ⚙️
+    ↓
+RAM holds working data 🧠
+    ↓
+Storage saves files 💾
+
+So in EC2 — Elastic Compute Cloud:
+
+Compute = Computer processing power
+Elastic = You can increase or decrease resources
+Cloud = The computer runs in AWS data centers ☁️
+
+===
