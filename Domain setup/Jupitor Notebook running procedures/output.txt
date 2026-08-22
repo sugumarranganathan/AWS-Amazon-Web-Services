@@ -1,0 +1,12 @@
+s3-path:
+s3://insurance-prediction-bucket/insurance-data/insurance_pre.csv
+framework_version 1.2-1
+Image URI
+683313688378.dkr.ecr.us-east-1.amazonaws.com/sagemaker-scikit-learn:1.2-1-cpu-py3
+model_s3_uri
+s3://sagemaker-us-east-1-253490754689/sagemaker-scikit-learn-2025-05-02-13-41-50-366/output/model.tar.gz
+framework_version 1.2-1
+Image URI
+683313688378.dkr.ecr.us-east-1.amazonaws.com/sagemaker-scikit-learn:1.2-1-cpu-py3
+model_s3_uri
+s3://insurance-prediction-bucket/insurance-data/output/sagemaker-scikit-learn-2025-05-02-15-20-40-817/output/model.tar.gz
