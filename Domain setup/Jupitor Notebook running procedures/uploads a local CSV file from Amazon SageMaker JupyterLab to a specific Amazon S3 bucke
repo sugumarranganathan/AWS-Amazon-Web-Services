@@ -1,0 +1,85 @@
+import boto3
+import sagemaker
+from sagemaker import get_execution_role
+
+
+# Set custom bucket
+bucket = 'insurance-prediction-bucket'  # Your custom S3 bucket
+prefix = 'insurance-data'
+role = get_execution_role()
+
+
+# Local file to upload
+local_file = 'insurance_pre.csv'
+
+
+# Upload file to your specific bucket
+session = sagemaker.Session()
+s3_path = session.upload_data(path=local_file, bucket=bucket, key_prefix=prefix)
+
+
+from utils import append_to_file
+append_to_file("output.txt", "s3-path:", s3_path)
+
+
+print(f"✅ File uploaded to your bucket at: {s3_path}")
+
+
+========
+
+| Code                                       | Explanation                                                                                    |
+| ------------------------------------------ | ---------------------------------------------------------------------------------------------- |
+| `import boto3`                             | Imports the AWS SDK for Python. It allows Python programs to interact with AWS services.       |
+| `import sagemaker`                         | Imports the Amazon SageMaker Python SDK.                                                       |
+| `from sagemaker import get_execution_role` | Imports the function used to get the IAM execution role assigned to the SageMaker environment. |
+| `bucket = 'insurance-prediction-bucket'`   | Specifies the name of the destination S3 bucket where the file will be uploaded.               |
+| `prefix = 'insurance-data'`                | Specifies the folder-like path inside the S3 bucket.                                           |
+| `role = get_execution_role()`              | Gets the permissions/role used by SageMaker to access AWS resources.                           |
+| `local_file = 'insurance_pre.csv'`         | Specifies the local CSV file that you want to upload.                                          |
+| `session = sagemaker.Session()`            | Creates a SageMaker session to interact with SageMaker and related AWS services.               |
+| `session.upload_data(...)`                 | Uploads the specified local file to the S3 bucket.                                             |
+| `path=local_file`                          | Sends the file named `insurance_pre.csv`.                                                      |
+| `bucket=bucket`                            | Uses the bucket name stored in the `bucket` variable.                                          |
+| `key_prefix=prefix`                        | Places the uploaded file inside the `insurance-data` path in S3.                               |
+| `s3_path = ...`                            | Stores the resulting S3 location of the uploaded file.                                         |
+| `from utils import append_to_file`         | Imports a custom function named `append_to_file` from `utils.py`.                              |
+| `append_to_file(...)`                      | Writes/appends the S3 path information into `output.txt`.                                      |
+| `print(...)`                               | Displays a success message and the S3 location of the uploaded file.                           |
+
+
+======
+
+Example result
+
+The file may be stored at a location similar to:
+
+s3://insurance-prediction-bucket/insurance-data/insurance_pre.csv
+
+This is useful because your Machine Learning training, preprocessing, processing jobs, or SageMaker models can later access the dataset directly from Amazon S3.
+
+======
+
+Overall Use of This Code
+
+This code uploads a local CSV file from Amazon SageMaker/JupyterLab to a specific Amazon S3 bucket.
+
+| Step | What happens                       |
+| ---- | ---------------------------------- |
+| 1    | Import AWS and SageMaker libraries |
+| 2    | Select the S3 bucket               |
+| 3    | Set an S3 folder/prefix            |
+| 4    | Get the SageMaker execution role   |
+| 5    | Select the local CSV file          |
+| 6    | Create a SageMaker session         |
+| 7    | Upload the CSV file to S3          |
+| 8    | Save the S3 path to `output.txt`   |
+| 9    | Print the uploaded file location   |
+
+
+=====
+
+Final flow
+
+insurance_pre.csv → SageMaker/JupyterLab → SageMaker Session → Amazon S3 Bucket → insurance-data/ folder
+
+=====
