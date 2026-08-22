@@ -1,4 +1,8 @@
-AutoMountHomeEFS 📁
+Data and Storage settings while creating a SageMaker User Profile.
+=================================================================
+
+
+1. AutoMountHomeEFS 📁
 
 EFS = Elastic File System
 
@@ -19,4 +23,33 @@ User Profile automatically uses
 the same EFS/storage settings
 
 For a beginner, leaving this as the default is usually simplest.
+
+===
+
+2. Customize Studio UI
+
+This option lets you set different EFS storage and data settings specifically for this user profile.
+
+Normally, you don't need to change it unless different users require different storage configurations.
+
+=====
+
+3. CustomPosixUserConfig 👤
+
+This is an advanced Linux user configuration.
+
+It can control things such as the Linux user ID/group ID used inside the SageMaker environment.
+
+For normal learning and basic SageMaker use, you can leave this disabled.
+
+Simple flow
+Step 1 → General Settings 👤
+Step 2 → Configure Applications 📓
+Step 3 → Customize Studio UI 🎛️
+Step 4 → Data and Storage 💾  ← You are here
+Step 5 → Review and Create ✅
+
+For this training setup, the instructor appears to be leaving the default settings and then clicking Next.
+
+====
 
