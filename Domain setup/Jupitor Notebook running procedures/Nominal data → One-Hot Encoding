@@ -1,0 +1,185 @@
+Nominal data → One-Hot Encoding
+
+1. What is Nominal Data?
+
+Nominal data is categorical data where the categories have no natural order or ranking.
+
+Examples from your Insurance dataset
+
+| Column   | Values                                     | Nominal? |
+| -------- | ------------------------------------------ | -------- |
+| `sex`    | male, female                               | ✅ Yes    |
+| `smoker` | yes, no                                    | ✅ Yes    |
+| `region` | southwest, southeast, northwest, northeast | ✅ Yes    |
+
+====
+
+or example:
+
+Region:
+South → North → East → West
+
+There is no ranking such as:
+
+North > South
+East > West
+
+So, this is nominal data.
+
+====
+
+
+2. Why can't we directly give text to the ML model?
+
+Your Random Forest model needs numerical values.
+
+For example:
+
+sex
+-----
+male
+female
+male
+
+The model cannot directly process these text values.
+
+So we use One-Hot Encoding.
+
+====
+
+3. One-Hot Encoding Example
+
+Original nominal data:
+
+| sex    |
+| ------ |
+| Male   |
+| Female |
+| Male   |
+
+
+====
+
+After One-Hot Encoding:
+
+| sex_Male | sex_Female |
+| -------- | ---------- |
+| 1        | 0          |
+| 0        | 1          |
+| 1        | 0          |
+
+
+Each category becomes a separate 0 or 1 column.
+
+====
+
+4. Your code
+X = pd.get_dummies(X, drop_first=True)
+
+This performs One-Hot Encoding.
+
+Because you used:
+
+drop_first=True
+
+Pandas removes one category.
+
+Example: sex
+
+Instead of:
+
+| sex_Female | sex_Male |
+| ---------- | -------- |
+| 1          | 0        |
+| 0          | 1        |
+
+
+====
+
+It may become:
+
+| sex_male |
+| -------- |
+| 0        |
+| 1        |
+
+
+====
+
+Here:
+
+0 → Female
+1 → Male
+
+====
+
+5. region example
+
+Original:
+
+| region    |
+| --------- |
+| northeast |
+| northwest |
+| southeast |
+| southwest |
+
+
+====
+
+After:
+
+pd.get_dummies(X, drop_first=True)
+
+You may get:
+
+| region_northwest | region_southeast | region_southwest |
+| ---------------- | ---------------- | ---------------- |
+| 0                | 0                | 0                |
+| 1                | 0                | 0                |
+| 0                | 1                | 0                |
+| 0                | 0                | 1                |
+
+====
+
+The missing combination:
+
+0, 0, 0
+
+represents the dropped category:
+
+northeast
+
+===
+
+Simple flow
+Nominal Data
+     ↓
+Male / Female
+Yes / No
+North / South / East / West
+     ↓
+One-Hot Encoding
+     ↓
+0 and 1 Numerical Columns
+     ↓
+Machine Learning Model
+
+---
+
+In your project
+sex, smoker, region
+        ↓
+Nominal Categorical Data
+        ↓
+pd.get_dummies()
+        ↓
+One-Hot Encoding
+        ↓
+RandomForestRegressor
+        ↓
+Predict Insurance Charges
+
+In short: Nominal data has categories without any order, and One-Hot Encoding converts those categories into numerical 0/1 columns so the machine learning model can use them.
+
+=====
