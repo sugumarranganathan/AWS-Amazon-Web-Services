@@ -1,0 +1,20 @@
+S3 in Amazon AWS stands for:
+
+Amazon Simple Storage Service
+
+👉 S = Simple
+👉 3 = Storage Service — the name has three words starting with S.
+
+Amazon S3 is a cloud storage service used to store:
+
+📁 Files
+🖼️ Images
+🎥 Videos
+📄 Documents
+💾 Backups
+📊 Data for applications
+
+Example: You can upload your website images, project files, or backups to Amazon S3 and access them from your AWS applications.
+
+
+=========
