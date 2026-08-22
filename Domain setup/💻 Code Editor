@@ -1,0 +1,29 @@
+💻 Code Editor
+
+This is a browser-based code editor, similar to VS Code.
+
+You can:
+
+Write Python code
+Edit project files
+Debug code
+Run applications
+
+===
+
+Enable idle shutdown
+
+If enabled:
+
+You stop using Code Editor
+        ↓
+Idle for some time
+        ↓
+AWS automatically shuts it down
+        ↓
+Helps avoid unnecessary usage/charges
+
+For learning, idle shutdown is a useful option.
+
+====
+
