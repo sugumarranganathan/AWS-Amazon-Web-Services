@@ -1,0 +1,53 @@
+Summary Table of SageMaker Training Types
+
+| Training Type              | Custom Code? | Container Required? | Cost Efficient? | Main Use Case             |
+| -------------------------- | ------------ | ------------------- | --------------- | ------------------------- |
+| **Built-in Algorithms**    | ❌ No         | ❌ No                | ✅ Yes           | Simple ML tasks           |
+| **Script Mode**            | ✅ Yes        | ❌ No*               | ✅ Yes           | Custom ML logic           |
+| **BYOC**                   | ✅ Yes        | ✅ Yes               | ⚠️              | Fully custom environment  |
+| **Local Mode**             | ✅ Yes        | ❌ No                | ✅ Yes           | Development / testing     |
+| **Managed Spot Training**  | ✅ / ❌        | ❌ / ✅               | ✅ / ✅           | Cost-sensitive jobs       |
+| **SageMaker Pipelines**    | ✅ / ❌        | ❌ / ✅               | ✅               | ML lifecycle automation   |
+| **Distributed Training**   | ✅            | ❌ / ✅               | ⚠️              | Large-scale deep learning |
+| **Automatic Model Tuning** | ✅ / ❌        | ❌ / ✅               | ✅               | Hyperparameter tuning     |
+
+
+====
+
+* The slide specifically notes “uses SageMaker containers” for Script Mode.
+
+Simple understanding
+
+1. Built-in Algorithms
+Use SageMaker's ready-made algorithms when you have a simple ML task and don't need custom code.
+
+2. Script Mode ⭐
+You write your own ML training code, while SageMaker provides the training environment/containers. This is useful when you have your own Python ML logic.
+
+3. BYOC — Bring Your Own Container
+You create/provide your own container, giving you maximum control over the environment.
+
+4. Local Mode
+Useful for development and testing before running larger training jobs.
+
+5. Managed Spot Training
+Useful for cost-sensitive jobs, using Spot capacity where applicable.
+
+6. SageMaker Pipelines
+Used for ML lifecycle automation—connecting steps such as processing, training, evaluation, and deployment.
+
+7. Distributed Training
+Used when training needs to scale across multiple compute resources, especially for large-scale deep learning.
+
+8. Automatic Model Tuning
+Used for hyperparameter tuning, where SageMaker searches for better hyperparameter combinations.
+
+⭐ For your Insurance project
+
+The most relevant option to understand next is Script Mode, because you have your own insurance ML training code and dataset in S3.
+
+Your workflow can be:
+
+S3 dataset → Script Mode training → Model → Evaluation → Endpoint deployment.
+
+====
