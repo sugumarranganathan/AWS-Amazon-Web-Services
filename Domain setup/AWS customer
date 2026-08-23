@@ -22,3 +22,44 @@ Open Amazon SageMaker AI.
 Don't create a new Domain or Endpoint yet. First we'll check whether your previous SageMaker resources are still there.
 
 Once SageMaker opens, send me the screenshot. I'll guide you to the next step for your Insurance Prediction project.
+===
+
+Perfect 👍 We can use US East (N. Virginia) — us-east-1 as your chosen region.
+
+For your AWS learning/projects, we'll use Virginia consistently unless you later decide otherwise.
+
+Next step
+
+At the top-right of AWS Console, make sure it shows:
+
+US East (N. Virginia)
+
+Then:
+
+Search 🔍 → SageMaker AI → Amazon SageMaker AI
+
+Open SageMaker AI.
+
+⚠️ Don't create a Domain, endpoint, or other resource yet. First send me the SageMaker home screen, and I'll guide you step-by-step.
+
+====
+
+Perfect! ✅ You are now successfully in:
+
+🇺🇸 United States (N. Virginia) — us-east-1
+
+Your AWS account is also showing AWS Health: 0 open issues, which is a good sign.
+
+Next step: Open SageMaker AI
+Click the Search box at the top.
+Type SageMaker AI.
+Select Amazon SageMaker AI from the results.
+Wait for the SageMaker console to open.
+
+⚠️ Don't create a Domain, Notebook, Endpoint, or Training Job yet.
+
+We will first check what SageMaker currently shows for your account and then decide what to create.
+
+Go ahead and open SageMaker AI and send me the screenshot.
+
+====
