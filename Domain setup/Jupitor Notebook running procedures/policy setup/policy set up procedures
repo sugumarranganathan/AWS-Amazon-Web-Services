@@ -1,0 +1,105 @@
+Yes 👍 You are on the correct IAM role:
+
+AmazonSageMaker-ExecutionRole-20260823T122235
+
+This is exactly the role shown in your earlier error, so we are fixing the correct role.
+
+Do this now
+
+On your screen, click:
+
+Add permissions ▼
+
+Then select:
+
+Create inline policy
+
+Next screen
+
+You should see the Policy editor.
+
+Select the JSON option, then remove the existing policy and paste this policy:
+
+======
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject",
+                "s3:GetObject",
+                "s3:ListBucket"
+            ],
+            "Resource": [
+                "arn:aws:s3:::rsugumar-insurance-prediction-ml-project-2026-01",
+                "arn:aws:s3:::rsugumar-insurance-prediction-ml-project-2026-01/*"
+            ]
+        }
+    ]
+}
+
+=====
+
+⚠️ Important
+
+Use your bucket name:
+
+rsugumar-insurance-prediction-ml-project-2026-01
+
+Do not use insurancehome from your mam's example.
+
+After pasting it:
+
+Next → Review policy → Create policy
+
+Then stop there and send me a screenshot before running the notebook again. I'll check that the permission was added correctly.
+
+
+=====
+
+import boto3
+
+bucket = 'rsugumar-insurance-prediction-ml-project-2026-01'
+prefix = 'insurance-data'
+local_file = 'insurance_pre.csv'
+
+s3 = boto3.client('s3')
+
+s3_key = f'{prefix}/{local_file}'
+
+s3.upload_file(local_file, bucket, s3_key)
+
+s3_path = f's3://{bucket}/{s3_key}'
+
+from utils import append_to_file
+append_to_file("output.txt", "s3-path:", s3_path)
+
+print("✅ File uploaded successfully!")
+print(f"S3 Path: {s3_path}")
+
+====
+
+Excellent! ✅ The upload worked successfully.
+
+Your screenshot confirms:
+
+✅ File uploaded successfully!
+S3 Path: s3://rsugumar-insurance-prediction-ml-project-2026-01/insurance-data/insurance_pre.csv
+What we have completed
+Step	Status
+Created insurance_pre.csv	✅
+Created utils.py	✅
+Created append_to_file()	✅
+Connected JupyterLab to S3 using boto3	✅
+Fixed IAM s3:PutObject permission	✅
+Uploaded CSV to S3	✅
+S3 path generated	✅
+Saved S3 path to output.txt	✅
+Your final S3 location
+s3://rsugumar-insurance-prediction-ml-project-2026-01/insurance-data/insurance_pre.csv
+
+So your Insurance dataset is now successfully stored in Amazon S3. 🎉
+
+=====
