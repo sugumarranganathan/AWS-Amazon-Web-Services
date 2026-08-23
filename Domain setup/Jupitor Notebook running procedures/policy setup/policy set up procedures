@@ -119,3 +119,16 @@ Region: US East (N. Virginia) — us-east-1
 So your Insurance dataset is now successfully stored in Amazon S3. 🎉
 
 =====
+
+current status
+
+| Component            | Status |
+| -------------------- | ------ |
+| JupyterLab           | ✅      |
+| `utils.py`           | ✅      |
+| `append_to_file()`   | ✅      |
+| IAM execution role   | ✅      |
+| S3 permission        | ✅      |
+| CSV upload           | ✅      |
+| S3 file verification | ✅      |
+
