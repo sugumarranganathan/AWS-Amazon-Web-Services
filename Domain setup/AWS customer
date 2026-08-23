@@ -63,3 +63,39 @@ We will first check what SageMaker currently shows for your account and then dec
 Go ahead and open SageMaker AI and send me the screenshot.
 
 ====
+
+Excellent. ✅ You are now in Amazon SageMaker AI — US East (N. Virginia) us-east-1.
+
+Your screen says “Set up SageMaker Studio”, which means this AWS account does not yet have a SageMaker Studio domain in this region.
+
+Since this is your own account and you're starting your own learning/project environment, I recommend the simple single-user setup. AWS calls this Quick setup and says it automatically creates the domain and user profile with default settings.
+
+Next step
+
+Click the orange:
+
+Set up SageMaker Studio
+
+Do not click Advanced setup for organizations. That's intended for more customized/organizational environments.
+
+What will happen
+
+The Quick Setup will create things such as:
+
+SageMaker AI
+   │
+   └── Domain
+        │
+        └── User Profile
+             │
+             └── SageMaker Studio
+                  │
+                  └── JupyterLab / ML tools
+
+AWS automatically creates the domain and user profile during Quick Setup.
+
+⚠️ One cost warning: creating the Studio domain itself is not the same as running compute, but when you later launch notebooks/compute instances, those resources can incur charges. We'll make sure you use appropriate/free-tier-eligible options where possible and shut down resources when finished.
+
+👉 Click Set up SageMaker Studio and send me the next screen.
+
+=====
