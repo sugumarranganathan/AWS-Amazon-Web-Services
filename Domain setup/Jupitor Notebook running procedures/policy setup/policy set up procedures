@@ -100,6 +100,22 @@ Saved S3 path to output.txt	✅
 Your final S3 location
 s3://rsugumar-insurance-prediction-ml-project-2026-01/insurance-data/insurance_pre.csv
 
+=====
+
+Perfect! ✅ Your S3 upload is fully verified.
+
+Your screenshot shows:
+
+Bucket: rsugumar-insurance-prediction-ml-project-2026-01
+Folder: insurance-data/
+Object: insurance_pre.csv
+Type: CSV
+Size: 42.4 KB
+Storage class: Standard
+Region: US East (N. Virginia) — us-east-1
+
+=====
+
 So your Insurance dataset is now successfully stored in Amazon S3. 🎉
 
 =====
