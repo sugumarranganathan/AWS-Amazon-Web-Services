@@ -1,0 +1,30 @@
+JupyterLab: ml.t3.medium, if left running 24 hours
+Serverless endpoint: 1 GB memory, 1,000 predictions/day
+Each prediction: approximately 0.1 second
+S3: assume your CSV + model files together are about 100 MB
+Exchange rate: approximately $1 = ₹95.74 today.
+Training job is already finished, so I am not adding a daily training charge.
+AWS confirms JupyterLab is charged according to the selected compute instance and Serverless Inference charges only for actual inference usage.
+
+
+💰 Overall cost for your Insurance ML project
+
+| AWS resource                   | Your setup                       |  Approx. cost/day |    Approx. cost/30 days |
+| ------------------------------ | -------------------------------- | ----------------: | ----------------------: |
+| **JupyterLab**                 | `ml.t3.medium`, running 24 hours |       **₹114.89** |           **₹3,446.69** |
+| **Serverless endpoint**        | 1 GB, 1,000 predictions/day*     |         **₹0.19** |               **₹5.74** |
+| **S3 CSV + model**             | ~100 MB                          |        **₹0.007** |               **₹0.22** |
+| **Training job**               | Already completed                |        **₹0/day** | **₹0** after completion |
+| **VS Code on your PC**         | Local VS Code                    |            **₹0** |                  **₹0** |
+| **SageMaker Studio interface** | No separate UI charge            |            **₹0** |                  **₹0** |
+| **Estimated total**            | **JupyterLab left running 24/7** | **≈ ₹115.09/day** |   **≈ ₹3,452.65/month** |
+
+====
+
+he ml.t3.medium rate of about $0.05/hour and the resulting $1.20/day for 24 hours are documented by AWS.
+
+*For the serverless estimate, I'm using the same assumption from our earlier calculation: 1,000 requests × 0.1 second, at approximately $0.00002/second for 
+the 1-GB configuration. Actual serverless billing depends on actual invocation duration and data processed. AWS also currently lists 150,000 seconds/month of 
+Serverless Inference in the first-two-month Free Tier, subject to the applicable Free Tier terms.
+
+=====
