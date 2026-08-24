@@ -1,0 +1,34 @@
+f you make only 10 predictions per day on your 1-GB Serverless endpoint, the inference cost is extremely small.
+
+AWS currently lists the 1-GB Serverless Inference rate at about $0.000020 per second. Serverless charges only for actual inference duration and scales to zero when there are no requests.
+
+Assuming each prediction takes 0.1 second:
+
+| Predictions/day | Total inference time/day | Approx. cost/day | Approx. cost/30 days |
+| --------------: | -----------------------: | ---------------: | -------------------: |
+|          **10** |                 1 second |    **$0.000020** |          **$0.0006** |
+|         **100** |               10 seconds |         $0.00020 |               $0.006 |
+|       **1,000** |              100 seconds |           $0.002 |                $0.06 |
+|      **10,000** |            1,000 seconds |           $0.020 |                $0.60 |
+
+====
+
+Using approximately ₹95.74 per USD, for your 10 predictions/day:
+
+| Period      | Approx. cost |
+| ----------- | -----------: |
+| **1 day**   |  **₹0.0019** |
+| **30 days** |   **₹0.057** |
+
+
+====
+
+So, for your insurance project:
+
+10 predictions per day → roughly ₹0.002/day → roughly ₹0.06/month for Serverless inference compute under this 0.1-second/request assumption.
+
+There can also be a small data-processing charge, but your tiny JSON prediction requests are unlikely to materially change this estimate. AWS's current pricing also includes 150,000 seconds/month of on-demand Serverless Inference Free Tier for the first two months, subject to the applicable Free Tier terms.
+
+Most importantly: your Serverless endpoint does not cost like a continuously running ml.t3.medium instance. When you make no predictions, it scales down to zero.
+
+=====
