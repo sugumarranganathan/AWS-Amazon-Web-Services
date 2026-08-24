@@ -1,0 +1,53 @@
+Inference
+
+Inference means using your trained model to make predictions on new data.
+
+Your project is now at this stage:
+
+insurance_pre.csv
+       ↓
+Training
+       ↓
+model.joblib
+       ↓
+model.tar.gz
+       ↓
+S3
+       ↓
+       ⭐ INFERENCE
+       ↓
+New customer data
+       ↓
+Predicted insurance charge
+
+For your project, the next step is to deploy the trained model.tar.gz as a SageMaker endpoint.
+
+Your trained model is here:
+
+model_s3_uri = "s3://rsugumar-insurance-prediction-ml-project-2026-01/insurance-data/output/sagemaker-scikit-learn-2026-08-24-05-42-22-834/output/model.tar.gz"
+
+Inference has 3 steps
+
+
+| Step               | What happens                                      |
+| ------------------ | ------------------------------------------------- |
+| 1. Create Model    | Load `model.tar.gz`                               |
+| 2. Deploy Endpoint | Put the model behind an endpoint                  |
+| 3. Predict         | Send new customer data → receive insurance charge |
+
+
+
+For example:
+
+Age = 35
+BMI = 28.5
+Children = 2
+Sex = Male
+Smoker = No
+        ↓
+   SageMaker Endpoint
+        ↓
+Predicted insurance charge
+
+Your training is complete, so we should now create the inference/deployment code using your existing model_s3_uri.
+
