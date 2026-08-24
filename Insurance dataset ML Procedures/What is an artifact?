@@ -1,0 +1,86 @@
+What is an artifact?
+
+Artifacts means the files/data produced by or used by the training job.
+
+What is an artifact?
+
+An artifact is a file or resource that is saved so you can use it later.
+
+In your insurance project, the main artifact is your trained model:
+
+model.tar.gz
+
+It contains your trained:
+
+model.joblib
+
+===
+
+
+Input vs Output artifacts
+
+
+| Type                | Your project                           | Purpose                                |
+| ------------------- | -------------------------------------- | -------------------------------------- |
+| **Input artifact**  | `insurance_pre.csv` / S3 training data | Data given **to training**             |
+| **Output artifact** | `model.tar.gz`                         | Trained model produced **by training** |
+| `model.joblib`      | Inside `model.tar.gz`                  | Your actual trained ML model           |
+| Source artifact     | `sourcedir.tar.gz`                     | Your `train.py` packaged for SageMaker |
+
+
+=====
+
+Your training job received data from:
+
+s3://rsugumar-insurance-prediction-ml-project-2026-01/insurance-data/
+
+and produced:
+
+s3://rsugumar-insurance-prediction-ml-project-2026-01/insurance-data/output/.../model.tar.gz
+
+====
+
+Why are artifacts useful?
+
+                 TRAINING
+                    │
+                    ▼
+          insurance_pre.csv
+             (INPUT)
+                    │
+                    ▼
+              train.py
+                    │
+                    ▼
+          Machine Learning Model
+                    │
+                    ▼
+              model.joblib
+                    │
+                    ▼
+             model.tar.gz
+                 (OUTPUT)
+                    │
+                    ▼
+               S3 Storage
+                    │
+          ┌─────────┴─────────┐
+          ▼                   ▼
+       Deploy              Download
+       Model                Model
+          │
+          ▼
+    Make Predictions
+
+====
+
+Artifact = something important produced or used by your ML workflow that is saved for later use.
+
+For your project, the most important artifact is model.tar.gz, because this is the trained model that we can take to the deployment stage.
+
+So your project has successfully gone:
+
+Dataset → Training → Model Artifact → Deployment 🚀
+
+=====
+
