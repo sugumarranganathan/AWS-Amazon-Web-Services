@@ -1,0 +1,18 @@
+| S3 Storage Size | Approx. Cost / Day | Approx. Cost / 30 Days |
+| --------------: | -----------------: | ---------------------: |
+|        **1 MB** |           ₹0.00007 |                 ₹0.002 |
+|       **10 MB** |           ₹0.00074 |                 ₹0.022 |
+|      **100 MB** |            ₹0.0074 |                  ₹0.22 |
+|      **500 MB** |             ₹0.037 |                  ₹1.11 |
+|        **1 GB** |             ₹0.074 |                  ₹2.22 |
+|        **5 GB** |              ₹0.37 |                 ₹11.10 |
+|       **10 GB** |              ₹0.74 |                 ₹22.20 |
+
+
+  =====
+
+  For your insurance project: if your CSV + model.tar.gz + other S3 files are around 100 MB, storage is approximately ₹0.22 for 30 days.
+
+These are storage-only estimates; S3 request and data-transfer charges are separate.
+
+=====
