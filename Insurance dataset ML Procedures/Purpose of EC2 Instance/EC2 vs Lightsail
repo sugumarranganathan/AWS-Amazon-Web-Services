@@ -1,0 +1,75 @@
+EC2 vs Lightsail
+
+| Feature                | **EC2**         | **Lightsail**            |
+| ---------------------- | --------------- | ------------------------ |
+| Complexity             | ⭐⭐⭐⭐ Higher     | ⭐ Easy                   |
+| Control                | ⭐⭐⭐⭐⭐ Very high | ⭐⭐⭐ Limited              |
+| Configuration          | Very flexible   | Simplified               |
+| Scaling                | Excellent       | Simpler                  |
+| Networking             | Advanced        | Simplified               |
+| Security configuration | Advanced        | Easier                   |
+| Large applications     | ✅ Excellent     | ⚠️ Limited               |
+| Small websites         | ✅               | ✅ Excellent              |
+| Beginner friendly      | ⚠️              | ✅                        |
+| ML workloads           | ✅ Good          | ⚠️ Usually not preferred |
+| Enterprise workloads   | ✅               | ⚠️                       |
+| Simple website         | Maybe overkill  | ✅ Good                   |
+
+
+=====
+
+Simple real-world example
+
+Imagine you want to open a restaurant.
+
+Lightsail 🍽️
+
+You rent a ready-made small restaurant.
+
+AWS Lightsail
+     ↓
+Ready server
+     ↓
+Install website
+     ↓
+Run
+
+Easy to start, fewer decisions.
+
+EC2 🏢
+
+You rent an empty commercial building.
+
+You decide:
+
+CPU
+RAM
+Storage
+Network
+Security
+Operating System
+Firewall
+Scaling
+Load Balancer
+Monitoring
+
+Much more control, but more responsibility.
+
+=====
+
+
+When would you choose each?
+
+Choose EC2 when:
+
+"I need a highly customizable virtual server and I want to manage the application/server myself."
+
+Choose Lightsail when:
+
+"I need a simple, small server or website and I want easier setup."
+
+Choose SageMaker when:
+
+"I want AWS to provide ML-specific training, model deployment, and inference capabilities."
+
+=====
