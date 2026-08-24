@@ -1,0 +1,38 @@
+Yes. For your project, the S3 CSV storage cost is extremely small. The Serverless endpoint itself does not have a separate storage charge just for being “In Service”; Serverless charges are based on inference usage, while your model/data artifacts are stored in S3.
+
+💰 S3 CSV storage — approximate
+
+For S3 Standard, storage is priced per GB-month, not per day. For a small insurance CSV, the daily equivalent is therefore tiny.
+
+Your stored CSV/data size	Approx. S3 storage / month	Approx. / day	Approx. INR / day*
+1 MB	~$0.000023	~$0.00000077	₹0.00007
+10 MB	~$0.00023	~$0.0000077	₹0.00074
+100 MB	~$0.0023	~$0.000077	₹0.0074
+1 GB	~$0.023	~$0.00077	₹0.074
+10 GB	~$0.23	~$0.0077	₹0.74
+
+*Using approximately $1 = ₹95.7. Actual AWS billing can vary with region, requests, data transfer, and current pricing. AWS notes that S3 pricing depends on the bucket's Region and that you pay for what you use.
+
+For your insurance project
+
+Your insurance_pre.csv is likely much smaller than 1 GB. So the CSV storage itself is basically negligible.
+
+For example, if your CSV + model.tar.gz + other S3 files total 100 MB, storage is roughly:
+
+₹0.007/day → about ₹0.22/month
+
+Your bigger cost is JupyterLab
+
+For your project, the cost hierarchy is roughly:
+
+AWS resource	Cost concern
+S3 CSV/model files	🟢 Very low
+Serverless endpoint, no requests	🟢 No idle inference compute charge
+Serverless endpoint, predictions	🟢 Pay per inference
+JupyterLab ml.t3.medium running	🟠 Much more significant
+SageMaker training job running	🟠 Costs while training
+
+AWS specifically states that Serverless Inference scales to zero when there are no requests, so you don't pay for idle serverless resources.
+
+For your setup, the main thing to remember is: STOP JupyterLab when you're finished working. Keep the Serverless endpoint only if you need to make predictions.
+
