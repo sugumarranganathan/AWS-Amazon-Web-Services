@@ -1,8 +1,14 @@
 Inference
 
+package/use this inference.py with the trained model and create the SageMaker inference endpoint.
+
+====
+
 Inference means using your trained model to make predictions on new data.
 
-Your project is now at this stage:
+====
+
+project is now at this stage:
 
 insurance_pre.csv
        ↓
