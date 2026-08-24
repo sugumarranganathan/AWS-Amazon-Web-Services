@@ -1,0 +1,49 @@
+best cost-saving approach for your project.
+
+If you have stopped JupyterLab and only start it when you need to work, then you pay for the ml.t3.medium compute only while it is running.
+
+Using the approximate ml.t3.medium rate of $0.05/hour ≈ ₹4.79/hour:
+
+| JupyterLab usage    | Approx. cost/day | Approx. cost/month* |
+| ------------------- | ---------------: | ------------------: |
+| **Stopped all day** |           **₹0** |              **₹0** |
+| 1 hour/day          |            ₹4.79 |             ₹143.70 |
+| 2 hours/day         |            ₹9.57 |             ₹287.40 |
+| 4 hours/day         |           ₹19.15 |             ₹574.80 |
+| 8 hours/day         |           ₹38.30 |           ₹1,149.60 |
+| 24 hours/day        |          ₹114.96 |           ₹3,448.80 |
+
+====
+
+*30 days, assuming you use it for the same number of hours every day.
+
+For your project
+
+You can use this setup:
+
+When working/training:
+
+Start JupyterLab
+      ↓
+Do your ML work
+      ↓
+Train / deploy / test
+      ↓
+STOP JupyterLab 🔴
+
+When finished:
+
+JupyterLab = STOPPED
+     ↓
+No ongoing JupyterLab compute charge
+
+Your Serverless endpoint can remain In Service separately. With only 10 predictions/day, its inference compute cost is extremely small compared with leaving JupyterLab running.
+
+So if you use JupyterLab, for example, 2 hours/day, your overall ongoing cost is roughly:
+
+JupyterLab ₹9.57/day + Serverless ~₹0.002/day + S3 tiny storage cost ≈ ₹9.58/day.
+
+The exact AWS bill can vary by region, instance pricing, Free Tier eligibility, storage, requests, and other services.
+
+====
+
