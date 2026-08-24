@@ -1,0 +1,93 @@
+all ML training and deployment in Amazon SageMaker, and then use Visual Studio Code on your local computer only to send prediction requests.
+
+Your complete architecture
+                    AWS CLOUD
+┌─────────────────────────────────────────────┐
+│                                             │
+│  Amazon S3                                  │
+│      │                                      │
+│      │ training data                        │
+│      ▼                                      │
+│  Amazon SageMaker                          │
+│      │                                      │
+│      │ Train ML model                       │
+│      ▼                                      │
+│  Trained Model                              │
+│      │                                      │
+│      │ Deploy                                │
+│      ▼                                      │
+│  SageMaker Endpoint                         │
+│      │                                      │
+└──────┼──────────────────────────────────────┘
+       │
+       │ prediction request
+       ▼
+┌──────────────────────┐
+│ Your Local Computer  │
+│                      │
+│ Visual Studio Code   │
+│      aws.py          │
+│                      │
+│ age = 35             │
+│ bmi = 28.4           │
+│ smoker = 0           │
+└──────────────────────┘
+
+====
+
+There are 3 main stages
+
+1. Train in SageMaker
+
+Your training data can be in:
+
+S3
+ ↓
+SageMaker Training Job
+ ↓
+Random Forest / other ML algorithm
+ ↓
+model.tar.gz
+
+2. Deploy in SageMaker
+
+model.tar.gz
+ ↓
+SageMaker Model
+ ↓
+SageMaker Endpoint
+
+For your project, this could be:
+
+insurance-charge-endpoint4
+
+3. Call the endpoint from VS Code
+
+Your local aws.py does:
+
+predictor.predict(input_data)
+
+and SageMaker returns something like:
+
+Predicted Insurance Charge:  XXXXX
+Important distinction
+
+Your VS Code does NOT need to train the model in this setup.
+
+| Activity           | Location         |
+| ------------------ | ---------------- |
+| Store dataset      | AWS S3           |
+| Train ML model     | AWS SageMaker    |
+| Save trained model | AWS SageMaker/S3 |
+| Deploy model       | AWS SageMaker    |
+| Run endpoint       | AWS SageMaker    |
+| Send prediction    | Local VS Code    |
+| Display prediction | Local VS Code    |
+
+
+===
+
+
+
+
+
