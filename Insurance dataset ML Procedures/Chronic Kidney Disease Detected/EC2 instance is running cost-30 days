@@ -1,0 +1,41 @@
+Yes. If your EC2 instance is running, AWS can charge you, depending on your Free Tier eligibility and remaining Free Tier usage.
+
+For your current setup:
+
+EC2 t3.micro — AWS lists the US East (N. Virginia) On-Demand Linux price at about $0.0104/hour.
+Public IPv4 — AWS charges $0.005/hour for an in-use public IPv4 address.
+
+So, if both were charged continuously for 24 hours:
+
+Approximate base cost:
+
+EC2       $0.0104/hour
+Public IP $0.0050/hour
+----------------------
+Total     $0.0154/hour
+
+Approximately:
+
+1 day    ≈ $0.37
+30 days  ≈ $11.23
+
+This is before any other charges, such as data transfer or additional AWS services.
+
+But you may have Free Tier
+
+If your account is eligible and you still have Free Tier allowance, the EC2 portion may be covered. AWS also states that the EC2 Free Tier includes public IPv4 usage for eligible new accounts under the applicable Free Tier terms.
+
+Most important for you
+
+Since you're only using this for your course/project, don't leave the EC2 instance running when you're finished.
+
+When you're completely done for the day:
+
+EC2 → Instances → select ckd_insurance → Instance state → Stop instance
+
+
+=====
+
+Stopping the instance stops the EC2 compute charges, although public IPv4 and other resources can still have charges, so you should also check whether you have any unused Elastic IPs or other billable resources. AWS specifically charges public IPv4 addresses even when they are idle.
+
+If you want, I can give you the exact steps to safely stop everything and minimize AWS charges after your project demo.
