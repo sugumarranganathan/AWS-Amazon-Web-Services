@@ -39,3 +39,44 @@ EC2 → Instances → select ckd_insurance → Instance state → Stop instance
 Stopping the instance stops the EC2 compute charges, although public IPv4 and other resources can still have charges, so you should also check whether you have any unused Elastic IPs or other billable resources. AWS specifically charges public IPv4 addresses even when they are idle.
 
 If you want, I can give you the exact steps to safely stop everything and minimize AWS charges after your project demo.
+
+
+=====
+
+Yes 👍 this is the correct Stop Instance screen.
+
+Your screenshot shows:
+
+Instance: ckd_insurance ✅
+Result: Can stop ✅
+Skip OS shutdown is currently unchecked — leave it unchecked. This allows a normal graceful shutdown.
+What to do now
+
+Click the Stop button at the bottom-right of the popup.
+
+After stopping, the instance state should change from:
+
+Running
+
+to:
+
+Stopped
+Important about charges
+
+The message on your screen is correct:
+
+You will still be billed for associated Elastic IP addresses and EBS volumes.
+
+So stopping the EC2 instance stops the main EC2 compute usage charges, but:
+
+EBS storage can continue to incur charges.
+Elastic IP can continue to incur charges, depending on its state/account eligibility.
+Other AWS resources you created can also incur charges.
+
+For your project, don't terminate the instance if you want to use the application again later. Stop it instead.
+
+When you need the project again, simply Start instance and then wait for it to become Running. Your files, virtual environment, GitHub clone, Nginx configuration, and systemd service remain on the EBS disk.
+
+====
+
+
