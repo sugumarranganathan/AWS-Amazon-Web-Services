@@ -79,4 +79,112 @@ When you need the project again, simply Start instance and then wait for it to b
 
 ====
 
+Yes — if you terminate (delete) the EC2 instance, you stop being charged for the EC2 instance itself once it enters shutting-down/terminated.
+
+But terminating the instance does not automatically mean every AWS resource is free. Check these:
+
+| Resource                | After termination                                                     |
+| ----------------------- | --------------------------------------------------------------------- |
+| EC2 compute             | ✅ No further instance charge                                          |
+| Default EBS root volume | Usually deleted with instance if **Delete on termination** is enabled |
+| Elastic IP              | ⚠️ Still charged until you **release** it                             |
+| Snapshots               | ⚠️ Continue charging if you have any                                  |
+| Other AWS resources     | ⚠️ Can continue charging                                              |
+
+
+AWS currently charges public IPv4 addresses at $0.005/hour, including Elastic IPs; an allocated Elastic IP can remain billable even when it isn't attached to an instance.
+
+For your course project
+
+If you don't need this EC2 server anymore, terminating it is the best way to permanently clean it up.
+
+⚠️ Important: Termination is permanent. You will lose the EC2 instance and, if the EBS root volume is configured for deletion on termination, the files stored there—including your cloned GitHub project and deployment setup—will be deleted.
+
+Since your code is already on GitHub, you can recreate the server later.
+
+Before terminating, check:
+
+EC2 → Volumes → make sure you don't have unwanted volumes.
+EC2 → Elastic IPs → Release any Elastic IP you no longer need.
+EC2 → Snapshots → delete any unnecessary snapshots.
+Then Terminate ckd_insurance.
+
+If you want to use the project again tomorrow, choose Stop, not Terminate. EBS storage continues to incur charges while stopped.
+
+====
+
+Yes. If your goal is “I don't want any AWS charges at all”, the safest approach is to delete/terminate resources you no longer need, not merely stop the EC2 instance.
+
+AWS confirms that a stopped EC2 instance has no compute usage charge, but its EBS storage can still incur charges, and public/Elastic IPv4 addresses can also incur charges.
+
+Do this for your project
+
+1. Terminate the EC2 instance
+
+Go to:
+
+EC2 → Instances → select ckd_insurance → Instance state → Terminate (delete) instance
+
+⚠️ This permanently deletes the instance. Your GitHub repository is safe, but the files on the EC2 disk may be deleted. AWS documents that the root EBS volume is deleted by default when its DeleteOnTermination setting is enabled.
+
+2. Check Elastic IPs
+
+Go to:
+
+EC2 → Network & Security → Elastic IPs
+
+If you allocated an Elastic IP and don't need it:
+
+Select it → Actions → Release Elastic IP address
+
+AWS charges for Elastic IP/public IPv4 addresses, including idle Elastic IPs.
+
+3. Check EBS Volumes
+
+Go to:
+
+EC2 → Elastic Block Store → Volumes
+
+After the instance is terminated, check whether any volume remains.
+
+If there is an unattached volume that you don't need, delete it.
+
+This is important because EBS storage can continue charging even when an EC2 instance is stopped.
+
+4. Check Snapshots
+
+Go to:
+
+EC2 → Elastic Block Store → Snapshots
+
+If you created snapshots for this project and don't need them, delete them.
+
+5. Check other AWS services
+
+Because you've been working with SageMaker and Secrets Manager, also check those services for resources you don't need.
+
+Especially check:
+
+SageMaker endpoints
+SageMaker notebook/Jupyter resources
+S3 buckets/objects
+Secrets Manager secrets
+NAT Gateways
+Load Balancers
+Finally, check Billing
+
+Open the AWS Billing console and check Bills → Charges by service. AWS recommends reviewing charges by service and Region to find active resources.
+
+For your situation
+
+If you're finished with the course deployment today and your code is already on GitHub, I recommend:
+
+Terminate EC2 → Release unused Elastic IP → Delete unused EBS volumes/snapshots → Check SageMaker → Check S3 → Check Billing.
+
+That gives you the best chance of avoiding unexpected charges. Free Tier does not mean every AWS service/resource is automatically free, and Free Tier eligibility/credits have limits.
+
+If you want to keep the project and use it again later, don't terminate yet—stopping preserves the EC2 disk, but you must accept possible EBS/IP charges.
+
+=====
+
 
