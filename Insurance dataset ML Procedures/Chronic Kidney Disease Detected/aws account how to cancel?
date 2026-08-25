@@ -1,0 +1,76 @@
+After my AWS Free Tier/$100 credits are finished, if I already cancelled the GPay UPI AutoPay, can AWS still charge me?
+
+Short answer: They cannot automatically debit your cancelled GPay AutoPay mandate.
+
+AWS India supports UPI AutoPay for automatic recurring AWS bills. If you cancel the e-mandate, AWS says future bills will need to be paid manually; the automatic payment will no longer work.
+
+However, cancelling AutoPay does NOT make AWS usage free.
+
+If you're on the Paid account plan, after your Free Tier credits are exhausted or expire, AWS charges standard pay-as-you-go rates for billable usage.
+
+===
+
+So:
+
+| Situation                         | What happens                                                      |
+| --------------------------------- | ----------------------------------------------------------------- |
+| Free credits available            | Eligible charges use your credits                                 |
+| Credits finished                  | Billable usage can create an AWS bill                             |
+| GPay AutoPay cancelled            | ❌ AWS cannot automatically collect that bill through that mandate |
+| Outstanding bill                  | ⚠️ You may still owe the amount and need to pay manually          |
+| You delete all billable resources | ✅ Future usage charges should stop                                |
+
+===
+
+For your goal — ₹0 payment after Free Tier
+
+Don't rely on cancelling GPay AutoPay. Delete/terminate your billable AWS resources before your credits expire.
+
+For your current project, especially check:
+
+EC2 → Instances → Terminate
+EC2 → Elastic IPs → Release unused IP
+EC2 → Volumes → Delete unused volumes
+SageMaker → Endpoints → Delete any running endpoints
+S3 → Buckets → Delete unnecessary resources
+
+AWS specifically recommends shutting down or deleting resources you don't need before Free Tier eligibility expires.
+
+One important distinction
+
+If you are on the new AWS Free account plan, AWS says the account closes automatically when the six-month plan ends or your credits are fully used, and you don't incur charges under that Free account plan.
+
+If you show me your Billing → Free Tier / Credits page, I can tell you whether you are on the Free account plan or Paid account plan and exactly what you need to do to avoid charges.
+
+===
+I want to cancel my aws account means what is the procedure?
+
+Yes. If you want to permanently cancel/close your AWS account, you can do it from the AWS Console. Since you've finished your project and want to avoid future usage, this is the appropriate option.
+
+Before closing
+
+Your EC2 project can be lost, so make sure anything you want is already saved in GitHub. AWS says you don't have to manually delete every resource before closing, but you should back up anything you want to keep.
+
+Also remember: closing the account does not erase charges already incurred. AWS can send a final bill after closure for usage before the closure date.
+
+Steps to close your AWS account
+Sign in to the AWS Management Console as the root user. You cannot close the account while signed in as an IAM user or role.
+In the top-right corner, click your account name/account number.
+Select Account.
+On the Account page, scroll down to find Close account.
+Read the closure information.
+Enter your AWS account ID when AWS asks you to confirm.
+Click Close account.
+
+AWS says you should receive a confirmation email within a few minutes.
+
+Official AWS instructions: Close your AWS account
+
+⚠️ Very important
+
+After closing, AWS keeps the account in a post-closure period for 90 days. You can request reopening during that period, but you remain responsible for any outstanding bills. After that period, the account is permanently closed.
+
+If your main goal is “I want to make sure I don't accidentally get charged”, closing the account is stronger than simply stopping your EC2 instance.
+
+=====
+
