@@ -1,0 +1,40 @@
+🔵 DevOps
+
+DevOps = Development + Operations
+
+It is the process of taking normal software/code from development → testing → deployment → production and continuously maintaining it.
+
+====
+
+Example:
+Developer writes code
+        ↓
+      GitHub
+        ↓
+   Build / Test
+        ↓
+      Docker
+        ↓
+      AWS
+        ↓
+   Production App
+        ↓
+Monitoring & Updates
+
+
+===
+
+Typical DevOps tools:
+Git / GitHub
+Docker
+Jenkins / GitHub Actions
+Kubernetes
+AWS
+Terraform
+CloudWatch
+
+=====
+
+
+
+
