@@ -1,0 +1,45 @@
+DevOps vs MLOps
+
+| DevOps                      | MLOps                              |
+| --------------------------- | ---------------------------------- |
+| Software applications       | Machine-learning applications      |
+| Code                        | Code + Data + Model                |
+| Build & test software       | Train & evaluate models            |
+| Deploy application          | Deploy ML model                    |
+| Monitor application         | Monitor model + predictions + data |
+| CI/CD                       | CI/CT/CD                           |
+| Docker, Jenkins, Kubernetes | SageMaker, MLflow, Kubeflow, etc.  |
+
+
+=====
+
+Your SageMaker project
+
+For your insurance prediction project, you're doing MLOps when you:
+
+Dataset
+   ↓
+Train Random Forest
+   ↓
+Save model (.joblib)
+   ↓
+Upload model to S3
+   ↓
+Create SageMaker Model
+   ↓
+Create Endpoint
+   ↓
+Make predictions
+   ↓
+Monitor
+   ↓
+Retrain/update model
+
+And you're using DevOps concepts when you automate the surrounding software deployment—for example, GitHub → testing → Docker → AWS deployment.
+
+Simple way to remember:
+
+DevOps manages software in production.
+MLOps manages ML models and the entire ML lifecycle in production.
+
+====
