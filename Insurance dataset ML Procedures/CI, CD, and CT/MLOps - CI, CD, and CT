@@ -1,0 +1,189 @@
+MLOps - CI, CD, and CT
+----------------------
+
+In MLOps, you will commonly hear CI, CD, and CT. They automate different parts of the ML/software lifecycle.
+
+1. CI — Continuous Integration
+
+CI = Continuous Integration
+---------------------------
+
+It means automatically checking new code whenever a developer pushes changes.
+
+===
+Example:
+
+Developer changes Python code
+          ↓
+       GitHub
+          ↓
+    CI Pipeline
+          ↓
+   ┌──────┴──────┐
+   ↓             ↓
+Run Tests     Check Code
+   ↓             ↓
+        PASS ✅
+
+===
+
+For your ML project, CI could automatically:
+
+Check Python code
+Install dependencies
+Run unit tests
+Test data-preprocessing code
+Test prediction code
+
+Main purpose:
+👉 Make sure new code doesn't break the existing project.
+
+====
+
+
+2. CD — Continuous Delivery / Continuous Deployment
+
+CD = Continuous Delivery or Continuous Deployment
+
+CD takes the tested code/model and moves it toward production automatically.
+
+===
+
+For example:
+
+CI passes ✅
+    ↓
+Build application
+    ↓
+Create Docker image
+    ↓
+Push to AWS
+    ↓
+Deploy
+    ↓
+Production
+
+====
+
+For your SageMaker project:
+
+Code
+ ↓
+GitHub
+ ↓
+CI Tests ✅
+ ↓
+Build / Package
+ ↓
+S3 / ECR
+ ↓
+SageMaker
+ ↓
+Endpoint
+
+There are two common meanings:
+
+====
+
+Continuous Delivery
+→ Automatically prepares a release, but a person may approve the production deployment.
+
+Continuous Deployment
+→ Automatically deploys the release to production after successful checks.
+
+Main purpose:
+👉 Get tested software/model into production reliably.
+
+===
+
+3. CT — Continuous Training
+
+CT = Continuous Training
+
+This is particularly important in MLOps.
+
+Normal software doesn't usually need to be retrained when new data arrives. ML models often do.
+
+CT automatically re-trains the model when new or updated data becomes available.
+
+Example:
+
+New Data
+   ↓
+Data Validation
+   ↓
+Train Model
+   ↓
+Evaluate Model
+   ↓
+Is model better?
+   ↓
+   YES ✅
+   ↓
+Deploy New Model
+   ↓
+SageMaker Endpoint
+
+For example, your insurance model was trained using historical insurance data.
+
+Later, you get 10,000 new customer records.
+
+CT can automatically:
+
+Detect new data
+Preprocess it
+Retrain Random Forest
+Evaluate the new model
+Compare old vs new model
+Deploy the new model if it performs better
+
+====
+
+| Term   | Full form                      | What it does              |
+| ------ | ------------------------------ | ------------------------- |
+| **CI** | Continuous Integration         | **Test the code**         |
+| **CD** | Continuous Delivery/Deployment | **Deploy the code/model** |
+| **CT** | Continuous Training            | **Retrain the ML model**  |
+
+
+====
+
+In your SageMaker project
+
+A complete MLOps pipeline could look like:
+
+          Developer
+              ↓
+           GitHub
+              ↓
+       ┌────── CI ──────┐
+       │ Build + Tests  │
+       └───────┬────────┘
+               ↓
+        ┌────── CD ──────┐
+        │ Deploy Model   │
+        └───────┬────────┘
+                ↓
+       SageMaker Endpoint
+                ↓
+           Predictions
+                ↓
+          New Data
+                ↓
+        ┌────── CT ──────┐
+        │ Retrain Model  │
+        └───────┬────────┘
+                ↓
+        Better Model?
+          ↙          ↘
+        YES           NO
+         ↓             ↓
+      Deploy       Keep Old
+
+So the key difference is:
+
+CI = Code → Test
+CD = Tested Code/Model → Deploy
+CT = New Data → Retrain Model
+
+=====
