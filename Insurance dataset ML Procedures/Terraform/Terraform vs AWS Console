@@ -1,0 +1,15 @@
+Terraform vs AWS Console
+------------------------
+
+
+| AWS Console                    | Terraform                      |
+| ------------------------------ | ------------------------------ |
+| Manual clicking                | Infrastructure as code         |
+| Harder to repeat exactly       | Easy to reproduce              |
+| Manual setup                   | Automated setup                |
+| Configuration can be forgotten | Configuration stored in code   |
+| Good for learning/testing      | Good for automation/production |
+
+
+====
+
