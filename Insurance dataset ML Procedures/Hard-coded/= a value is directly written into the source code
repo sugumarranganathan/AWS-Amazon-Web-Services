@@ -1,0 +1,78 @@
+Hard-coded = a value is directly written into the source code and must be manually changed when the value changes.
+
+In DevOps/MLOps, we generally try to avoid hard-coding configuration because it makes deployment and maintenance harder.
+
+===
+
+Hard-coded means writing a value directly inside your code instead of getting it from a configuration, environment variable, or another external source.
+
+Simple example
+
+Suppose you are deploying your Flask application to EC2.
+
+Hard-coded:
+
+aws_region = "us-east-1"
+bucket_name = "my-insurance-bucket"
+
+Here, the values are directly written in the code.
+
+If the bucket changes, you have to edit the code.
+
+====
+Better approach
+
+Store the values outside the code:
+
+import os
+
+aws_region = os.getenv("AWS_REGION")
+bucket_name = os.getenv("BUCKET_NAME")
+
+Then provide the values through environment/configuration:
+
+AWS_REGION = us-east-1
+BUCKET_NAME = my-insurance-bucket
+
+Now you can change the bucket or region without changing your Python code.
+
+In your drawing
+
+You wrote:
+
+Insurance → Flask → with hard coded → EC2 → hosting
+
+This likely means your original Flask application has things like:
+
+S3 bucket name
+AWS region
+API URLs
+file paths
+credentials/configuration
+
+directly written in the Flask code.
+
+For example:
+
+s3_bucket = "rsugumar-insurance-prediction-ml-project-2026-01"
+
+That is hard-coded.
+
+⚠️ One important thing
+
+Never hard-code AWS Access Key ID or Secret Access Key in your Flask code.
+
+❌ Bad:
+
+AWS_ACCESS_KEY = "AKIA..."
+AWS_SECRET_KEY = "xxxxxxxx"
+
+Instead use IAM roles when running on EC2, or environment variables/secrets where appropriate.
+
+Easy definition
+
+Hard-coded = a value is directly written into the source code and must be manually changed when the value changes.
+
+In DevOps/MLOps, we generally try to avoid hard-coding configuration because it makes deployment and maintenance harder.
+
+=====
