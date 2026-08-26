@@ -63,3 +63,36 @@ And:
 terraform destroy
 
 → removes the infrastructure that Terraform manages.
+
+====
+
+Terraform in DevOps/MLOps
+
+Terraform is not CI, CD, or CT.
+
+Instead, it is an infrastructure automation tool that can be used inside CI/CD or MLOps pipelines.
+
+For example:
+
+             GitHub
+                ↓
+               CI
+          Test application
+                ↓
+           Terraform
+       Create/update AWS
+                ↓
+               CD
+          Deploy application
+                ↓
+          AWS Production
+
+For your SageMaker project, Terraform could potentially create things such as:
+
+S3 → IAM → VPC → SageMaker → Endpoint
+
+without you manually creating each resource through the AWS Console.
+
+Easy interview definition:
+
+Terraform is an Infrastructure as Code tool used to provision and manage cloud infrastructure using configuration files instead of manual console operations.
