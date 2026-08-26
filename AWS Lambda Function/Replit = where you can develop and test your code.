@@ -1,0 +1,59 @@
+👉 Replit = where you can develop and test your code.
+👉 Lambda = where AWS can execute that code serverlessly.
+
+=========
+
+| Replit                              | AWS Lambda                           |
+| ----------------------------------- | ------------------------------------ |
+| Online development environment      | Serverless execution service         |
+| Used to write/test code             | Used to run deployed code            |
+| You develop your Python application | AWS executes your function           |
+| Like an online coding workspace     | Like an AWS-managed function runtime |
+
+
+=========
+
+Replit is an online coding and development platform.
+
+Think of it as a cloud-based coding workspace where you can write and run Python code without installing Python or setting up a development environment on your computer.
+
+Simple example
+
+Normally:
+
+Your Computer
+   ↓
+Install Python
+   ↓
+Write Python Code
+   ↓
+Run Code
+
+With Replit:
+
+Browser
+   ↓
+Replit
+   ↓
+Write Python Code
+   ↓
+Run Code
+In your AWS workflow
+
+If your course says:
+
+“Replit code → AWS Lambda Functions”
+
+it means:
+
+Replit
+   ↓
+Develop & test your Python application
+   ↓
+Take the working code
+   ↓
+AWS Lambda
+   ↓
+Deploy it as a serverless function
+
+===========
