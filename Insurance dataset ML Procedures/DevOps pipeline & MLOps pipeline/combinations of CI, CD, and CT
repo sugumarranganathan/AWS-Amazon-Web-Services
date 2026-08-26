@@ -1,0 +1,103 @@
+These are combinations of CI, CD, and CT used in different pipelines.
+
+1. CI/CD
+
+CI/CD = Continuous Integration + Continuous Delivery/Deployment
+
+This is mainly the standard DevOps pipeline.
+
+Developer
+   ↓
+   Git
+   ↓
+  CI
+(Test code)
+   ↓
+  CD
+(Deploy application)
+   ↓
+Production
+
+Example:
+
+You change your FastAPI application → push to GitHub → tests run → if everything passes → application is deployed to AWS.
+
+So:
+
+CI = Test
+CD = Deploy
+
+
+====
+
+
+2. CI/CT/CD
+
+CI/CT/CD = Continuous Integration + Continuous Training + Continuous Delivery/Deployment
+
+This is more appropriate for MLOps because ML projects have models that need training.
+
+              Git / New Code
+                    ↓
+                   CI
+              Test the code
+                    ↓
+                   CT
+            Train / Retrain model
+                    ↓
+                   CD
+             Deploy new model
+                    ↓
+             SageMaker Endpoint
+
+For example, your insurance prediction project:
+
+New code / New data
+        ↓
+       CI
+  Code + data tests
+        ↓
+       CT
+ Train Random Forest
+        ↓
+ Model evaluation
+        ↓
+       CD
+ Deploy model
+        ↓
+SageMaker Endpoint
+        ↓
+   Predictions
+Why CT is added?
+
+Because in normal software:
+
+Code changes → test → deploy
+
+But in ML:
+
+Code/data changes → test → train model → evaluate model → deploy model
+
+That's why MLOps often uses CI/CT/CD rather than only CI/CD.
+
+===
+
+Simple comparison
+
+| Pipeline     | Used mainly for | Flow                              |
+| ------------ | --------------- | --------------------------------- |
+| **CI/CD**    | DevOps          | Code → Test → Deploy              |
+| **CI/CT/CD** | MLOps           | Code/Data → Test → Train → Deploy |
+
+====
+
+Your project
+
+For your SageMaker insurance prediction project, if you build an automated MLOps pipeline, you could describe it as:
+
+CI/CT/CD pipeline for automated ML model testing, training, evaluation, and deployment.
+
+That's a strong MLOps concept to mention in your project/interview.
+
+=====
+
