@@ -1,0 +1,28 @@
+AWS Lambda Function — Description
+
+AWS Lambda is a serverless compute service that runs your Python backend code without requiring you to manage a server.
+
+In your Voiceflow + RAG project, the Lambda function acts as the backend/API layer:
+
+Voiceflow → Lambda → RAG → Qdrant → LLM → Lambda → Voiceflow
+
+====
+
+Main responsibilities
+Receives the user's question from Voiceflow.
+Executes your Python RAG logic.
+Creates an embedding for the question.
+Searches Qdrant for relevant information.
+Sends the retrieved context and question to the LLM.
+Generates the final AI response.
+Returns the response to Voiceflow.
+
+===
+
+Simple definition
+
+AWS Lambda is the serverless backend function that connects Voiceflow with the RAG pipeline, Qdrant vector database, and LLM to process user queries and return AI-generated responses.
+
+Important: Lambda itself is not RAG and not Qdrant. It is the execution layer that can run your RAG code.
+
+===
