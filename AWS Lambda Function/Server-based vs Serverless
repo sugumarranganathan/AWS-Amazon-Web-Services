@@ -1,0 +1,11 @@
+|                           | Server-based          | Serverless                 |
+| ------------------------- | --------------------- | -------------------------- |
+| Backend                   | FastAPI               | Lambda                     |
+| Server                    | Continuously running  | AWS-managed                |
+| User sends request        | Immediately processed | Immediately invokes Lambda |
+| RAG                       | ✅                     | ✅                          |
+| Qdrant                    | ✅                     | ✅                          |
+| LLM                       | ✅                     | ✅                          |
+| Real-time API response    | ✅                     | ✅                          |
+| Infrastructure management | More                  | Less                       |
+| Typical AWS architecture  | EC2/ECS               | API Gateway + Lambda       |
