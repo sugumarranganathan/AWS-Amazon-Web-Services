@@ -1,0 +1,57 @@
+def lambda_handler(event, context):
+    # Expecting input as: {"a": 5, "b": 3}
+
+    a = event.get('a', 0)
+    b = event.get('b', 0)
+
+    result = a + b
+
+    return {
+        'statusCode': 200,
+        'body': {
+            'a': a,
+            'b': b,
+            'sum': result
+        }
+    }
+
+=============================
+
+Example input
+{
+    "a": 5,
+    "b": 3
+}
+
+================
+
+Output
+{
+    "statusCode": 200,
+    "body": {
+        "a": 5,
+        "b": 3,
+        "sum": 8
+    }
+}
+
+===============
+
+In simple terms
+
+| Part                | Purpose                      |
+| ------------------- | ---------------------------- |
+| `event`             | Receives input               |
+| `context`           | Lambda execution information |
+| `event.get('a', 0)` | Gets `a`                     |
+| `event.get('b', 0)` | Gets `b`                     |
+| `a + b`             | Performs calculation         |
+| `statusCode: 200`   | Successful request           |
+| `body`              | Sends result back            |
+
+
+======
+
+This is a basic Lambda test function. For your RAG chatbot, the same lambda_handler(event, context) structure would receive the user's query and then call your RAG + Qdrant + LLM code.
+
+========
