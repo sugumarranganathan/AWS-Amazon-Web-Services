@@ -1,0 +1,65 @@
+Terraform
+
+Terraform is an Infrastructure as Code (IaC) tool created by HashiCorp.
+
+Instead of manually creating AWS resources through the AWS Console, you write configuration code that tells AWS what infrastructure you want.
+
+Without Terraform
+
+You manually do:
+
+AWS Console
+   ↓
+Create S3 bucket
+   ↓
+Create IAM role
+   ↓
+Create EC2
+   ↓
+Configure networking
+   ↓
+Create SageMaker resources
+
+This can take a lot of clicking and can lead to mistakes.
+
+With Terraform
+
+You write Terraform configuration:
+
+Terraform Code
+      ↓
+Terraform
+      ↓
+AWS
+      ↓
+S3 + IAM + EC2 + VPC + SageMaker
+
+Terraform creates the resources automatically.
+
+Simple example
+
+For example, you can tell Terraform:
+
+resource "aws_s3_bucket" "insurance_data" {
+  bucket = "my-insurance-data-bucket"
+}
+
+Then Terraform can create that S3 bucket in AWS.
+
+The important commands are:
+
+terraform init
+terraform plan
+terraform apply
+
+terraform init → prepares Terraform.
+
+terraform plan → shows what Terraform is going to create/change.
+
+terraform apply → actually creates/changes the AWS resources.
+
+And:
+
+terraform destroy
+
+→ removes the infrastructure that Terraform manages.
