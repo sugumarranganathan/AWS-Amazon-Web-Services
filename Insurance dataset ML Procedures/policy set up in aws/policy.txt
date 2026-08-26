@@ -1,0 +1,16 @@
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Effect": "Allow",
+			"Action": [
+				"secretsmanager:GetSecretValue",
+				"sagemaker:InvokeEndpoint"
+			],
+			"Resource": [
+				"arn:aws:secretsmanager:ap-south-1:705340940315:secret:insuranceAccessKey*",
+				"arn:aws:sagemaker:ap-south-1:705340940315:endpoint/insurance-charge-endpoint4"
+			]
+		}
+	]
+}
