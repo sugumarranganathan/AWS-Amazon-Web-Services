@@ -1,0 +1,23 @@
+Serverless? (Three different situations)
+
+| Situation                             | Serverless? | Why                                               |
+| ------------------------------------- | ----------- | ------------------------------------------------- |
+| Python running on your laptop         | ❌ No        | Your laptop provides the computing infrastructure |
+| FastAPI running on EC2                | ❌ No        | You have a continuously running server            |
+| Python function running on AWS Lambda | ✅ Yes       | AWS manages the underlying server infrastructure  |
+
+============
+
+The key idea
+
+Serverless does NOT mean "there is no server."
+
+There are servers behind AWS Lambda.
+
+It means:
+
+You don't have to manage those servers yourself.
+
+That's why your simple a + b program can run perfectly without Lambda, but if you put the same logic inside Lambda, it becomes a serverless function.
+
+=======
