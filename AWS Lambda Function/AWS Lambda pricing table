@@ -1,6 +1,10 @@
 AWS Lambda pricing table
 -----------------------
 
+https://aws.amazon.com/lambda/pricing/?utm_source=chatgpt.com
+
+=============
+
 | Architecture                                        |                        Duration |                  Requests |
 | --------------------------------------------------- | ------------------------------: | ------------------------: |
 | **x86 Price — First 6 Billion GB-seconds/month**    | **$0.0000166667 per GB-second** | **$0.20 per 1M requests** |
