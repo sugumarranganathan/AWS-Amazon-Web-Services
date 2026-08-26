@@ -1,0 +1,99 @@
+what is os.environ used for?
+
+os.environ is mainly used to store and access configuration values outside your Python code.
+
+=====
+
+1. Avoid hard-coding
+
+Instead of:
+
+bucket = "insurance-bucket"
+
+use:
+
+import os
+
+bucket = os.environ["BUCKET_NAME"]
+
+====
+
+2. Store API keys / secrets
+
+api_key = os.environ["API_KEY"]
+
+The secret is kept outside the Python source code.
+
+⚠️ For AWS, prefer IAM roles when possible rather than putting AWS credentials in environment variables.
+
+====
+
+3. Store AWS configuration
+
+region = os.environ["AWS_REGION"]
+
+For example:
+
+AWS_REGION=us-east-1
+
+====
+
+. Different settings for different environments
+
+The same application can run in:
+
+Development → DEV database
+Testing     → TEST database
+Production  → PROD database
+
+without changing the Python code.
+
+database = os.environ["DATABASE_URL"]
+
+Only the environment variable changes.
+
+====
+
+Simple idea
+-----------
+
+Without os.environ:
+
+Python Code
+    ↓
+Hard-coded values
+    ↓
+Difficult to change
+
+====
+
+With os.environ:
+
+Environment Variables
+    ↓
+Python Code
+    ↓
+Easy to change
+
+=====
+
+One important correction
+
+There is no os.environment commonly used for this purpose.
+
+The correct Python syntax is:
+
+os.environ
+
+or:
+
+os.getenv()
+
+So remember:
+
+os.environ = access environment variables from Python.
+
+====
+
+
+
