@@ -1,0 +1,180 @@
+AWS Lambda Python code for the architecture in your screenshot, a basic RAG Lambda function can look like this:
+
+===========
+
+import json
+import os
+import boto3
+from openai import OpenAI
+from qdrant_client import QdrantClient
+
+# -----------------------------
+# Clients
+# -----------------------------
+
+qdrant = QdrantClient(
+    url=os.environ["QDRANT_URL"],
+    api_key=os.environ["QDRANT_API_KEY"]
+)
+
+llm = OpenAI(
+    api_key=os.environ["OPENAI_API_KEY"]
+)
+
+COLLECTION_NAME = os.environ["QDRANT_COLLECTION"]
+
+
+# -----------------------------
+# Lambda Handler
+# -----------------------------
+
+def lambda_handler(event, context):
+
+    try:
+        # Get request body
+        body = event.get("body", "{}")
+
+        if isinstance(body, str):
+            body = json.loads(body)
+
+        user_query = body.get("query")
+
+        if not user_query:
+            return response(
+                400,
+                {"error": "Query is required"}
+            )
+
+        # -----------------------------
+        # 1. Create query embedding
+        # -----------------------------
+
+        embedding_response = llm.embeddings.create(
+            model="text-embedding-3-small",
+            input=user_query
+        )
+
+        query_vector = embedding_response.data[0].embedding
+
+        # -----------------------------
+        # 2. Search Qdrant
+        # -----------------------------
+
+        search_results = qdrant.query_points(
+            collection_name=COLLECTION_NAME,
+            query=query_vector,
+            limit=5
+        ).points
+
+        # -----------------------------
+        # 3. Extract relevant context
+        # -----------------------------
+
+        context_text = "\n\n".join(
+            [
+                result.payload.get("text", "")
+                for result in search_results
+            ]
+        )
+
+        # -----------------------------
+        # 4. Send context + question
+        #    to the LLM
+        # -----------------------------
+
+        prompt = f"""
+You are a helpful RAG assistant.
+
+Answer the user's question using the provided context.
+
+Context:
+{context_text}
+
+User Question:
+{user_query}
+
+If the answer is not available in the context,
+say that you don't have enough information.
+"""
+
+        completion = llm.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+            ]
+        )
+
+        answer = completion.choices[0].message.content
+
+        # -----------------------------
+        # 5. Return response
+        # -----------------------------
+
+        return response(
+            200,
+            {
+                "query": user_query,
+                "answer": answer
+            }
+        )
+
+    except Exception as e:
+
+        return response(
+            500,
+            {
+                "error": str(e)
+            }
+        )
+
+
+# -----------------------------
+# API Response
+# -----------------------------
+
+def response(status_code, body):
+
+    return {
+        "statusCode": status_code,
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "body": json.dumps(body)
+    }
+
+
+====
+
+How this fits your diagram
+User
+  ↓
+Voiceflow / Frontend
+  ↓
+API Gateway
+  ↓
+AWS Lambda
+  │
+  ├── Generate Embedding
+  │
+  ├── Search Qdrant
+  │
+  ├── Retrieve Documents
+  │
+  └── Call LLM
+          ↓
+     Generated Answer
+          ↓
+       Lambda
+          ↓
+    API Gateway
+          ↓
+Voiceflow / Frontend
+
+The key part is that lambda_handler() is the entry point. AWS Lambda invokes this function when API Gateway sends a request.
+
+If your project uses Groq instead of OpenAI, the LLM portion should be changed to Groq's API, while the overall Lambda architecture stays the same.
+
+=====
