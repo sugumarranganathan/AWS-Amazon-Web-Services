@@ -1,0 +1,91 @@
+EC2: "I rent and manage a server."
+
+Lambda: "AWS manages the servers; I only provide my function."
+
+That's the main difference.
+
+===========
+
+Yes — this is the confusing part. Let me make it very simple.
+
+Imagine a restaurant 🍽️
+
+When you use AWS Lambda, AWS still has physical computers (servers) somewhere in its data centers.
+
+You do not own or manage those computers.
+
+Think of it like this:
+
+                 AWS DATA CENTER
+        ┌───────────────────────────┐
+        │   Physical AWS Servers    │
+        │   Physical AWS Servers    │
+        │   Physical AWS Servers    │
+        │   Physical AWS Servers    │
+        └─────────────┬─────────────┘
+                      │
+                  AWS manages
+                      │
+                      ▼
+                AWS Lambda
+                      │
+                Your Python code
+
+You only see:
+
+AWS Lambda
+    ↓
+Your Python function
+
+AWS takes care of the underlying servers.
+
+========
+
+Compare with EC2
+
+With EC2, you are renting a virtual server:
+
+AWS physical hardware
+        ↓
+      EC2
+        ↓
+Your operating system
+        ↓
+Your Python / FastAPI
+
+You have to manage things such as the server configuration, OS, updates, and application environment.
+
+======
+
+With Lambda
+AWS physical hardware
+        ↓
+AWS manages everything
+        ↓
+Lambda
+        ↓
+Your Python function
+
+You don't manage the underlying server.
+
+====
+
+So why is it called "serverless"?
+
+Because "serverless" doesn't mean servers don't exist.
+
+It means:
+
+You don't have to manage or provision the servers yourself.
+
+AWS says Lambda is a serverless compute service and charges based on usage.
+
+One sentence to remember
+
+EC2: "I rent and manage a server."
+
+Lambda: "AWS manages the servers; I only provide my function."
+
+That's the main difference.
+
+=====
