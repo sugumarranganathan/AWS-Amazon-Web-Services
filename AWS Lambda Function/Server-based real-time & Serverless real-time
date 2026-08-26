@@ -1,0 +1,211 @@
+RAG chatbot, here is a simple real-time example showing the difference.
+
+1. Server-based real-time
+
+Suppose you deploy your FastAPI + RAG application on an EC2 server.
+
+                 SERVER-BASED
+                     
+User
+ ↓
+Frontend / Voiceflow
+ ↓
+FastAPI
+ ↓
+RAG
+ ↓
+Qdrant
+ ↓
+LLM
+ ↓
+FastAPI
+ ↓
+User
+
+====
+
+Example
+
+Your EC2 server is running:
+
+=========
+
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.post("/chat")
+def chat(query: str):
+
+    # RAG processing
+    documents = search_qdrant(query)
+
+    # LLM processing
+    answer = generate_answer(query, documents)
+
+    return {"answer": answer}
+
+====
+
+The server is running continuously:
+
+EC2 Server
+┌──────────────────────────┐
+│ FastAPI                  │
+│ RAG                      │
+│ Python                   │
+│ Dependencies             │
+└──────────────────────────┘
+        ↑
+        │ requests
+        ↓
+      Users
+
+If 100 users send requests, the running server handles those requests.
+
+Real-time means: the user sends a question and the already-running backend processes it immediately.
+
+====
+
+2. Serverless real-time
+
+Now use:
+
+API Gateway + AWS Lambda
+
+                 SERVERLESS
+
+User
+ ↓
+Frontend / Voiceflow
+ ↓
+API Gateway
+ ↓
+Lambda Function
+ ↓
+RAG
+ ↓
+Qdrant
+ ↓
+LLM
+ ↓
+Lambda
+ ↓
+API Gateway
+ ↓
+User
+
+Your Lambda code:
+
+=============
+
+def lambda_handler(event, context):
+
+    query = event["query"]
+
+    # RAG
+    documents = search_qdrant(query)
+
+    # LLM
+    answer = generate_answer(query, documents)
+
+    return {
+        "statusCode": 200,
+        "body": answer
+    }
+
+==============
+
+When the user sends:
+
+"What is the return policy?"
+
+AWS does roughly:
+
+User
+  ↓
+API Gateway
+  ↓
+Start Lambda
+  ↓
+Run Python/RAG
+  ↓
+Search Qdrant
+  ↓
+Call LLM
+  ↓
+Return answer
+  ↓
+Lambda execution ends
+
+There is no continuously running application server that you manage.
+
+======
+
+The main difference
+
+Think about a restaurant:
+
+Server-based
+
+You keep a restaurant open continuously.
+
+Server: 🟢 RUNNING
+Server: 🟢 RUNNING
+Server: 🟢 RUNNING
+Server: 🟢 RUNNING
+
+Even if nobody is ordering, the server is running.
+
+======
+
+Serverless
+
+The restaurant prepares an order when someone places one.
+
+No request → Lambda not executing
+
+User request
+     ↓
+Lambda starts
+     ↓
+Process request
+     ↓
+Return response
+     ↓
+Execution finishes
+
+AWS handles the underlying infrastructure.
+
+======
+
+But both can be "real-time"
+
+This is important.
+
+Server-based ≠ real-time
+Serverless ≠ not real-time
+
+Both can respond to a user immediately.
+
+====
+
+n your projects
+
+Your existing approach could be:
+
+Voiceflow → FastAPI → RAG → Qdrant → LLM
+
+That's a server-based real-time RAG chatbot if FastAPI is hosted on a continuously running server.
+
+The AWS version from your screenshot is:
+
+Voiceflow → API Gateway → Lambda → RAG → Qdrant → LLM
+
+That's a serverless real-time RAG chatbot.
+
+So the word "real-time" describes how quickly the application responds, while "server-based vs serverless" describes how the backend is deployed.
+
+====
+
+
