@@ -1,0 +1,42 @@
+🟢 MLOps
+
+MLOps = Machine Learning + Operations
+
+MLOps applies DevOps principles specifically to machine-learning systems.
+
+The important difference is that ML has not only code, but also:
+
+Dataset
+Data preprocessing
+Model training
+Model version
+Model evaluation
+Model deployment
+Model monitoring
+Model retraining
+
+
+===
+
+Example:
+
+        Dataset
+           ↓
+   Data Preprocessing
+           ↓
+      Model Training
+           ↓
+      Model Evaluation
+           ↓
+        ML Model
+           ↓
+   SageMaker Endpoint
+           ↓
+     Predictions
+           ↓
+      Monitoring
+           ↓
+   New Data / Retraining
+
+====
+
