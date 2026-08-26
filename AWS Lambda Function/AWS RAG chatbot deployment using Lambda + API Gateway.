@@ -1,0 +1,50 @@
+AWS RAG chatbot deployment using Lambda + API Gateway.
+
+What each part means
+
+User Query
+→ The user enters a question in the chatbot.
+
+API Gateway
+→ Acts as the REST API entry point. It receives the user's request and forwards it to the Lambda function.
+
+Lambda Functions (Docker Image)
+→ This is your Python/RAG backend packaged as a Docker container image. Lambda executes the code when API Gateway invokes it.
+
+Inside Lambda, your application can do:
+
+User Question → RAG → Vector Database → LLM → Generated Answer
+
+Generated Output
+→ Lambda produces the AI-generated answer.
+
+API Gateway → Output Response
+→ The response is returned through the API Gateway to the chatbot.
+
+The important point about your earlier question
+
+Your previous chatbot projects may have been:
+
+Frontend → FastAPI → RAG → Qdrant → LLM
+
+This screenshot changes the deployment method, not the RAG concept:
+
+Frontend → API Gateway → Lambda → RAG → Qdrant → LLM
+
+So:
+
+FastAPI = your normal backend/API approach
+API Gateway + Lambda = AWS serverless backend approach
+Docker Image = packages your Python dependencies/application for Lambda
+RAG/Qdrant/LLM = still perform the actual AI work
+Why is Docker mentioned here?
+
+The "Lambda Functions (Docker Image)" box means the Lambda function isn't necessarily uploaded as a simple .zip. Your Python application and dependencies are packaged into a Docker container image, which Lambda can execute.
+
+So the architecture you're looking at is essentially:
+
+Chatbot → API Gateway → Lambda (Docker) → RAG → Qdrant → LLM → Response
+
+That is a valid AWS deployment architecture, but Lambda is not required for RAG itself. It is being used here specifically for serverless deployment.
+
+=====
