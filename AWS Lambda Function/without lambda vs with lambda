@@ -1,0 +1,115 @@
+Lambda is an alternative way to run your backend.
+
+Without Lambda
+
+Your architecture can be:
+-----------------------
+
+User
+↓
+Frontend / Voiceflow
+↓
+FastAPI
+↓
+RAG
+↓
+Qdrant
+↓
+LLM
+↓
+FastAPI
+↓
+Voiceflow / Frontend
+
+====
+
+Here, your FastAPI application is continuously running on a server/cloud platform.
+
+Advantages:
+
+Simple to develop and debug
+Works very well for your existing chatbot projects
+FastAPI directly handles API requests
+Suitable for long-running applications
+Easy to test locally
+
+=====
+
+
+With Lambda
+
+The architecture becomes:
+
+User
+↓
+Frontend / Voiceflow
+↓
+API Gateway
+↓
+AWS Lambda
+↓
+RAG
+↓
+Qdrant
+↓
+LLM
+↓
+Lambda
+↓
+API Gateway
+↓
+Voiceflow / Frontend
+
+====
+
+Here, Lambda runs your backend code when a request comes in.
+
+Advantages:
+
+Serverless — no server to manage
+AWS automatically handles execution/scaling
+You generally pay based on usage rather than keeping a server running
+Good for APIs with intermittent traffic
+Fits well into an AWS-native architecture
+
+====
+
+Direct comparison
+
+|                    | Without Lambda              | With Lambda                  |
+| ------------------ | --------------------------- | ---------------------------- |
+| Backend            | FastAPI/server              | Lambda function              |
+| Server management  | Usually required            | AWS manages it               |
+| API Gateway        | Optional                    | Commonly used                |
+| Serverless         | ❌                           | ✅                            |
+| Your Python code   | Runs continuously/on server | Runs when invoked            |
+| Development        | Easier                      | Slightly more setup          |
+| Long-running tasks | Better                      | Not ideal                    |
+| Scaling            | You configure/manage it     | AWS handles scaling          |
+| Best for           | Normal web/API apps         | Event-driven/serverless APIs |
+
+===
+
+For your chatbot projects
+
+If your existing project is:
+
+FastAPI → RAG → Qdrant → LLM
+
+and it already works well, there is no technical need to add Lambda.
+
+====
+
+You would add Lambda mainly if your project requirement is something like:
+
+"Build and deploy the backend using AWS serverless architecture."
+
+So for your diagram, don't add Lambda just because it sounds necessary. If you're using FastAPI, you can show:
+
+Voiceflow → FastAPI → RAG → Qdrant → LLM
+
+If you're specifically demonstrating AWS Serverless, then show:
+
+Voiceflow → API Gateway → Lambda → RAG → Qdrant → LLM.
+
+=====
