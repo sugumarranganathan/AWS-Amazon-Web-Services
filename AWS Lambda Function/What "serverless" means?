@@ -1,0 +1,54 @@
+serverless as "no server is visible to me," which is understandable. But there is an important distinction:
+
+A normal Python program is NOT serverless
+Python Program
+     ↓
+Input: a = 5, b = 3
+     ↓
+a + b
+     ↓
+8
+
+This is simply local Python execution.
+
+Your computer is still providing the CPU, memory, operating system, etc.
+
+===============
+
+What "serverless" means
+
+Serverless means you don't manage the server infrastructure where the code runs.
+
+For example:
+
+User
+ ↓
+API Gateway
+ ↓
+AWS Lambda
+ ↓
+Python code
+ ↓
+8
+
+AWS manages the underlying servers for Lambda.
+
+====
+
+You provide the function:
+
+def lambda_handler(event, context):
+    a = event.get("a", 0)
+    b = event.get("b", 0)
+
+    return {
+        "statusCode": 200,
+        "body": {
+            "sum": a + b
+        }
+    }
+
+You don't have to create an EC2 server, install an OS, keep a server running, or manage its infrastructure.
+
+====
+
