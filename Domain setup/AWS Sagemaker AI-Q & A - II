@@ -1,0 +1,262 @@
+AWS Sagemaker AI
+----------------
+
+1. What is Amazon SageMaker?
+A fully managed service that allows developers and data scientists to build, train, and deploy machine learning models at scale without managing infrastructure manually.
+
+2. What are the main AWS services used for Machine Learning?
+Amazon SageMaker – Build, train & deploy ML models.
+AWS Lambda – Serverless execution of inference logic.
+Amazon S3 – Store datasets, models, and training outputs.
+AWS EC2 – Custom compute instances for model training/inference.
+AWS Glue – Data preprocessing and ETL.
+Amazon Athena – Query data from S3 using SQL.
+Amazon CloudWatch – Monitor model performance & logs.
+
+3. Explain the ML workflow in SageMaker.
+1.Data Collection: Store raw data in S3 bucket.
+2.Data Preparation: Clean and process using SageMaker Studio or Processing Jobs.
+3.Model Training: Use built-in algorithms, custom scripts, or pre-trained models.
+4.Model Evaluation: Check accuracy/metrics.
+5.Model Deployment: Deploy using SageMaker endpoints (real-time) or batch transform jobs.
+
+4. What is the role of S3 in SageMaker?
+Amazon S3 acts as a central data and model storage — it stores datasets, training outputs, model artifacts, and logs used by SageMaker for training and deployment.
+
+5. What is a Domain in SageMaker?
+A SageMaker Domain provides a shared environment (Studio) for users to collaborate. It manages users, storage, and permissions via IAM and S3 integration.
+
+6. What is a training job in AWS SageMaker?
+A training job is a managed process in SageMaker that runs your ML training code on AWS infrastructure using data from Amazon S3.
+
+7. What does a training job do?
+It trains your model using specified data, algorithm, and compute resources, then saves the trained model to S3.
+
+8. What inputs are needed for a training job?
+Algorithm or script, input data (S3 URI), instance type, hyperparameters, and IAM role.
+
+9. Where are the training results stored?
+The trained model artifacts are stored back in an S3 bucket.
+
+10. What compute resources does a training job use?
+It runs on AWS EC2 instances managed automatically by SageMaker.
+
+11. What are the main types of training jobs in SageMaker?
+Built-in algorithm, custom script, distributed training, and hyperparameter tuning jobs.
+
+12. What is IAM in AWS SAgemaker AI?
+IAM (Identity and Access Management) in AWS SageMaker is a service that controls access and permissions for users, models, and resources used in SageMaker.
+
+13. Why is IAM important in SageMaker?
+It ensures that only authorized users and services can access data, create training jobs, or deploy models — maintaining security and compliance.
+
+14. How does IAM help in SageMaker Studio domains?
+It controls user access within Studio, linking each user profile to a specific IAM role with defined permissions.
+
+15. What is Amazon EC2?
+Amazon EC2 (Elastic Compute Cloud) is a cloud service that provides virtual servers to run applications on AWS.
+
+16. How is EC2 used in SageMaker?
+EC2 instances are used to train machine learning models and host deployed endpoints for making predictions.
+
+17. What is the main advantage of EC2 in SageMaker?
+It offers scalable, flexible, and on-demand compute power without managing physical servers.
+
+18. What is the difference between EC2 and SageMaker?
+EC2 provides raw virtual machines, while SageMaker is a managed ML platform that internally uses EC2 for training and deployment.
+
+19. Explain the components of SageMaker.
+SageMaker consists of Jupyter notebooks for data exploration, labeling jobs for data annotation, training jobs for model training, and endpoints for model deployment.
+
+20. Explain the process of training a machine learning model using SageMaker.
+Users upload data to Amazon S3, specify the ML algorithm or use built-in algorithms, set hyperparameters, initiate a training job, and monitor progress using SageMaker features.
+
+21. What are built-in algorithms in SageMaker?
+Built-in algorithms include XGBoost, K-means, PCA, Linear Learner, and DeepAR among others, simplifying model development and experimentation.
+
+22. What is AWS Lambda?
+AWS Lambda is a serverless compute service that runs code automatically in response to events, without managing servers.
+
+23. Can you describe the use of AWS Lambda in an AI/ML pipeline?
+Lambda acts as a bridge between services, such as starting a SageMaker training job, invoking a model endpoint for prediction, or updating results in a database — all without manual intervention.
+
+24. Describe the benefits and use cases of AWS Serverless Architecture.
+AWS Serverless Architecture lets you build and run applications without managing servers. It automatically scales with demand and charges only for actual usage.
+
+Benefits:
+No server management
+Auto-scaling and high availability
+Pay-per-use pricing
+Faster deployment and reduced maintenance
+
+Use Cases:
+Event-driven ML workflows
+Real-time data processing
+API backends using Lambda
+Chatbots and automation pipelines
+
+25. How can you use Amazon SageMaker to assess machine learning models and analyze data?
+Amazon SageMaker can be used to train, test, and evaluate ML models using built-in tools for metrics and visualization. It also provides Studio and Processing Jobs to analyze, clean, and explore data efficiently.
+
+26. Define the S3 bucket default policy.
+Objects and buckets on Amazon S3 are both private by default. That bucket can only be accessed by the resource owner who established the AWS account. The resource owner, however, can give users and other resources access permissions.
+
+27. How do you store and version machine learning models in AWS?
+Use Amazon S3, optionally with versioning enabled, or register models in the SageMaker Model Registry for version and approval workflow management.
+
+28. What is a SageMaker endpoint?
+An endpoint deploys trained models for real-time predictions; it is scalable and managed by AWS to handle varying traffic loads.
+
+29. Difference between real-time and batch inference?
+Real-time inference uses endpoints for instant predictions; batch inference processes large datasets asynchronously without live endpoints.
+
+30. How do you train models in SageMaker?
+You can use built-in algorithms, custom ones, or containers. Upload your data to S3 and configure a training job in SageMaker which manages the infrastructure.
+
+AWS Sagemaker AI - Scenario Based Questions
+
+1. How would you deploy a trained ML model for real-time inference using AWS SageMaker?
+Upload your trained model artifact to Amazon S3.
+Create a SageMaker model by specifying the S3 path and the appropriate container image (framework).
+Deploy the model to a SageMaker real-time endpoint.
+Test the endpoint with sample prediction requests.
+Set auto-scaling policies based on usage metrics.
+
+2. How would you implement a CI/CD pipeline for SageMaker ML model deployment?
+Use AWS CodePipeline and CodeBuild to automate testing and packaging.
+Push new model artifacts and code to S3 and ECR.
+Trigger SageMaker Pipeline for training, evaluation, and deployment.
+Register the model in Model Registry and deploy after approvals.
+
+3. How would you securely deploy models to SageMaker?
+Enable encryption at rest for data in S3 and during training/inference.
+Use IAM roles and policies to restrict model and endpoint access.
+Enable audit logging with CloudTrail and endpoint network isolation.
+
+4. You have a trained model and need to deploy it to production with low latency requirements. However, traffic fluctuates significantly throughout the day. How would you design the deployment strategy?
+Enable SageMaker Endpoint Auto Scaling to adjust instance count according to demand.
+Use Multi-Model Endpoints if serving multiple models to reduce hosting costs.
+Compile the model with SageMaker Neo for faster inference.
+If real-time inference is unnecessary, use AWS Lambda with SageMaker Batch Transform for batch predictions.
+
+5. Your team is running multiple machine learning models for different business units. How do you efficiently manage and deploy them on SageMaker?
+Use SageMaker Multi-Model Endpoints to host multiple models on a single endpoint.
+Leverage Amazon SageMaker Pipelines for CI/CD automation.
+Implement model versioning with SageMaker Model Registry.
+Use feature stores to maintain consistency across models.
+
+6. Scenario: You want to create an end-to-end machine learning pipeline that automates data preprocessing, training, and deployment. How do you implement this in SageMaker?
+Use Amazon SageMaker Pipelines to automate the workflow.
+Integrate with AWS Step Functions for complex ML workflows.
+Utilize Amazon Event Bridge to trigger training jobs based on data updates.
+Store and track model versions using Amazon SageMaker Model Registry.
+
+7. How would you deploy a trained natural language model for a chatbot with real-time, low latency responses using SageMaker?
+Upload your trained model artifact to Amazon S3.
+Create a SageMaker endpoint for real-time inference and specify the appropriate hosting instance type for low latency.
+Optimize endpoint settings such as instance count and autoscaling for fluctuating user traffic.
+Use SageMaker Model Monitor to track response latency and errors in production.
+
+8. How do you build a chatbot that responds using external company documents?
+Use SageMaker JumpStart or Hugging Face models for embeddings.
+Store company documents in S3 and index with OpenSearch vector engine.
+Generate embeddings for the user query and search OpenSearch for relevant documents.
+Combine retrieved documents with the query before passing to your LLM on a SageMaker endpoint, using RAG (retrieval augmented generation) architecture.
+
+9. How would you quickly build and deploy a RAG chatbot leveraging external documents for domain-specific question answering in SageMaker?
+Use SageMaker Studio or a notebook instance to prototype your workflow, loading a conversational LLM (like Llama-2) and relevant embedding models.
+Construct prompts with LangChain and perform experiments by embedding and retrieving content from a vector database such as Pinecone.
+Once satisfied, deploy both the generative LLM and the embedding model as SageMaker real-time endpoints for scalable inference.
+Integrate the endpoints into your chatbot application for production use.
+
+10. How would you ensure proper versioning and monitoring for a continuously updated RAG chatbot on SageMaker?
+Register each LLM and embedding model version in SageMaker Model Registry.
+Use a CI/CD pipeline or scheduled retraining jobs to regularly update models with new data sources.
+Implement LLM monitoring tools (such as Deepchecks) for live performance and data drift checks.
+Audit chatbot responses and usage through CloudWatch and CloudTrail logs for compliance and debugging.
+
+11. How would you automate the deployment of machine learning models to SageMaker using GitHub Actions as your CI/CD system?
+Push code and model changes to GitHub.
+GitHub Actions workflow is triggered to run tests, build images, and package artifacts.
+The workflow uses AWS CLI or boto3 to deploy or update the model in SageMaker automatically.
+The workflow can also update infrastructure using AWS CloudFormation or Terraform if needed.
+
+12. How do you use AWS Lambda in an ML deployment workflow with SageMaker?
+Configure Lambda to trigger on events (e.g., new data in S3 or new model in the registry).
+Lambda function processes the input and triggers SageMaker endpoint invocation or batch transform job.
+Lambda returns model predictions to the user or downstream application.
+
+13. Describe a full CI/CD pipeline for deploying ML models in SageMaker using GitHub Actions.
+Changes to model code/config are pushed to GitHub.
+GitHub Actions runs integration/unit tests and containers are built if needed.
+Artifacts (like trained model files) are uploaded automatically to Amazon S3 or ECR.
+The pipeline updates or deploys new endpoints in Amazon SageMaker.
+Approvals and rollbacks are managed by workflow steps or manual approvals.
+
+14. How would you automate the deployment of machine learning models to SageMaker using GitHub Actions as your CI/CD system?
+Push code and model changes to GitHub.
+GitHub Actions workflow is triggered to run tests, build images, and package artifacts.
+The workflow uses AWS CLI or boto3 to deploy or update the model in SageMaker automatically.
+The workflow can also update infrastructure using AWS CloudFormation or Terraform if needed.
+
+15. Describe a full CI/CD pipeline for deploying ML models in SageMaker using GitHub Actions.
+Changes to model code/config are pushed to GitHub.
+GitHub Actions runs integration/unit tests and containers are built if needed.
+Artifacts (like trained model files) are uploaded automatically to Amazon S3 or ECR.
+The pipeline updates or deploys new endpoints in Amazon SageMaker.
+Approvals and rollbacks are managed by workflow steps or manual approvals.
+
+16. Your application has intermittent, unpredictable traffic and can tolerate occasional cold starts. How would you deploy your model?
+Use SageMaker Serverless Endpoints. They auto-scale compute resources up and down based on traffic and scale to zero during idle times, minimizing costs. This is ideal when traffic patterns are sporadic and low-latency requirements are moderate.
+
+17. You need consistently low latency (milliseconds) for real-time predictions with steady or high traffic. Which endpoint type do you choose?
+Use SageMaker Real-Time (server-based) Endpoints with provisioned instances. They keep compute resources warm for instant response and allow autoscaling for high throughput, ensuring predictable low latency.
+
+18. What are the key steps to deploy a model on a serverless endpoint?
+1.Create a SageMaker model specifying the model artifacts.
+2.Define an endpoint configuration including serverless settings (memory size, max concurrency).
+3.Create the serverless endpoint using this config.
+4.Invoke endpoint via HTTPS calls.
+
+19. How can I build a repeatable ML workflow in SageMaker AI?
+1.Define the pipeline using SageMaker Pipelines SDK to automate data preprocessing, training, tuning, evaluation, and deployment steps as code.
+2.Register models in SageMaker Model Registry for version control and approval workflows.
+3.Automate triggers with AWS Lambda or EventBridge for CI/CD integration and event-based execution.
+4.Monitor and audit with CloudWatch and logs for performance and compliance tracking.
+5.Run pipelines continuously triggered by code or data changes to ensure consistent, scalable model updates.
+
+20. How would you optimize model performance using hyperparameter tuning in SageMaker?
+Use SageMaker Automatic Model Tuning to run multiple training jobs in parallel with different hyperparameters and select the best-performing model based on a defined objective metric.
+
+21. When would you choose SageMaker real-time endpoints vs. Batch Transform jobs?
+I will use real-time endpoints for low-latency, online predictions and Batch Transform for asynchronous, large-scale inference that isn’t latency sensitive.
+
+22. How can you reduce costs on SageMaker model training?
+I will use Managed Spot Training to leverage spare EC2 capacity at lower cost, enabling checkpointing to resume interrupted jobs.
+
+23. How do you monitor deployed model quality and data drift?
+I will use SageMaker Model Monitor to continuously analyze incoming data and predictions for skew or drift, setting CloudWatch alarms to trigger alerts or retraining as needed.
+
+24. How do you secure global model deployments and restrict endpoint access?
+I will use IAM roles and policies to control access, place endpoints inside VPCs with PrivateLink, and enforce encryption in transit and at rest using AWS KMS.
+
+25. How do you avoid unexpected high costs running SageMaker training or endpoints?
+I will use Managed Spot Training to reduce training costs, enable auto-scaling on endpoints, and choose serverless endpoints for sporadic inference workloads. I will monitor costs regularly with AWS Cost Explorer.
+
+26. How do you secure sensitive training data and deployed models with SageMaker?
+I will enable encryption at rest (S3, EBS) and in transit, restrict endpoint access with IAM policies and VPC configurations, and use AWS KMS for key management.
+
+27. How do you choose AWS regions for SageMaker deployments?
+I will select regions closest to the user base for low latency, and replicate artifacts to multiple regions for disaster recovery and fault tolerance.
+
+28. What are common integration challenges with other AWS services?
+I will consider IAM role permissions carefully for cross-service accesses, use VPC endpoints when integrating with private resources, and follow service quotas to avoid throttling.
+
+29. You have a custom Python ML algorithm with unique preprocessing and evaluation steps. You want to train and deploy this model on SageMaker without building your own Docker container. How will you do this?
+I will use SageMaker Script Mode, where I write my custom training and inference scripts and pass them as an entry point to SageMaker’s managed containers (e.g., scikit-learn container). SageMaker packages and runs my scripts inside these containers, eliminating the need to manage Docker images, while giving me full control over model logic and dependencies. This accelerates development and simplifies deployment.
+
+30. You need to deploy multiple machine learning models on a single SageMaker endpoint to minimize infrastructure costs. How will you achieve this?
+I will use SageMaker multi-model endpoints, which allow deploying multiple models on one endpoint. The endpoint loads each model on demand from S3, sharing compute resources and reducing idle capacity costs while supporting scalable inference for many models.
+
+-----
+
