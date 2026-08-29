@@ -41,4 +41,16 @@ container-hope --region ap-south-1
 
 ==
 
+What each part does
+AWS CLI → Lets you control AWS services from the terminal.
+aws configure → Configures your AWS credentials, region, and output format.
+aws --version → Checks whether AWS CLI is installed correctly.
+DOCKER_BUILDKIT=0 → Disables Docker BuildKit for the following build.
+docker build --platform linux/amd64 ... → Builds the Lambda Docker image for the linux/amd64 platform.
+aws ecr create-repository → Creates an Amazon ECR repository where the Docker image can be stored.
+ap-south-1 → AWS Asia Pacific (Mumbai) region.
+rag-lambda-container-hope → The ECR repository name shown in your notes.
+
+====
+
           
