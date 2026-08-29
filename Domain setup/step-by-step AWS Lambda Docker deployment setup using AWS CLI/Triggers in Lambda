@@ -1,0 +1,122 @@
+Under Configuration → Triggers, you have:
+
+Trigger (1)
+
+API Gateway: Samsung-Washing-Machine-RAG-API
+
+And the API endpoint shown is:
+
+https://juj26268tj.execute-api.us-east-1.amazonaws.com/chat
+
+So your trigger is:
+
+API Gateway
+Samsung-Washing-Machine-RAG-API
+        │
+        │ /chat
+        ▼
+AWS Lambda
+Samsung-Washing-Machine-RAG-Chatbot
+What this means
+
+When someone sends an HTTP request to:
+
+https://juj26268tj.execute-api.us-east-1.amazonaws.com/chat
+
+the API Gateway triggers your Lambda function.
+
+Your Samsung chatbot flow is therefore:
+
+User
+ ↓
+API Gateway
+ ↓
+/chat
+ ↓
+Lambda Trigger
+ ↓
+Samsung-Washing-Machine-RAG-Chatbot
+ ↓
+Docker Container
+ ↓
+FastAPI
+ ↓
+Qdrant RAG
+ ↓
+Groq LLM
+ ↓
+Answer
+
+So your trigger is already connected and working at the configuration level. You have 1 trigger, and it is API Gateway.
+
+=====
+
+┌──────────────────────────────┐
+│ API Gateway                  │
+│ Samsung-Washing-Machine-     │
+│ RAG-API                      │
+└──────────────┬───────────────┘
+               │
+               │ Trigger / Integration
+               ▼
+┌──────────────────────────────┐
+│ Lambda                       │
+│ Samsung-Washing-Machine-     │
+│ RAG-Chatbot                  │
+└──────────────────────────────┘
+What this means for your project
+
+Your API Gateway:
+
+Samsung-Washing-Machine-RAG-API
+
+is already connected to your Lambda:
+
+Samsung-Washing-Machine-RAG-Chatbot
+
+So you do NOT need to click “Add trigger” again.
+
+Your request flow is:
+
+User
+ │
+ ▼
+Samsung Washing Machine RAG Chatbot
+ │
+ ▼
+API Gateway
+ │
+ ▼
+Lambda Trigger
+ │
+ ▼
+Samsung-Washing-Machine-RAG-Chatbot
+ │
+ ▼
+Docker Container
+ │
+ ▼
+FastAPI
+ │
+ ▼
+Qdrant RAG
+ │
+ ▼
+Groq LLM
+ │
+ ▼
+Answer
+What you should do next
+
+The important thing now is to find your API Gateway Invoke URL.
+
+From this Lambda page, click the API Gateway box:
+
+Samsung-Washing-Machine-RAG-API
+
+That should take you to the API Gateway configuration, where you can find the Invoke URL.
+
+If you send me the next screenshot after clicking Samsung-Washing-Machine-RAG-API, I can tell you exactly where to find the Invoke URL and how to test your Samsung chatbot API.
+
+====
+
