@@ -1,0 +1,44 @@
+This is a step-by-step AWS Lambda Docker deployment setup using AWS CLI. It shows how to configure AWS CLI, verify the installation, build a Docker image for a Lambda container, and create an Amazon ECR repository.
+
+Here it is as shown in your images:
+
+===
+
+AWS CLI - Download and Install it
+
+https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+
+Step1: Write Lambda Handler functions and respective functions
+Step2: Open Visual Studio and locate to this folder
+Step3: Create Docker file
+Step4:open terminal in Visual Studio
+and past this command
+before that check aws was configured
+aws --configure
+        Enter:
+
+        • Access Key ID
+
+        • Secret Access Key
+
+        • Region: ap-south-1
+
+        • Output: json
+
+After installation check this
+aws --version
+Should get like this
+aws-cli/2.15.3 Python/3.11.5 Windows/10 exe/AMD64 prompt/off
+
+Then issue this command
+
+$env:DOCKER_BUILDKIT=0
+
+docker build --platform linux/amd64 -t rag-lambda-containerhope .
+
+aws ecr create-repository --repository-name rag-lambda-
+container-hope --region ap-south-1
+
+==
+
+          
